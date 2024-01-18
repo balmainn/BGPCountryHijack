@@ -1,0 +1,37 @@
+useful resources 
+https://stat.ripe.net/docs/02.data-api/country-resource-list.html
+This data call lists the Internet resources associated with a country, including ASNs, IPv4 ranges and IPv4/6 CIDR prefixes.
+
+https://stat.ripe.net/docs/02.data-api/country-resource-stats.html
+his data call returns statistics on Internet resources for a country - this includes:
+
+    number of ASNs seen in routing data and registration data
+    number of prefixes in routing data and registration data (split into IPv4 and IPv6)
+    amount of IPv4 space seen in routing data as well as registration data
+
+The results can be restricted to a specific time period as well the granularity is variable but can be set explicitly.
+
+https://stat.ripe.net/docs/02.data-api/country-asns.html
+This data call provides information on a country's registered and routed ASNs. Registered ASNs are based on registration information made public by the Regional Internet Registries. The routing information is based on the data collected with the RIPE NCC's RIS system, https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/routing-information-service-ris.
+The data call supports history, with data points being aligned to times dumps are created in RIS (00:00, 08:00 and 16:00 UTC).
+By default, the data call returns just the number of registered and routed ASNs. This is mainly to prevent returning thousands of ASNs. See parameter settings below to further tailor the output to your needs.
+
+https://stat.ripe.net/docs/02.data-api/rir-stats-country.html
+This data call returns geographical information for Internet resources based on RIR Statistics data.
+
+
+AQ: antartica 
+BV: uninhabited Norwegian dependent territory of Bouvet Island.
+UM: United States Minor Outlying Islands
+CX: Christmas Island
+CC: Cocos (Keeling) Islands, an Australian territory. 
+TF: The French Southern and Antarctic Lands is an overseas territory of France.
+HM: Heard and McDonald Islands, uninhabited islands in the southern Indian Ocean under the sovereign control of Australia.
+PN: Pitcairn Islands
+SH: Saint Helena, Ascension and Tristan da Cunha
+GS: South Georgia and the South Sandwich Islands
+SJ: Svalbard and Jan Mayen 
+    United Nations Statistics Division also uses this code?
+EH: Western Sahara
+
+Data is current as of 5:00 1/17/2024
