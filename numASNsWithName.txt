@@ -1,0 +1,249 @@
+United States of America (the) : US  has  30419 asns
+Brazil : BR  has  8970 asns
+China : CN  has  6726 asns
+Russian Federation (the) : RU  has  5811 asns
+India : IN  has  5677 asns
+Indonesia : ID  has  3191 asns
+United Kingdom of Great Britain and Northern Ireland (the) : GB  has  3134 asns
+Germany : DE  has  3045 asns
+Australia : AU  has  2904 asns
+Poland : PL  has  2526 asns
+Canada : CA  has  2345 asns
+Ukraine : UA  has  2136 asns
+France : FR  has  1960 asns
+Bangladesh : BD  has  1715 asns
+Netherlands (the) : NL  has  1563 asns
+Italy : IT  has  1286 asns
+Hong Kong : HK  has  1258 asns
+Japan : JP  has  1258 asns
+Argentina : AR  has  1257 asns
+Spain : ES  has  1221 asns
+Korea (the Republic of) : KR  has  1163 asns
+Romania : RO  has  1157 asns
+Switzerland : CH  has  1053 asns
+Turkey : TR  has  899 asns
+Sweden : SE  has  871 asns
+South Africa : ZA  has  793 asns
+Viet Nam : VN  has  780 asns
+Iran (Islamic Republic of) : IR  has  772 asns
+Bulgaria : BG  has  757 asns
+Austria : AT  has  752 asns
+New Zealand : NZ  has  709 asns
+Czechia : CZ  has  688 asns
+Singapore : SG  has  663 asns
+Mexico : MX  has  639 asns
+Thailand : TH  has  609 asns
+Philippines (the) : PH  has  579 asns
+Denmark : DK  has  465 asns
+Taiwan (Province of China) : TW  has  456 asns
+Colombia : CO  has  439 asns
+Chile : CL  has  399 asns
+Belgium : BE  has  392 asns
+Norway : NO  has  386 asns
+Finland : FI  has  377 asns
+Pakistan : PK  has  368 asns
+Malaysia : MY  has  363 asns
+Israel : IL  has  355 asns
+Latvia : LV  has  304 asns
+Slovenia : SI  has  301 asns
+Hungary : HU  has  294 asns
+Ireland : IE  has  292 asns
+Nigeria : NG  has  262 asns
+Greece : GR  has  231 asns
+Ecuador : EC  has  227 asns
+Slovakia : SK  has  226 asns
+Moldova (the Republic of) : MD  has  216 asns
+Iraq : IQ  has  213 asns
+Estonia : EE  has  207 asns
+Serbia : RS  has  206 asns
+Lithuania : LT  has  205 asns
+Venezuela (Bolivarian Republic of) : VE  has  203 asns
+Kazakhstan : KZ  has  202 asns
+Kenya : KE  has  192 asns
+Saudi Arabia : SA  has  184 asns
+Nepal : NP  has  182 asns
+Peru : PE  has  175 asns
+Lebanon : LB  has  173 asns
+Croatia : HR  has  170 asns
+Cyprus : CY  has  156 asns
+Georgia : GE  has  154 asns
+Myanmar : MM  has  154 asns
+Panama : PA  has  146 asns
+Dominican Republic (the) : DO  has  144 asns
+Portugal : PT  has  143 asns
+Cambodia : KH  has  141 asns
+United Arab Emirates (the) : AE  has  136 asns
+Luxembourg : LU  has  129 asns
+Armenia : AM  has  125 asns
+Albania : AL  has  120 asns
+Belarus : BY  has  120 asns
+Costa Rica : CR  has  109 asns
+Honduras : HN  has  101 asns
+Puerto Rico : PR  has  101 asns
+Paraguay : PY  has  100 asns
+Ghana : GH  has  100 asns
+"Tanzania United Republic of" : TZ  has  96 asns
+Uzbekistan : UZ  has  96 asns
+Iceland : IS  has  93 asns
+Egypt : EG  has  89 asns
+Azerbaijan : AZ  has  84 asns
+Guatemala : GT  has  83 asns
+Kuwait : KW  has  79 asns
+Seychelles : SC  has  72 asns
+Angola : AO  has  69 asns
+"Palestine State of" : PS  has  68 asns
+Mongolia : MN  has  67 asns
+Bolivia (Plurinational State of) : BO  has  64 asns
+Republic of North Macedonia : MK  has  64 asns
+Afghanistan : AF  has  63 asns
+Kyrgyzstan : KG  has  62 asns
+Bosnia and Herzegovina : BA  has  57 asns
+Uganda : UG  has  55 asns
+Malta : MT  has  53 asns
+Jordan : JO  has  51 asns
+Mauritius : MU  has  51 asns
+Congo (the Democratic Republic of the) : CD  has  50 asns
+El Salvador : SV  has  50 asns
+Uruguay : UY  has  43 asns
+Virgin Islands (British) : VG  has  42 asns
+Belize : BZ  has  40 asns
+Curaçao : CW  has  37 asns
+Papua New Guinea : PG  has  37 asns
+Lao People's Democratic Republic (the) : LA  has  36 asns
+Bhutan : BT  has  34 asns
+Botswana : BW  has  33 asns
+Gibraltar : GI  has  33 asns
+Nicaragua : NI  has  31 asns
+Tajikistan : TJ  has  30 asns
+Zimbabwe : ZW  has  30 asns
+Malawi : MW  has  29 asns
+Sri Lanka : LK  has  29 asns
+Mozambique : MZ  has  29 asns
+Burkina Faso : BF  has  29 asns
+Cameroon : CM  has  29 asns
+Libya : LY  has  28 asns
+Montenegro : ME  has  28 asns
+Tunisia : TN  has  28 asns
+Rwanda : RW  has  28 asns
+Morocco : MA  has  28 asns
+Liechtenstein : LI  has  27 asns
+Bahrain : BH  has  27 asns
+Isle of Man : IM  has  26 asns
+Côte d'Ivoire : CI  has  26 asns
+Somalia : SO  has  24 asns
+South Sudan : SS  has  23 asns
+Zambia : ZM  has  23 asns
+Bermuda : BM  has  23 asns
+Oman : OM  has  22 asns
+Qatar : QA  has  21 asns
+New Caledonia : NC  has  20 asns
+Benin : BJ  has  19 asns
+Maldives : MV  has  18 asns
+Fiji : FJ  has  18 asns
+Chad : TD  has  18 asns
+Sierra Leone : SL  has  17 asns
+Liberia : LR  has  16 asns
+Guinea : GN  has  16 asns
+Macao : MO  has  15 asns
+Trinidad and Tobago : TT  has  15 asns
+Antigua and Barbuda : AG  has  15 asns
+Namibia : NA  has  15 asns
+Senegal : SN  has  14 asns
+Bahamas (the) : BS  has  14 asns
+Gabon : GA  has  14 asns
+Sudan (the) : SD  has  14 asns
+Vanuatu : VU  has  14 asns
+Congo (the) : CG  has  13 asns
+Jamaica : JM  has  13 asns
+Eswatini : SZ  has  13 asns
+Jersey : JE  has  13 asns
+Algeria : DZ  has  13 asns
+Haiti : HT  has  13 asns
+Gambia (the) : GM  has  13 asns
+Cayman Islands (the) : KY  has  12 asns
+San Marino : SM  has  12 asns
+Virgin Islands (U.S.) : VI  has  12 asns
+Solomon Islands : SB  has  12 asns
+Timor-Leste : TL  has  12 asns
+Madagascar : MG  has  11 asns
+Cabo Verde : CV  has  11 asns
+Togo : TG  has  10 asns
+Mali : ML  has  10 asns
+Lesotho : LS  has  10 asns
+Burundi : BI  has  10 asns
+Brunei Darussalam : BN  has  10 asns
+Niger (the) : NE  has  10 asns
+Samoa : WS  has  9 asns
+Grenada : GD  has  9 asns
+Guernsey : GG  has  9 asns
+Mauritania : MR  has  9 asns
+Guadeloupe : GP  has  9 asns
+Guam : GU  has  9 asns
+Dominica : DM  has  8 asns
+Ethiopia : ET  has  8 asns
+Saint Kitts and Nevis : KN  has  8 asns
+Equatorial Guinea : GQ  has  8 asns
+Barbados : BB  has  8 asns
+Réunion : RE  has  7 asns
+Saint Martin (French part) : MF  has  7 asns
+French Guiana : GF  has  7 asns
+Cuba : CU  has  7 asns
+Suriname : SR  has  7 asns
+Guyana : GY  has  7 asns
+Bonaire Sint Eustatius and Saba : BQ  has  6 asns
+Faroe Islands (the) : FO  has  6 asns
+Micronesia (Federated States of) : FM  has  6 asns
+Martinique : MQ  has  6 asns
+French Polynesia : PF  has  6 asns
+Yemen : YE  has  6 asns
+Saint Lucia : LC  has  6 asns
+Turkmenistan : TM  has  6 asns
+Tonga : TO  has  5 asns
+Djibouti : DJ  has  5 asns
+Anguilla : AI  has  5 asns
+Syrian Arab Republic : SY  has  5 asns
+Sint Maarten (Dutch part) : SX  has  4 asns
+Aruba : AW  has  4 asns
+Kiribati : KI  has  4 asns
+Nauru : NR  has  4 asns
+Saint Vincent and the Grenadines : VC  has  4 asns
+Monaco : MC  has  3 asns
+Holy See (the) : VA  has  3 asns
+Tuvalu : TV  has  3 asns
+Marshall Islands (the) : MH  has  3 asns
+Palau : PW  has  3 asns
+Tokelau : TK  has  3 asns
+Central African Republic (the) : CF  has  3 asns
+American Samoa : AS  has  3 asns
+Saint Barthélemy : BL  has  3 asns
+Sao Tome and Principe : ST  has  2 asns
+Turks and Caicos Islands (the) : TC  has  2 asns
+Cook Islands (the) : CK  has  2 asns
+Norfolk Island : NF  has  2 asns
+Northern Mariana Islands (the) : MP  has  2 asns
+Guinea-Bissau : GW  has  2 asns
+Falkland Islands (the) [Malvinas] : FK  has  2 asns
+Andorra : AD  has  2 asns
+Comoros (the) : KM  has  2 asns
+Saint Pierre and Miquelon : PM  has  1 asns
+Mayotte : YT  has  1 asns
+Montserrat : MS  has  1 asns
+Korea (the Democratic People's Republic of) : KP  has  1 asns
+British Indian Ocean Territory (the) : IO  has  1 asns
+Åland Islands : AX  has  1 asns
+Wallis and Futuna : WF  has  1 asns
+Greenland : GL  has  1 asns
+Eritrea : ER  has  1 asns
+Niue : NU  has  1 asns
+Heard Island and McDonald Islands : HM  has  0 asns
+South Georgia and the South Sandwich Islands : GS  has  0 asns
+Pitcairn : PN  has  0 asns
+Antarctica : AQ  has  0 asns
+Christmas Island : CX  has  0 asns
+"Saint Helena Ascension and Tristan da Cunha" : SH  has  0 asns
+French Southern Territories (the) : TF  has  0 asns
+Svalbard and Jan Mayen : SJ  has  0 asns
+Western Sahara : EH  has  0 asns
+Cocos (Keeling) Islands (the) : CC  has  0 asns
+United States Minor Outlying Islands (the) : UM  has  0 asns
+Bouvet Island : BV  has  0 asns

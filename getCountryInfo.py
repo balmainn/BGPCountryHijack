@@ -1,5 +1,6 @@
 import requests
 import pickle
+from multiprocessing import Pool #so we can do things faster
 
 def getCountryASNPrefixes(countryCode):
     """get a country's ASNS, ipv4, and ipv6 prefixes.
@@ -18,14 +19,29 @@ def getCountryASNPrefixes(countryCode):
     ipv4 = json['data']['resources']['ipv4']
     ipv6 = json['data']['resources']['ipv6']
     countryInfo = {'code':countryCode, 'asns': asns, 'ipv4':ipv4,"ipv6":ipv6}
-    print('asns: ',asns[:5])
+    # print('asns: ',asns[:5])
+    print(countryCode, "has ", len(asns), " asns in it")
     return countryInfo
 
-def getASNneighbors(asn):
-    """query RIPE for the neighbors for a given AS"""
-    neighbors = []
-    #TODO copy code over from bg project
+
+def getNeighbor(asn,query_time):
+    """find the neighbors of a given ASN
+    returns a set to remove duplicates"""
+    neighbors = set()
+    url = f"https://stat.ripe.net/data/asn-neighbours/data.json?resource={asn}&query_time={query_time}&lod=1"
+    print("getting neighbors for AS",asn)
+    res = requests.get(url)
+    try:
+        json = res.json()
+    except:
+        return None
+    # print(json)
+    allneighbors = json["data"]["neighbours"]
+    
+    for neighbor in allneighbors:
+        neighbors.add(neighbor['asn'])
     return neighbors
+
 def readCountryList():
     """read in isocountries.csv 
     this file was exported from a table found on wikipedia 
@@ -87,29 +103,82 @@ def countNeighborCountrys(country):
     #TODO
     pass
 
+def sortCountriesByNumASN(countriesList):
+    """sort the list of dictionaries by how many ASNs they have"""
+    countries = countriesList
+    for i in range(len(countries)):
+        for j in range(len(countries)):
+            if len(countries[i]['asns']) > len(countries[j]['asns']):
+                tmp = countries[i]
+                countries[i] = countries[j]
+                countries[j] = tmp
+    # for i in range(len(countries)):
+    #     print(countries[i]['code'], ' has ', len(countries[i]['asns']), 'asns')
+    return countries
+
+
 #~~~~~ main ~~~~~#
 codes,names = readCountryList()
 # for code in codes:
 #     countryInfo = getCountryASNPrefixes(code)
 #     storeCountryInfo(countryInfo)
+countries = []
+
 for code in codes:
     countryInfo = loadCountryInfo(code)
+    countries.append(countryInfo)
     if len(countryInfo['asns']) == 0:
         print(code, "does not have any ASNS!")
 
-#needs testing    
-#add an additional paramater for neighborCountries 
-for country in countryInfo:
-    for asn in country['asns']:
-        countryInfo['asnNeighbors'] = (asn,[]) #each asn can have one or more neighbors
+countries = sortCountriesByNumASN(countries)
 
-# countryInfo = {'code':countryCode, 'asns': asns, 'ipv4':ipv4,"ipv6":ipv6}
-for code in codes:
-    #get as neighbors 
-    for country in countryInfo:
-        #see if they are neighbors 
-        #append the country's code if they are neighbors 
-        pass
+lines = []
+with open('isocountries2.csv','r') as f:
+    
+    line = f.readline()#skip past the header
+    lines = f.readlines()
+    # print(line)
+    # print(lines)
+print('country code , number ASNs')
+for country in countries:
+    for line in lines:
+        # print("line: ",line)
+        parts = line.split(',')
+        # print(parts)
+        name = parts[0]
+        code = parts[1]    
+        if country['code']==code:
+            # print(name, "for country code is ", code)
+            # print(name, ':',code, ' has ', len(country['asns']), 'asns')
+            print(code, ',', len(country['asns']))
+
+#    sortedMonitors = sorted(monitors,key=lambda k: monitors[k]['v4_prefix_count'],reverse=True)
+
+# sortedMonitors = sorted(countries,key=lambda k,i: len(countries[k][i]['asns']))
+
+
+# for index,country in enumerate(countries):
+#     currentAsnCount = len(country['asns'])
+#     nextAsnCount = len(countries)
+        
+
+        
+
+
+
+# #needs testing    
+# #add an additional paramater for neighborCountries 
+# for country in countryInfo:
+#     for asn in country['asns']:
+#         countryInfo['asnNeighbors'] = (asn,[]) #each asn can have one or more neighbors
+
+# # countryInfo = {'code':countryCode, 'asns': asns, 'ipv4':ipv4,"ipv6":ipv6}
+# for code in codes:
+#     #get as neighbors 
+#     for country in countryInfo:
+#         #see if they are neighbors 
+#         #append the country's code if they are neighbors 
+#         pass
 
 # for country in countryInfo:
 #     countUniqueNeighbors(country)    
