@@ -19,6 +19,10 @@ By default, the data call returns just the number of registered and routed ASNs.
 https://stat.ripe.net/docs/02.data-api/rir-stats-country.html
 This data call returns geographical information for Internet resources based on RIR Statistics data.
 
+https://stat.ripe.net/docs/02.data-api/announced-prefixes.html
+This data call returns all announced prefixes for a given ASN. The results can be restricted to a specific time period.
+if no time supplied default is 2 weeks from current date/time (time.now())
+
 
 AQ: antartica 
 BV: uninhabited Norwegian dependent territory of Bouvet Island.
