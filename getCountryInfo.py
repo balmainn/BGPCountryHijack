@@ -27,6 +27,7 @@ def getCountryASNPrefixes(countryCode):
 def getNeighbor(asn,query_time):
     """find the neighbors of a given ASN
     returns a set to remove duplicates"""
+    # print("getting neighbor for: ",asn)
     neighbors = set()
     url = f"https://stat.ripe.net/data/asn-neighbours/data.json?resource={asn}&query_time={query_time}&lod=1"
     print("getting neighbors for AS",asn)
@@ -42,17 +43,18 @@ def getNeighbor(asn,query_time):
         neighbors.add(neighbor['asn'])
     return neighbors
 
-def readCountryList():
+def readCountryList(datafile):
     """read in isocountries.csv 
     this file was exported from a table found on wikipedia 
     here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2"""
 
     countryCodes = []
     countryNames = []
+    countryNameCodes = {}
     #technically we dont need the name, 
     #but that will be easier to read than shorthand codes for everything
     # count = 0
-    with open('isocountries2.csv','r') as f:
+    with open(datafile,'r') as f:
         
         line = f.readline()#skip past the header
         lines = f.readlines()
@@ -66,11 +68,15 @@ def readCountryList():
         code = parts[1]                
         countryNames.append(name)
         countryCodes.append(code)
+        countryNameCodes['code'] = code
+        countryNameCodes['name'] = name
+        countryNameCodes[code] = name
     # print(countryCodes)
-    return countryCodes, countryNames
+    
+    return countryCodes, countryNames#,countryNameCodes
 
 def storeCountryInfo(countryInfo):
-    """stores a country's info in a pickle file for easier loading later"""
+    """stores a country's info in a pickle file for easier g later"""
     
     countryCode = countryInfo['code']
     print(f"storing country info for {countryCode}")
@@ -140,9 +146,12 @@ def getPrefixesForAsn(asn):
 def getNeighborCountry(asns):
     """find the country a list of ASNs is in"""
     #document the api call
-    #This product includes GeoLite2 data created by MaxMind, available from
-    #<a href="https://www.maxmind.com">https://www.maxmind.com</a>.
+    #This product includes GeoLite2 data created by MaxMind, available from "https://www.maxmind.com"
     countries = []
+    
+    # print('recieved asns, ',asns, type(asns))
+    # for asns2 in asns: #work around for starmap 
+        #technically this funcion should call starmap not the otherway around TODO
     for asn in asns:
         url=f"https://stat.ripe.net/data/maxmind-geo-lite-announced-by-as/data.json?resource=AS{asn}"
         print('getting neighbor country url\n',url)
@@ -151,7 +160,7 @@ def getNeighborCountry(asns):
         locatedResources = json["data"]["located_resources"]
         for locations in locatedResources:
             for location in locations['locations']:
-                print(location)
+                # print(location)
                 country = location['country']
                 city = location['city']
                 prefixes =location['resources'] #the prefix this as is connected to
@@ -159,17 +168,14 @@ def getNeighborCountry(asns):
     return countries
 
 def findPrefixLengthCidr(prefix):
-    
     """return the cidr prefix of a given prefix"""
     
     return prefix.split('/')[1]
     
     
-def cidrToInt(cidr,isIPv4):
-    #TODO figure out ipv6
-    #
+def cidrToInt(cidr,isIPv4=True):
     """convert cidr notation to the number of IPs that are possible
-    only supports IPv4 for now"""
+    defaults to using IPv4 because those numbers are comprehensible"""
     if isIPv4:
         power = 32-int(cidr)
         print('cidr to int ipv4', power, cidr)
@@ -183,36 +189,61 @@ def findPrefixLengthInt(prefix, isIPv4=True):
     cidr = findPrefixLengthCidr(prefix)
     return cidrToInt(cidr,isIPv4)
    
-    
-    # 232-29
-prefix1 = '2a07:8100::/29'
-prefix2 = '185.152.68.0/22'
-prefix3 = '192.168.0.1/24'
-a = findPrefixLengthInt(prefix1,False)
-print(a)
+def getNeighbors(countries,queryTime):
+
+    pool = Pool(processes=8)
+    for testCountry in countries:
+        testCountry['asnNeighbors'] = []
+        asns_querytime = []
+        # print(testCountry['name'])
+        print(testCountry['code'])
+        for asn in testCountry['asns']:
+            asns_querytime.append((asn,queryTime))
+            
+            # neighbors = getNeighbor(asn,queryTime)
+            # neighborsWithName=getNeighborCountry(neighbors)
+            
+        neighbors = pool.starmap(getNeighbor,asns_querytime)
+        neighborsWithName= pool.map(getNeighborCountry,neighbors)
+        #since we got all neighbors and named neighbors, we need to stitch it back togehter in a better format
+        #luckily they should be aligned by index.
+        for i in range(len(testCountry['asns'])):
+            asn = testCountry['asns'][i]
+            neigh = neighbors[i]
+            neighName = neighborsWithName[i]
+            print('~~~appending',asn,neigh,neighName)
+            testCountry['asnNeighbors'].append((asn,neigh,neighName)) 
+            print(testCountry)    
+        # tests.append(res)
+        # testCountry['asnNeighbors'].append((asn,neighbors,neighborsWithName)) #each asn can have one or more neighbors
+        # print('~~~appending',asn,neighbors,neighborsWithName)
+        # testCountry['asnNeighbors'].append((asn,neighbors,neighborsWithName)) 
+        # print(testCountry)    
+    pool.close()
+    pool.join()
+    print("~~~~~~~~~~~~~~~~~")
+    print(countries)    
+    return countries
 
 #~~~~~ main ~~~~~#
-# codes,names = readCountryList()
-# # for code in codes:
-# #     countryInfo = getCountryASNPrefixes(code)
-# #     storeCountryInfo(countryInfo)
-# countries = []
-
+# datafile = 'isocountries2.csv'
+# datafile = 'dataset.csv'
+datafile = 'dataset2.csv' #small test file
+codes,names = readCountryList(datafile)
 # for code in codes:
-#     countryInfo = loadCountryInfo(code)
-#     countries.append(countryInfo)
-#     if len(countryInfo['asns']) == 0:
-#         print(code, "does not have any ASNS!")
+#     countryInfo = getCountryASNPrefixes(code)
+#     storeCountryInfo(countryInfo)
+countries = []
+
+for code in codes:
+    countryInfo = loadCountryInfo(code)
+    countries.append(countryInfo)
+    if len(countryInfo['asns']) == 0:
+        print(code, "does not have any ASNS!")
 
 # countries = sortCountriesByNumASN(countries)
 
-# lines = []
-# with open('isocountries2.csv','r') as f:
-    
-#     line = f.readline()#skip past the header
-#     lines = f.readlines()
-#     # print(line)
-#     # print(lines)
+
 # print('country code , number ASNs')
 # for country in countries:
 #     for line in lines:
@@ -232,28 +263,56 @@ print(a)
 #     for asn in country['asns']:
 #         countryInfo['asnNeighbors'] = (asn,[]) #each asn can have one or more neighbors
 
-testCountry = loadCountryInfo('VA')
+# testCountry = loadCountryInfo('VA')
 queryTime = "2024-01-17T09:00:00"
 
+# countries = getNeighbors(countries,queryTime)
 
-# testCountry['asnNeighbors'] = []
-# for asn in testCountry['asns']:
-#     neighbors = getNeighbor(asn,queryTime)
-#     neighborsWithName=getNeighborCountry(neighbors)
-#     testCountry['asnNeighbors'].append((asn,neighbors,neighborsWithName)) #each asn can have one or more neighbors
-# print(testCountry)
+# pickle.dump(countries,open('pickles/testCountries.pickle','wb'))
 
-# pickle.dump(testCountry,open('pickles/testCountry.pickle','wb'))
-testCountry = pickle.load(open('pickles/testCountry.pickle','rb'))
+countries = pickle.load(open('pickles/testCountries.pickle','rb'))
+# print(countries)
+for country in countries:
+#     #(asn,neighbors,neighborsWithName)) 
+    code = country['code'] 
+    asnNighbors = country['asnNeighbors']
+    for neighbor in asnNighbors:
+        # print(len(neighbor))
+        asn = neighbor[0]  
+        print("asn: ",asn)
+        neighborASNs = neighbor[1]
+        print(neighborASNs)
+#         neighborsWithName = neighbor[2]
+#         neighborList = [i for i in neighbor[2] if i != '?']  
+#         allNames=[]
+#         allNamesSet = set()
+#         for nlist in neighborsWithName:
+#             for n in nlist:
+#                 if n != '?':
+#                     allNames.append(n)
+#                     allNamesSet.add(n)
+        
+#         # print(asn,neighborCodes, 'len',len(allNames),'set', len(allNamesSet),allNamesSet,"\n",)#,neighborsWithName))
+#         print("country ", country['code'], 'as', asn, 'has ',len(allNames), 'connections ', len(allNamesSet), 'unique country neighbor')#, type(c), c[2])
+
+
+    # print(country.keys())
+# testCountry = pickle.load(open('pickles/testCountry.pickle','rb'))
 # print()
 
-# for c in testCountry['asnNeighbors']:
-
-#     neighborList = [i for i in c[2] if i != '?']  
-#     neighborSet = set(c[2])
-#     neighborSet.remove('?') #remove unknown connections
-#     print("country ", testCountry['code'], 'as', c[0], 'has ',len(neighborList), 'connections ', len(neighborSet), 'unique country neighbor')#, type(c), c[2])
-#     print(set(c[2]))
+# for testCountry in countries:
+#     for c in testCountry['asnNeighbors']:
+#         neighborList = []
+#         neighborSet = set()
+#         for n in c[2]:
+#             allNames.append(n)
+#             allNamesSet.add(n)
+#         print(len(c))
+#         # neighborList = [i for i in c[2] if i != '?']  
+#         neighborSet = set(c[2])
+#         neighborSet.remove('?') #remove unknown connections
+#         print("country ", testCountry['code'], 'as', c[0], 'has ',len(neighborList), 'connections ', len(neighborSet), 'unique country neighbor')#, type(c), c[2])
+#         print(set(c[2]))
 
 
 
