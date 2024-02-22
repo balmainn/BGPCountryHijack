@@ -29,6 +29,7 @@ def findPossibleSubnets(addr,cidr,isIPv4=True):
     addr: an ipv4 address"""
     subnetDict = {}
     net = ipcalc.Network(addr+'/'+cidr)
+    
     if isIPv4:
         network = str(net.guess_network()) #get network address from ip address and subnet
         maxCidr = 30 
@@ -41,12 +42,13 @@ def findPossibleSubnets(addr,cidr,isIPv4=True):
     print(network)
     loopRange = maxCidr-int(cidr) #count up from 0 to 30-cidr
     for i in range(loopRange+1): #+1 fix off by 1 since range is from [0,end) 
+        #both of these increase by 2^n possible prefixes
         try:
             if isIPv4:
                 subnets=list(network.subnets(prefixlen_diff=i))
                 numSubnets = len(subnets)
             else:
-                numSubnets = pow(2,i)
+                numSubnets = pow(2,i) #probably can just return this fun thing for a given thing
                 subnets = [network,network]
         except Exception as e:
             print(i, "is invalid diff")
@@ -79,6 +81,12 @@ print(subnets)
 subnets = findPossibleSubnets(addr,cidr,True)
 print(subnets)
 # print(subnets)
+ciders = []
+for i in range(10,29):
+    ciders.append(str(i))
+for cidr in ciders:
+    subnets: findPossibleSubnets(addr,cidr)
+print(cidr, "for subnets: ",subnets)
 
 #More-specific prefixes are chosen first, i.e., the longest mask wins, all else being equal.
         #from https://www.catchpoint.com/bgp-monitoring/bgp-path-selection
