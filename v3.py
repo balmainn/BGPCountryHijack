@@ -3,6 +3,7 @@ import networkx
 import pickle
 import matplotlib.pyplot as plt #so we can see draw the graph
 import os 
+#TODO FIND UOREGON'S IP BLOCK AND USE THAT FOR PREFIX_P FOR FUNSIES!
 PREFIX_P = "185.17.22.0/22"
 queryTime = "2024-02-08T09:00:00"
 
