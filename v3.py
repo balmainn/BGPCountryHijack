@@ -100,7 +100,7 @@ def updateNode(node,key,value):
     node[key]=value
 
 
-def setupGraph():
+def setupGraph2():
     print("SETTING UP GRAPH!")
     asGraph = networkx.Graph()
     asGraph.add_node(originASOfP,origin='origin',linkLevel=0) 
@@ -112,9 +112,15 @@ def setupGraph():
 
     #graph setup stuff        
     for neighbor in lv1Neighbors:
+        lv1neighborData = asGraph.nodes.get(neighbor)
+        if lv1neighborData == None:
+            asGraph.add_node(neighbor,lv1Neighbor='lv1Neighbor',linkLevel=1)
+            asGraph.add_edge(neighbor,originASOfP)
+            
+        else:
+            lv1neighborData['lv1Neighbor'] = 'lv1Neighbor'
+            asGraph.add_edge(originASOfP,neighbor)
         
-        asGraph.add_node(neighbor,lv1Neighbor='lv1Neighbor',linkLevel=1)
-        asGraph.add_edge(neighbor,originASOfP)
         lv2Neighbors = getNeighbor(neighbor,queryTime)
         # lv2Neighbors[neighbor] = nextNeighbors
         count = 0
@@ -165,6 +171,39 @@ def setupGraph():
     return asGraph
         # count+=1
 
+
+def addToGraph(neighbors,asGraph:networkx.Graph,someAS,linkLevel):
+    print("adding, neighbors to graph for",someAS)
+    if neighbors == None:
+        return
+    for neighbor in neighbors:
+        neighborData = asGraph.nodes.get(neighbor)
+        if neighborData == None:
+            asGraph.add_node(neighbor,linkLevel=linkLevel)
+            asGraph.add_edge(neighbor,someAS)
+        else:
+            asGraph.add_edge(neighbor,someAS)
+
+
+def setupGraph():
+    print("SETTING UP GRAPH!")
+    asGraph = networkx.Graph()
+    asGraph.add_node(originASOfP,origin='origin',linkLevel=0) 
+    print(f"originAS of p x{originASOfP}x")
+    lv1Neighbors = getNeighbor(originASOfP,queryTime)
+    addToGraph(lv1Neighbors,asGraph,originASOfP,1)
+    for neighbor in lv1Neighbors:
+
+        lv2Neighbors = getNeighbor(neighbor,queryTime)
+        addToGraph(lv2Neighbors,asGraph,neighbor,2)
+        for neigh in lv2Neighbors:
+            lv3Neighbors = getNeighbor(neigh,queryTime)
+            addToGraph(lv3Neighbors,asGraph,neigh,3)
+    pickle.dump(asGraph,open("pickles/asGraph.pickle",'wb'))
+    print("DONE!")
+    return asGraph
+        # count+=1
+
 def searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN):
     #victims can be both a lv2 node and a lv3 node. 
     #this is not a problem as the link level determines what 'neighbor level' it is wrt ASN0
@@ -211,6 +250,7 @@ def searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN):
         #do something with the scores and continue loop. 
     print(count)
     print("fully: ",fullyHijackableCounter, "partial", partiallyHijackableCounter,"not", notHijackableCounter)
+    return count
 
 #~~~~main~~~~#
 originASOfP, isMultihomed = getWhoIsData(PREFIX_P)
@@ -229,20 +269,25 @@ else:
 #actually run H on N             
 shortestPathsToP = networkx.shortest_path(asGraph,target=originASOfP)
 
-#for testing limit hijacker asn and victims to 5 each
-# MAXNODES = 1000
+#for testing limit only attempt this many hijacker ASNs
+MAXNODES = 2
 
 #origin ASN hijacking
 counter = 0
+ctr3 = 0
+hijskip = 0
+origskip = 0
 for hijackerASN in asGraph.nodes:
-    print("examining hijacker", hijackerASN)
+    
+    print("examining hijacker", hijackerASN, " number ",counter, "/ ", len(asGraph.nodes))
     # print(count, len(asGraph.nodes))
     hijackerASNData = asGraph.nodes.get(hijackerASN)
     #we dont hijack lv 3 just continue 
-    # if counter >=MAXNODES:
-    #     break
+    if counter >=MAXNODES:
+        break
     if hijackerASNData['linkLevel'] >=3:
         print("break lv 3")
+        hijskip +=1
         continue
     
     # print("hijacker", hijackerASN,hijackerASNData)
@@ -255,14 +300,30 @@ for hijackerASN in asGraph.nodes:
     #     continue
     if hijackerASN == originASOfP:
         print("node is ASNP!")
+        origskip+=1
         score=100 
         # print(shortestPathsToP,type(shortestPathsToP))
         continue
-    searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN)
-    counter +=1
-print("ran search on ",counter," candidates")        
-
+    ctr3+=searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN)
     
+    counter +=1
+    
+print("ran search on ",counter," candidates", "searched for ",ctr3, " potential victms", "hij skkp: ",hijskip, " orig skip ",origskip, "total: ",hijskip+origskip)        
+lv1 = 0
+lv2 =0
+lv3 = 0
+for node in asGraph.nodes:
+    nodeData = asGraph.nodes.get(node)
+    if nodeData['linkLevel'] ==1:
+        lv1+=1    
+    if nodeData['linkLevel'] ==2:
+        lv2+=1
+    if nodeData['linkLevel'] ==3:
+        lv3+=1
+    
+print("lv1 ", lv1, "lv2,",lv2, "lv3, ",lv3, "sum ",lv1+lv2+lv3)
+n = getNeighbor(originASOfP,queryTime)
+print(n)
     # pathsToHijackerASN = networkx.shortest_path(asGraph,target=node)
     # nodesPathToHijackerASN = pathsToHijackerASN[node]
     # print(nodesPathToHijackerASN)
