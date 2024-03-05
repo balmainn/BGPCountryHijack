@@ -54,3 +54,79 @@ def drawGraph(graph):
     plt.show()
 
 drawGraph(prefixGraph)
+
+
+#depricated, moved here from v3 
+
+def setupGraph2():
+    print("SETTING UP GRAPH!")
+    asGraph = networkx.Graph()
+    asGraph.add_node(originASOfP,origin='origin',linkLevel=0) 
+    print(f"originAS of p x{originASOfP}x")
+    lv1Neighbors = getNeighbor(originASOfP,queryTime)
+
+    # print('lv1 neighbors: ',lv1Neighbors[0]['asn'])
+
+
+    #graph setup stuff        
+    for neighbor in lv1Neighbors:
+        lv1neighborData = asGraph.nodes.get(neighbor)
+        if lv1neighborData == None:
+            asGraph.add_node(neighbor,lv1Neighbor='lv1Neighbor',linkLevel=1)
+            asGraph.add_edge(neighbor,originASOfP)
+            
+        else:
+            lv1neighborData['lv1Neighbor'] = 'lv1Neighbor'
+            asGraph.add_edge(originASOfP,neighbor)
+        
+        lv2Neighbors = getNeighbor(neighbor,queryTime)
+        # lv2Neighbors[neighbor] = nextNeighbors
+        count = 0
+        #check if lv2neighbors is none, if it is contiue
+        if lv2Neighbors == None:
+            #continue on bad
+            continue
+        
+            
+        for lv2Neighbor in lv2Neighbors:
+            print(f"{count} / {len(lv2Neighbors)} lv2 neighbors")
+            lv2neighborData = asGraph.nodes.get(lv2Neighbor)
+            if lv2neighborData == None:
+                asGraph.add_node(lv2Neighbor,lv2Neighbor='lv2Neighbor',linkLevel=2)
+                asGraph.add_edge(lv2Neighbor,neighbor)
+            else:
+                # print("data exists in graph")
+                
+                lv2neighborData['lv2Neighbor'] = 'lv2Neighbor'
+                asGraph.add_edge(lv2Neighbor,neighbor)
+            lv3Neighbors = getNeighbor(lv2Neighbor,queryTime)
+            count2 = 0
+            if lv3Neighbors == None:
+                #continue on bad
+                continue
+            for lv3neighbor in lv3Neighbors:
+                # print(f"{count2} / {len(lv3Neighbors)} lv3 neighbors")
+                #see if data exists, 
+                lv3neighborData = asGraph.nodes.get(lv3neighbor)
+                if lv3neighborData == None:
+                    asGraph.add_node(lv3neighbor,lv3Neighbor='lv3Neighbor',linkLevel=3)
+                    asGraph.add_edge(lv3neighbor,lv2Neighbor)
+                else:
+                    # print("data exists in graph")
+                    # print(lv3neighborData)
+                    lv3neighborData['lv3Neighbor'] = 'lv3Neighbor'
+                    asGraph.add_edge(lv3neighbor,lv2Neighbor)
+                count2+=1
+
+            print("lv3 neighbors done!")
+
+            count +=1
+        print("lv2 neighbor done")
+        # if count < 2:
+    pickle.dump(asGraph,open("pickles/asGraph.pickle",'wb'))
+    print("DONE!")
+ + 50 + 0 
+        # weightSum = 150
+        # average =  (100*fullyHijackableCounter + 50*partiallyHijackableCounter)/150
+    return asGraph
+        # count+=1

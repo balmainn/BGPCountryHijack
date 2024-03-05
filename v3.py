@@ -5,16 +5,19 @@ import matplotlib.pyplot as plt #so we can see draw the graph
 import os 
 #TODO FIND UOREGON'S IP BLOCK AND USE THAT FOR PREFIX_P FOR FUNSIES!
 PREFIX_P = "185.17.22.0/22"
-queryTime = "2024-02-08T09:00:00"
+#1 of uoregon's blocks 
+# PREFIX_P = "128.223.0.0/16"
+# queryTime = "2024-02-08T09:00:00"
+queryTime = "2024-03-01T09:00:00"
 #global flag to get data or reuse the saved graph
-GET_DATA = False
+GET_DATA = True
 
 def getWhoIsData(prefix:str) -> str:
     """find the origin AS for a given IP Prefix
     input: prefix -> an ip prefix
     returns: originAS -> the origin AS for the specified IP prefix
              True/False -> is the prefix is multihomed or not"""
-    
+    print("getting whois for: ",prefix)
     url=f"https://stat.ripe.net/data/whois/data.json?resource={prefix}"
     res = requests.get(url)
     json = res.json()
@@ -38,6 +41,7 @@ def getWhoIsData(prefix:str) -> str:
                 origins.append(r['value'])
             if(r['key']=='last-modified' and keyed):
                 modified.append(r['value'])
+    print(records)
     if len(origins) ==0:
         origins = allOrigins
         
@@ -54,9 +58,10 @@ def getWhoIsData(prefix:str) -> str:
 
 def asnsHung():
     """asns that have a problem returning data from RIPE
+    likely issue: they are too big and timeout.
     will be used eventually"""
     
-    return [1299,2914,3356,6762]
+    return [1299,2914,3356,6762,6461]
 
 
 def getNeighbor(asn,query_time):
@@ -96,86 +101,17 @@ def drawGraph(graph:networkx.Graph):
     plt.show()
 
 def updateNode(node,key,value):
-    """updates a given node"""
+    """updates a given node
+    this function is not currently used, but might be useful later"""
     node[key]=value
 
-
-def setupGraph2():
-    print("SETTING UP GRAPH!")
-    asGraph = networkx.Graph()
-    asGraph.add_node(originASOfP,origin='origin',linkLevel=0) 
-    print(f"originAS of p x{originASOfP}x")
-    lv1Neighbors = getNeighbor(originASOfP,queryTime)
-
-    # print('lv1 neighbors: ',lv1Neighbors[0]['asn'])
-
-
-    #graph setup stuff        
-    for neighbor in lv1Neighbors:
-        lv1neighborData = asGraph.nodes.get(neighbor)
-        if lv1neighborData == None:
-            asGraph.add_node(neighbor,lv1Neighbor='lv1Neighbor',linkLevel=1)
-            asGraph.add_edge(neighbor,originASOfP)
-            
-        else:
-            lv1neighborData['lv1Neighbor'] = 'lv1Neighbor'
-            asGraph.add_edge(originASOfP,neighbor)
-        
-        lv2Neighbors = getNeighbor(neighbor,queryTime)
-        # lv2Neighbors[neighbor] = nextNeighbors
-        count = 0
-        #check if lv2neighbors is none, if it is contiue
-        if lv2Neighbors == None:
-            #continue on bad
-            continue
-        
-            
-        for lv2Neighbor in lv2Neighbors:
-            print(f"{count} / {len(lv2Neighbors)} lv2 neighbors")
-            lv2neighborData = asGraph.nodes.get(lv2Neighbor)
-            if lv2neighborData == None:
-                asGraph.add_node(lv2Neighbor,lv2Neighbor='lv2Neighbor',linkLevel=2)
-                asGraph.add_edge(lv2Neighbor,neighbor)
-            else:
-                # print("data exists in graph")
-                
-                lv2neighborData['lv2Neighbor'] = 'lv2Neighbor'
-                asGraph.add_edge(lv2Neighbor,neighbor)
-            lv3Neighbors = getNeighbor(lv2Neighbor,queryTime)
-            count2 = 0
-            if lv3Neighbors == None:
-                #continue on bad
-                continue
-            for lv3neighbor in lv3Neighbors:
-                # print(f"{count2} / {len(lv3Neighbors)} lv3 neighbors")
-                #see if data exists, 
-                lv3neighborData = asGraph.nodes.get(lv3neighbor)
-                if lv3neighborData == None:
-                    asGraph.add_node(lv3neighbor,lv3Neighbor='lv3Neighbor',linkLevel=3)
-                    asGraph.add_edge(lv3neighbor,lv2Neighbor)
-                else:
-                    # print("data exists in graph")
-                    # print(lv3neighborData)
-                    lv3neighborData['lv3Neighbor'] = 'lv3Neighbor'
-                    asGraph.add_edge(lv3neighbor,lv2Neighbor)
-                count2+=1
-
-            print("lv3 neighbors done!")
-
-            count +=1
-        print("lv2 neighbor done")
-        # if count < 2:
-    pickle.dump(asGraph,open("pickles/asGraph.pickle",'wb'))
-    print("DONE!")
-
-    return asGraph
-        # count+=1
 
 
 def addToGraph(neighbors,asGraph:networkx.Graph,someAS,linkLevel):
     print("adding, neighbors to graph for",someAS)
     if neighbors == None:
-        return
+        print("no neighbors to add!")
+        return None
     for neighbor in neighbors:
         neighborData = asGraph.nodes.get(neighbor)
         if neighborData == None:
@@ -183,28 +119,32 @@ def addToGraph(neighbors,asGraph:networkx.Graph,someAS,linkLevel):
             asGraph.add_edge(neighbor,someAS)
         else:
             asGraph.add_edge(neighbor,someAS)
+    return 1
 
-
-def setupGraph():
+def setupGraph(originASOfP):
     print("SETTING UP GRAPH!")
     asGraph = networkx.Graph()
     asGraph.add_node(originASOfP,origin='origin',linkLevel=0) 
     print(f"originAS of p x{originASOfP}x")
     lv1Neighbors = getNeighbor(originASOfP,queryTime)
     addToGraph(lv1Neighbors,asGraph,originASOfP,1)
+
     for neighbor in lv1Neighbors:
 
         lv2Neighbors = getNeighbor(neighbor,queryTime)
-        addToGraph(lv2Neighbors,asGraph,neighbor,2)
+       
+        isNone = addToGraph(lv2Neighbors,asGraph,neighbor,2)
+        if isNone==None:
+            continue
         for neigh in lv2Neighbors:
             lv3Neighbors = getNeighbor(neigh,queryTime)
             addToGraph(lv3Neighbors,asGraph,neigh,3)
-    pickle.dump(asGraph,open("pickles/asGraph.pickle",'wb'))
+    pickle.dump(asGraph,open(f"pickles/asGraph-{originASOfP}.pickle",'wb'))
     print("DONE!")
     return asGraph
         # count+=1
 
-def searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN):
+def searchPotentialVictims(asGraph:networkx.Graph,originASOfP,shortestPathsToP,hijackerASN):
     #victims can be both a lv2 node and a lv3 node. 
     #this is not a problem as the link level determines what 'neighbor level' it is wrt ASN0
     print("searching potential victms")
@@ -212,10 +152,14 @@ def searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN):
     partiallyHijackableCounter = 0
     notHijackableCounter = 0
     count = 0
+    fullyHijackableCounter = 0
+    partiallyHijackableCounter= 0
+    notHijackableCounter= 0
+
     for potentialVictimASN in asGraph.nodes:
         potentialVictimASNData = asGraph.nodes.get(potentialVictimASN)
-        count +=1
-        # if count >=MAXNODES:
+        
+        # if count >=10:
         #     break
         #how do we handle this case? 
         if potentialVictimASN == hijackerASN:
@@ -228,13 +172,15 @@ def searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN):
         
         if potentialVictimASNData['linkLevel'] >=3:
             continue
-        
+        count +=1
         # print('victim', potentialVictimASNData)
         potentialVictimPathToP = shortestPathsToP[potentialVictimASN]
         victimPathToHijacker = networkx.shortest_path(asGraph,source=potentialVictimASN, target=hijackerASN)
         
         lenVicToP = len(potentialVictimPathToP)
         lenVicToHij = len(victimPathToHijacker)
+        # print("path to p",potentialVictimPathToP, lenVicToP)
+        # print("victim to hij",victimPathToHijacker, lenVicToHij)
         if lenVicToHij < lenVicToP:
             score = 100
             fullyHijackableCounter+=1
@@ -250,80 +196,182 @@ def searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN):
         #do something with the scores and continue loop. 
     print(count)
     print("fully: ",fullyHijackableCounter, "partial", partiallyHijackableCounter,"not", notHijackableCounter)
-    return count
+    return count,fullyHijackableCounter, partiallyHijackableCounter, notHijackableCounter
+    #return scores and sum
 
+def countLevels(asGraph):
+    lv1 = 0
+    lv2 =0
+    lv3 = 0
+    for node in asGraph.nodes:
+        nodeData = asGraph.nodes.get(node)
+        if nodeData['linkLevel'] ==1:
+            lv1+=1    
+        if nodeData['linkLevel'] ==2:
+            lv2+=1
+        if nodeData['linkLevel'] ==3:
+            lv3+=1
+    return lv1, lv2, lv3
+
+def performHijack(asGraph,originASOfP):
+    #actually run H on N                 
+    shortestPathsToP = networkx.shortest_path(asGraph,target=originASOfP)
+
+    #for testing limit only attempt this many hijacker ASNs
+    MAXNODES = 10
+
+    #origin ASN hijacking
+    counter = 0
+    ctr3 = 0
+    hijskip = 0
+    origskip = 0
+    avgs = {}
+    #count the different levels for debugging
+    lv1, lv2, lv3 = countLevels(asGraph)
+    for hijackerASN in asGraph.nodes:
+        
+        print("examining hijacker", hijackerASN, " number ",counter, "/ ", lv1+lv2)
+        # print(count, len(asGraph.nodes))
+        hijackerASNData = asGraph.nodes.get(hijackerASN)
+        #we dont hijack lv 3 just continue 
+        # if counter >=MAXNODES:
+        #     break
+        if hijackerASNData['linkLevel'] >=3:
+            print("break lv 3")
+            hijskip +=1
+            continue
+        
+        # print("hijacker", hijackerASN,hijackerASNData)
+        
+        
+        # print(type(hijackerASNData['linkLevel']))
+        # break
+        
+        # if hijackerASN in allLv3Neighbors:
+        #     continue
+        if hijackerASN == originASOfP:
+            print("node is ASNP!")
+            origskip+=1
+            score=100 
+            # print(shortestPathsToP,type(shortestPathsToP))
+            continue
+        ct, fullyHijackableCounter, partiallyHijackableCounter, notHijackableCounter =searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN)
+        ctr3+=ct
+        
+        # weights = 100 + 50 + 0 
+        # weightSum = 150
+        # average =  (100*fullyHijackableCounter + 50*partiallyHijackableCounter)/150
+        #i dont believe this average, should probably be recalculated
+        average =  (100*fullyHijackableCounter + 50*partiallyHijackableCounter)/(fullyHijackableCounter+partiallyHijackableCounter+notHijackableCounter)
+        avgs[hijackerASN] = (average,fullyHijackableCounter,partiallyHijackableCounter,notHijackableCounter)
+
+        counter +=1
+
+    return avgs,counter,ctr3,hijskip,origskip 
+
+def storeScores(avgs,originP,asGraph:networkx.Graph):
+    
+    with open(f"scores/hijackingScores-{originP}.csv","w") as f: 
+        f.write("hijacker ASN,AVG,success, partial, failure,linkLevel,number direct Neighbors\n")    
+        for hijackerASN in avgs:
+            hijackerAverage = avgs[hijackerASN][0]
+            success = avgs[hijackerASN][1]
+            partial = avgs[hijackerASN][2]
+            failure = avgs[hijackerASN][3]
+            node = asGraph.nodes.get(hijackerASN)
+            linkLevel = node['linkLevel']
+            edges = networkx.edges(asGraph, [hijackerASN])
+            numNeighbors = len(edges)
+            f.write(f"{hijackerASN},{hijackerAverage},{success},{partial},{failure},{linkLevel},{numNeighbors}\n")
+            # print("if hijacker ", hijackerASN, "hijacked, the average success is ",hijackerAverage)
+            print("hijacker ", hijackerASN, "average", hijackerAverage, f"success {success} partial {partial} failure {failure} linkLevel {linkLevel}")
+
+def countData(counter,ctr3,hijskip,origskip,asGraph:networkx.Graph):
+    print("ran search on ",counter," candidates", "searched for ",ctr3, " potential victms", "hij skkp: ",hijskip, " orig skip ",origskip, "total: ",hijskip+origskip)        
+    lv1 = 0
+    lv2 =0
+    lv3 = 0
+    for node in asGraph.nodes:
+        nodeData = asGraph.nodes.get(node)
+        if nodeData['linkLevel'] ==1:
+            lv1+=1    
+        if nodeData['linkLevel'] ==2:
+            lv2+=1
+        if nodeData['linkLevel'] ==3:
+            lv3+=1
+    print("lv1 ", lv1, "lv2,",lv2, "lv3, ",lv3, "sum ",lv1+lv2+lv3)
+    return lv1, lv2, lv3
+def loadPrefixes():
+    lines = []
+    with open("prefixTestSet.txt",'r') as f:
+        for line in f.readlines():    
+            if not line.startswith("#"):
+                lines.append(line.strip())
+    return lines
 #~~~~main~~~~#
-originASOfP, isMultihomed = getWhoIsData(PREFIX_P)
+prefixes = loadPrefixes() #WIP
+        #vatican ASNs '8978', '61160', '202865'
 
-if GET_DATA:
 
-    asGraph = setupGraph()
+for prefix_p in prefixes:
     
-else:
-    print("loading as grpah from file")
-    asGraph = pickle.load(open("pickles/asGraph.pickle",'rb'))
+    originsASOfPStart, isMultihomed = getWhoIsData(prefix_p)
+    
+    #currently just downloading the data, needs to be fixed later.
 
-# drawGraph(asGraph)
-        # networkx.shortest_path()
-# print(len(asGraph))
-#actually run H on N             
-shortestPathsToP = networkx.shortest_path(asGraph,target=originASOfP)
+    if isMultihomed:
+        
+        #do this all over again, but not now
+        print("IS MULTIHOMED")
+        # print(originsASOfPStart)
+        # exit(1)
+        for originP in originsASOfPStart:
+            asGraph = networkx.Graph()
+            avgs =0
+            counter =0
+            ctr3 =0
+            hijskip =0
+            origskip =0
+            lv1 =0
+            lv2 =0
+            lv3 =0 
+            if GET_DATA:
+                asGraph = setupGraph(originP)
+            else:   
+                print("loading as graph from file")
+                asGraph = pickle.load(open(f"pickles/asGraph-{originP}.pickle",'rb'))
+            
+            avgs,counter,ctr3,hijskip,origskip = performHijack(asGraph,originP)
+            lv1,lv2,lv3 = countData(counter,ctr3,hijskip,origskip,asGraph)
+            storeScores(avgs,originP,asGraph)
+            
+        
+    else:
+        avgs =0
+        counter =0
+        ctr3 =0
+        hijskip =0
+        origskip =0
+        lv1 =0
+        lv2 =0
+        lv3 =0 
+        asGraph = networkx.Graph()
+        if GET_DATA:
+            asGraph = setupGraph(originsASOfPStart)
+        else:
+            
+            print("loading as graph from file")
+            asGraph = pickle.load(open(f"pickles/asGraph-{originsASOfPStart}.pickle",'rb'))
+        avgs,counter,ctr3,hijskip,origskip = performHijack(asGraph,originsASOfPStart)
+        
+        storeScores(avgs,originsASOfPStart,asGraph)
+        countData(counter,ctr3,hijskip,origskip,asGraph)
 
-#for testing limit only attempt this many hijacker ASNs
-MAXNODES = 2
 
-#origin ASN hijacking
-counter = 0
-ctr3 = 0
-hijskip = 0
-origskip = 0
-for hijackerASN in asGraph.nodes:
     
-    print("examining hijacker", hijackerASN, " number ",counter, "/ ", len(asGraph.nodes))
-    # print(count, len(asGraph.nodes))
-    hijackerASNData = asGraph.nodes.get(hijackerASN)
-    #we dont hijack lv 3 just continue 
-    if counter >=MAXNODES:
-        break
-    if hijackerASNData['linkLevel'] >=3:
-        print("break lv 3")
-        hijskip +=1
-        continue
-    
-    # print("hijacker", hijackerASN,hijackerASNData)
-    
-    
-    # print(type(hijackerASNData['linkLevel']))
-    # break
-    
-    # if hijackerASN in allLv3Neighbors:
-    #     continue
-    if hijackerASN == originASOfP:
-        print("node is ASNP!")
-        origskip+=1
-        score=100 
-        # print(shortestPathsToP,type(shortestPathsToP))
-        continue
-    ctr3+=searchPotentialVictims(asGraph,originASOfP,shortestPathsToP,hijackerASN)
-    
-    counter +=1
-    
-print("ran search on ",counter," candidates", "searched for ",ctr3, " potential victms", "hij skkp: ",hijskip, " orig skip ",origskip, "total: ",hijskip+origskip)        
-lv1 = 0
-lv2 =0
-lv3 = 0
-for node in asGraph.nodes:
-    nodeData = asGraph.nodes.get(node)
-    if nodeData['linkLevel'] ==1:
-        lv1+=1    
-    if nodeData['linkLevel'] ==2:
-        lv2+=1
-    if nodeData['linkLevel'] ==3:
-        lv3+=1
-    
-print("lv1 ", lv1, "lv2,",lv2, "lv3, ",lv3, "sum ",lv1+lv2+lv3)
-n = getNeighbor(originASOfP,queryTime)
-print(n)
+
+# n = getNeighbor(originASOfP,queryTime)
+# print(n)
     # pathsToHijackerASN = networkx.shortest_path(asGraph,target=node)
     # nodesPathToHijackerASN = pathsToHijackerASN[node]
     # print(nodesPathToHijackerASN)
@@ -331,6 +379,29 @@ print(n)
     # print(len(pathToP),len(nodesPathToHijackerASN))
 
 
+
     # for path in shortestPaths:
     #     print("path: ",path,type(path))
 # print(asGraph.number_of_nodes())
+
+asns = ['174']#,'8978', '61160', '202865','24482'] #'199524'
+for asn in asns:
+    avgs =0
+    counter =0
+    ctr3 =0
+    hijskip =0
+    origskip =0
+    lv1 =0
+    lv2 =0
+    lv3 =0 
+    asGraph = networkx.Graph()
+    if GET_DATA:
+        asGraph = setupGraph(asn)
+    else:
+        
+        print("loading as graph from file")
+        asGraph = pickle.load(open(f"pickles/asGraph-{asn}.pickle",'rb'))
+    avgs,counter,ctr3,hijskip,origskip = performHijack(asGraph,asn)
+    
+    storeScores(avgs,asn,asGraph)
+    countData(counter,ctr3,hijskip,origskip,asGraph)

@@ -1,0 +1,16 @@
+#lines that start with # will be ignored.
+#vatican
+#185.17.22.0/22
+#uo
+#128.223.0.0/16
+#some AW prefixes
+#186.189.166.0/23
+#190.104.96.0/21
+#china telacom 
+#210.78.147.0/24
+#youtube bg test
+#208.65.152.0/22
+#cogent bg test errors do not run
+#####64.233.161.0/24
+#canada bg test
+#12.173.227.0/24
