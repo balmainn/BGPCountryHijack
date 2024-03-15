@@ -74,7 +74,7 @@ g = networkx.Graph()
 e = asGraph.edges.get((4600,1798))
 e = asGraph.edges((4600))
 print(e)
-# remove = [node for node, degree in asGraph.degree() if degree > 2]
+
 # asGraph.remove_nodes_from(remove)
 remove = []
 # for node, degree in asGraph.degree():
@@ -87,24 +87,26 @@ remove = []
 
 # for two in lv2:
         
-for three in lv3:
-        count = 0
-        try:
-            edges = list(asGraph.edges((three)))
-            for e in edges:
-                count+=1
-                if count >=3:                        
-                    try:
-                        print("removing",e[1])
-                        remove.append(e[1])
-                        # colors.remove('red')
-                    except:
-                        pass
+# for three in lv3:
+#         count = 0
+#         try:
+#             edges = list(asGraph.edges((three)))
+#             for e in edges:
+#                 count+=1
+#                 if count >=2:                        
+#                     try:
+#                         print("removing",e[0])
+#                         remove.append(e[0])
+#                         # colors.remove('red')
+#                     except:
+#                         pass
                     
-        except:
-            pass
-print('removed: ',len(remove))
+#         except:
+#             pass
+# print('removed: ',len(remove))
+remove = [node for node, degree in asGraph.degree() if degree <= 1]
 asGraph.remove_nodes_from(remove)
+print(len(asGraph.nodes))
 colors = []
 for node in list(asGraph.nodes):
     data = asGraph.nodes.get(node)
@@ -180,7 +182,7 @@ print(len(asGraph.nodes))
 
 # for i in range(3):
     # drawGraph(asGraph,colors)
-drawGraph(asGraph,colors)
+# drawGraph(asGraph,colors)
 # drawGraph2(asGraph)
 # file = "hijackingScores-198949.csv"
         

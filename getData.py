@@ -1,68 +1,11 @@
+"""this file only gets and stores data as pickle files, 
+but it uses multiprocessing so it gets the data faster"""
+
 import networkx
 import requests
 import os
-# asGraph = networkx.Graph()
-
-# for i in range(4):
-#     asGraph.add_node(i,linkNum=i)
-# asGraph.nodes[0]['origin']='origin'
-# asGraph.nodes[1]['second']='second'
-# asGraph.nodes[2]['second']='second'
-# asGraph.nodes[3]['third']='third'
-# for i in range(4):
-#     try:
-#         asGraph.add_edge(i,i+1)    
-#     except:
-#         pass
-
-# secondNodes = asGraph.nodes('second')
-# thirdNodes = asGraph.nodes('third')
-# nodes = asGraph.nodes
-# print("nodes",nodes, len(nodes))
-
-# # print(type(secondNodes))
-# # nodes = networkx.union
-# # print('node',nodes)
-# print(asGraph.nodes.data())
-# node = asGraph.nodes.get(1)
-# node['a'] = 'a'
-# print(node)
-# print(asGraph.nodes.data())
-# for node in asGraph.nodes:
-#     nodeWithData = asGraph.nodes.get(node)
-#     # data = 
-#     print(node)
-#     print(nodeWithData)
-    
-
-# print(asGraph.nodes.data())
 import pickle
 asGraph2 = networkx.Graph()
-
-# asGraph2 = pickle.load(open("pickles/asGraph.pickle",'rb'))
-# # print('graph2',asGraph2.nodes.data())
-# for data in asGraph2.nodes.data():
-#     print(data)
-# nodeList = list(asGraph.nodes)
-# sort = sorted(int(x) for x in nodeList)
-# print(sort)
-# secondNodes = asGraph.nodes('lv1Neighbor')
-# # print(secondNodes)
-# nodeslist = [] 
-# for node in secondNodes:
-#     if node[1] !=None:
-#         nodeslist.append(node)
-# print(len(nodeslist))
-
-
-# asGraph2.add_node(1,a=1)
-# asGraph2.add_node(2,a=2)
-# node = asGraph2.nodes.get(23)
-# if node == None:
-#     print("DNE")
-# # node['b'] = 2
-# # asGraph2.add_node(2,a=3)
-# print(len(asGraph2.nodes))
 
 def countLevels(asGraph):
     lv1 = 0
@@ -78,8 +21,6 @@ def countLevels(asGraph):
             lv3+=1
     return lv1, lv2, lv3
 
-# file = "pickles/asGraph-199362.pickle"
-# asGraph = pickle.load(file,'rb')
 def loadPrefixes():
     lines = []
     with open("prefixTestSet.txt",'r') as f:
@@ -88,21 +29,6 @@ def loadPrefixes():
                 lines.append(line.strip())
     return lines
 
-# prefixes = loadPrefixes()
-# # print(prefixes)
-# info = pickle.load(open("pickles/countries/AW-info.pickle","rb"))
-# print(info)
-# asGraph=networkx.Graph()
-
-# asGraph = pickle.load(open("pickles/asGraph-11816.pickle",'rb'))
-# for node in asGraph.nodes():
-    
-#     data = asGraph.nodes.get(node)
-#     edges = networkx.edges(asGraph, [node])
-#     print(node, "has ",len(edges), "neighbors")
-#     print(node)
-#     print(edges)
-#     break
 
 def asnsHung():
     """asns that have a problem returning data from RIPE
@@ -141,7 +67,7 @@ def getNeighbor(asn,query_time):
     
     for neighbor in allneighbors:
         neighbors.add(neighbor['asn'])
-    #uncomment on go <TODO>
+    
     pickle.dump(neighbors,open(f'pickles/neighbors/{asn}-{safeTime}','wb'))
     return neighbors
 
@@ -176,6 +102,7 @@ def multiProcessNeighbors(neighbors):
     
 
 def getData(originASOfP):
+
     print("SETTING UP GRAPH!")
     asGraph = networkx.Graph()
     asGraph.add_node(originASOfP,origin='origin',linkLevel=0) 
@@ -192,21 +119,6 @@ def getData(originASOfP):
     pool.join()
     
 
-    # for neighbor in lv1Neighbors:
-        
-
-    #     lv2Neighbors = getNeighbor(neighbor,queryTime)
-       
-    #     isNone = addToGraph(lv2Neighbors,asGraph,neighbor,2)
-    #     if isNone==None:
-    #         continue
-    #     for neigh in lv2Neighbors:
-    #         lv3Neighbors = getNeighbor(neigh,queryTime)
-    #         addToGraph(lv3Neighbors,asGraph,neigh,3)
-    # # pickle.dump(asGraph,open(f"pickles/asGraph-{originASOfP}.pickle",'wb'))
-    # print("DONE!")
-    # return asGraph
-        # count+=1
 def getWhoIsData(prefix:str) -> str:
     """find the origin AS for a given IP Prefix
     input: prefix -> an ip prefix
@@ -251,12 +163,6 @@ def getWhoIsData(prefix:str) -> str:
         origin= origins[0]
         return origin, False
     
-# PREFIX_P = "128.223.0.0/16"
-PREFIX_P = "210.78.147.0/24"
-
-# queryTime = "2024-02-08T09:00:00"
-global queryTime 
-queryTime = "2024-03-01T09:00:00"
 def loadPrefixes():
     lines = []
     with open("prefixTestSet.txt",'r') as f:
@@ -264,9 +170,37 @@ def loadPrefixes():
             if not line.startswith("#"):
                 lines.append(line.strip())
     return lines
-#~~~~main~~~~#
 
-prefixes = loadPrefixes() #WIP
+
+def createDirs():
+    """sets up initial directory structure if it doesnt exist
+    params: nothing
+    returns: nothing"""
+    if os.path.exists('scores'):
+        os.makedirs('scores')
+    if os.path.exists('imgs'):
+        os.makedirs('imgs')
+    if os.path.exists('graphs'):
+        os.makedirs('graphs')
+    if os.path.exists('pickles'):
+        os.makedirs('pickles')
+    if os.path.exists('pickles/graphs'):
+        os.makedirs('pickles/graphs')
+    if os.path.exists('pickles/neighbors'):
+        os.makedirs('pickles/neighbors')
+    
+    
+#~~~~main~~~~#
+        
+# PREFIX_P = "128.223.0.0/16"
+# PREFIX_P = "210.78.147.0/24"
+
+# queryTime = "2024-02-08T09:00:00"
+global queryTime 
+queryTime = "2024-03-01T09:00:00"
+
+createDirs()
+prefixes = loadPrefixes() 
 for prefix in prefixes: 
     originsASOfPStart, isMultihomed  = getWhoIsData(prefix)
     
@@ -275,10 +209,12 @@ for prefix in prefixes:
             getData(asn)
     else:
         getData(originsASOfPStart)
-        #vatican ASNs '8978', '61160', '202865'
-asns = ['199524','174']#, , '174']#'8978', '61160']#, '202865','24482']
-#huge ases 24482 199524, 174
-for asn in asns:
-    getData(asn)
-# print(isMultihomed)
-# getData(originsASOfPStart)
+    
+#uncomment the below to get data for specific ASNs instead of prefixes. 
+        
+#         #vatican ASNs '8978', '61160', '202865'
+# asns = ['199524','174']#, '8978', '61160', '202865','24482']
+# #huge ases 24482 199524, 174
+# for asn in asns:
+#     getData(asn)
+
