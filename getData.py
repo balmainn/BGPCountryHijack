@@ -176,19 +176,18 @@ def createDirs():
     """sets up initial directory structure if it doesnt exist
     params: nothing
     returns: nothing"""
-    if os.path.exists('scores'):
+    if not os.path.exists('scores'):
         os.makedirs('scores')
-    if os.path.exists('imgs'):
+    if not os.path.exists('imgs'):
         os.makedirs('imgs')
-    if os.path.exists('graphs'):
+    if not os.path.exists('graphs'):
         os.makedirs('graphs')
-    if os.path.exists('pickles'):
+    if not os.path.exists('pickles'):
         os.makedirs('pickles')
-    if os.path.exists('pickles/graphs'):
+    if not os.path.exists('pickles/graphs'):
         os.makedirs('pickles/graphs')
-    if os.path.exists('pickles/neighbors'):
+    if not os.path.exists('pickles/neighbors'):
         os.makedirs('pickles/neighbors')
-    
     
 #~~~~main~~~~#
         
