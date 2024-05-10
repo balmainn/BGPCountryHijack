@@ -124,7 +124,7 @@ def addToGraph(neighbors,asGraph:networkx.Graph,someAS,linkLevel):
         None: on error (neighbors is empty)
         1: on success"""
     # print("adding, neighbors to graph for",someAS)
-    if neighbors == None:
+    if neighbors == None or len(neighbors) == 0:
         print("no neighbors to add!")
         return None
     for neighbor in neighbors:
@@ -147,7 +147,8 @@ def setupGraph(originASOfP):
     asGraph = networkx.Graph()
     asGraph.add_node(originASOfP,origin='origin',linkLevel=0) 
     print(f"originAS of p x{originASOfP}x")
-    lv1Neighbors = getNeighbor(originASOfP,queryTime)
+    masterNeighbors = pickle.load(open('pickles/masterNeighborTable.pickle','rb'))
+    lv1Neighbors = masterNeighbors[originASOfP]
     #add level 1 neighbors to graph
     addToGraph(lv1Neighbors,asGraph,originASOfP,1)
     nc = 0
@@ -155,8 +156,8 @@ def setupGraph(originASOfP):
     for neighbor in lv1Neighbors:
         print('lv1 ',nc ,"/", len(lv1Neighbors))
         nc+=1
-        lv2Neighbors = getNeighbor(neighbor,queryTime)
-       
+        lv2Neighbors = masterNeighbors[neighbor]
+        
         isNone = addToGraph(lv2Neighbors,asGraph,neighbor,2)
         if isNone==None:
             continue
@@ -164,7 +165,7 @@ def setupGraph(originASOfP):
         #add lv 3 neighbors to graph
         for neigh in lv2Neighbors:
             print('lv1 ',nc ,"/", len(lv1Neighbors), 'lv2 ',nc2 ,"/", len(lv2Neighbors))
-            lv3Neighbors = getNeighbor(neigh,queryTime)
+            lv3Neighbors = masterNeighbors[neigh]
             addToGraph(lv3Neighbors,asGraph,neigh,3)
             nc2+=1
     #save the file when complete so we dont have to do this again
@@ -203,9 +204,6 @@ def searchPotentialVictims(asGraph:networkx.Graph,originASOfP,shortestPathsToP,h
         #     break
         
         if potentialVictimASN == hijackerASN:
-            #this is where the "missing node" is
-            #we're just counting the hijacker as a success which could make sense either way
-            #<BUG TODO HERE >
             fullyHijackableCounter+=1
             #score = 100
             continue
@@ -360,10 +358,7 @@ def storeScores(avgs,originP,asGraph:networkx.Graph):
 
 def countData(counter,ctr3,hijskip,origskip,asGraph:networkx.Graph):
     """same as getLevels, but prints information"""
-    print("ran search on ",counter," candidates", "searched for ",ctr3, " potential victms", "hij skkp: ",hijskip, " orig skip ",origskip, "total: ",hijskip+origskip)    
-    if counter == 0:
-        with open('zerocounts.txt','a') as f:
-            f.write(f"for some reason {asGraph.nodes} had 0 candiates searched\n")
+    print("ran search on ",counter," candidates", "searched for ",ctr3, " potential victms", "hij skkp: ",hijskip, " orig skip ",origskip, "total: ",hijskip+origskip)        
     lv1 = 0
     lv2 =0
     lv3 = 0
@@ -477,53 +472,25 @@ for prefix_p in prefixes:
     #uncomment below to do tests on specific ASNS  
 
 # asns = ['24482'] #'199524''174']'8978']'61160']#, '202865']#,
-def loadASNsFromCone(maxConeSize):
-    lines = []
-    with open("cone-test3.py/coneSize.txt",'r') as f:
-        for line in f.readlines():    
-            if not line.startswith("#"):
-                splitLine = line.strip().split()
-                asn = splitLine[0]
-                coneSize = splitLine[1]
-                if int(coneSize)>maxConeSize:
-                    lines.append(asn)
-    print(lines)
-    print(len(lines))                    
-    return lines
+# GET_DATA = True
 
-GET_DATA = True
-# testASNs = [3257,21320,4755,132337,3303,20495,18041,50509,28716,42020,28910,4270,4058,1311,1967,3634]
-ASesFromCone = loadASNsFromCone(maxConeSize=100)
-for asn in ASesFromCone:
-    #write a file for when things may go wrong
+# for asn in asns:
+#     avgs =0
+#     counter =0
+#     ctr3 =0
+#     hijskip =0
+#     origskip =0
+#     lv1 =0
+#     lv2 =0
+#     lv3 =0 
+#     asGraph = networkx.Graph()
+#     if GET_DATA:
+#         asGraph = setupGraph(asn)
+#     else:
+        
+#         print("loading as graph from file")
+#         asGraph = pickle.load(open(f"pickles/asGraph-{asn}.pickle",'rb'))
+#     avgs,counter,ctr3,hijskip,origskip = performHijack(asGraph,asn)
     
-    with open('checkpoint.txt','a') as f:
-        print(f"{asn} started")
-        f.write(f"{asn} started")
-    avgs =0
-    counter =0
-    ctr3 =0
-    hijskip =0
-    origskip =0
-    lv1 =0
-    lv2 =0
-    lv3 =0 
-    asGraph = networkx.Graph()
-    if os.path.exists(f"pickles/asGraph-{asn}.pickle"):
-        print(f"... Already exists! \n")
-        with open('checkpoint.txt','a') as f:
-            f.write(f"... Already exists! \n")
-        continue
-    # if GET_DATA:
-    #     asGraph = setupGraph(asn)
-    # else:
-    #     print("loading as graph from file")
-    #     asGraph = pickle.load(open(f"pickles/asGraph-{asn}.pickle",'rb'))
-    asGraph = setupGraph(asn)
-    avgs,counter,ctr3,hijskip,origskip = performHijack(asGraph,asn)
-    
-    storeScores(avgs,asn,asGraph)
-    countData(counter,ctr3,hijskip,origskip,asGraph)
-    with open('checkpoint.txt','a') as f:
-        f.write(f"... finished \n")
-    print(f"{asn}... finished!!!!! \n")
+#     storeScores(avgs,asn,asGraph)
+#     countData(counter,ctr3,hijskip,origskip,asGraph)

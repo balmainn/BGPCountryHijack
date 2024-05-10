@@ -72,6 +72,23 @@ def countData(asGraph:networkx.Graph):
  
 # ax.set_ylim(0,10)
 
+def getASFromFile(file):
+    a = file.find('-')
+    b = file.find('.')
+    return file[a+1:b]
+
+def sortVals(x,y):
+    for i in range(len(y)):
+        for j in range(len(y)):
+            if float(y[j]) < float(y[i]):
+                tmpy = y[i]
+                y[i] = y[j]
+                y[j] = tmpy
+                tmpx = x[i]
+                x[i] = x[j]
+                x[j] = tmpx
+    return x,y
+
 import os 
 files = os.listdir('scores/')
 datafiles = []
@@ -81,10 +98,6 @@ for file in files:
         datafiles.append('scores/'+file)
 
 
-def loadCone():
-    cone = pickle.open('cone-test3.py/asnCone.pickle','rb')
-    return cone
-
 maxFiles = 2
 # fig = plt.figure()
 # plt.rcParams["figure.figsize"] = (10,6) 
@@ -93,6 +106,13 @@ count = 1
 import re
 queryTime = "2024-03-01T09:00:00"
 import pickle 
+
+
+def findAvg(success, partial, failure):
+    average =  (100*float(success) + 50*float(partial))/(float(success)+float(partial)+float(failure))
+    print("average success: ",average, "%")
+    return average
+
 def getNeighbor(asn,query_time):
     """find the neighbors of a given ASN
     returns a set to remove duplicates
@@ -105,7 +125,10 @@ def getNeighbor(asn,query_time):
         return neighbors
 for file in datafiles: 
     plt = pyplot
-    # plt.subplot(3,4,count)
+    plt.grid()
+    count = 1
+    plt.subplot(1,2,count)
+    
     
     x = []
     y = []
@@ -132,11 +155,63 @@ for file in datafiles:
     plt.ylabel('Count')
     plt.scatter(x,y,c=colors)
     #plt.axvline(xpoint,ymin,ymax,c='red')
-    plt.grid()
+    
     # print(len(x))
     count+=1
-    plt.savefig(f'imgs/{file[a+1:b]}-picture.png')
-    plt.clf()
+    
+    # plt.clf()
+    
+
+    prefixPAS = getASFromFile(file)
+    
+    count = 2
+    plt.subplot(1,2,count)
+    plt.grid()
+    # plt.subplot(1,4,count)
+    info = readfile(file)
+    x=[]
+    y=[]
+    
+    averages = []
+    for asn in info:
+        
+        average = info[asn]['average']
+        success = info[asn]['success']
+        partial = info[asn]['partial']
+        failure = info[asn]['failure']
+        linkLevel = info[asn]['linkLevel']
+        neighbors = info[asn]['neighbors']
+        # x.append(count)
+        # y.append(float(average))
+        averages.append(float(average))
+
+    avgSorted = sorted(averages)
+    colors = []
+    low = 25
+    med =  50
+    high = 75
+    for i in range(len(avgSorted)):
+        x.append(i)
+        if avgSorted[i] <= low:
+            colors.append('red')
+        if avgSorted[i] > low and avgSorted[i] <= med:
+            colors.append('orange')
+        if avgSorted[i] > med and avgSorted[i] < high:
+            colors.append('yellow')
+        if avgSorted[i] >= high:            
+            colors.append('green')            
+    # for i in range(len(x)):
+    #     print(f"({x[i]},{y[i]})")
+    num_points=len(x)
+    plt.bar(x,avgSorted,color=colors)#get_color_gradient(color1, color2, num_points))
+    avg = findAvg(success,partial,failure)
+    plt.hlines(avg,xmin=0,xmax=max(x),linewidth=2.3)
+    plt.xlabel('sorted run number')
+    plt.ylabel('percent success')
+    
+    plt.title(prefixPAS)
+    plt.savefig(f'imgs/combo/{file[a+1:b]}-combo.png')
+    
 
 plt.subplot_tool()    
 plt.show()
@@ -150,72 +225,3 @@ plt.show()
 print(len(x))
 # ax.scatter(x,y,c=colors)
 print(len(datafiles))
-
-# infos = []
-
-# print(datafiles)
-
-# for file in datafiles:
-    
-#     info = readfile(file)
-#     infos.append(info)
-
-# asn = '6429'
-# for info in infos:
-#     if asn in info:
-#         print(info[asn])
-#         print("yes")
-    # for hijackerASN in info:
-    #     print(hijackerASN)
-
-# plt.show()
-#~~~~uo asn~~~~
-#these are multihomed so lets plot them together 
-# files = ['hijackingScores-3582.csv', 'hijackingScores-198949.csv']
-# count=1
-# for file in files: 
-
-#     plt.subplot(2,1,count)
-   
-#     x = []
-#     y = []
-#     coords = []
-#     colors = []
-#     info = {}
-#     info = readfile(file)
-#     x,y,colors = extractData(info,x,y,colors)
-#     a = file.find('-')
-#     b = file.find('.')
-#     title = file[a+1:b]
-
-#     plt.title(title)
-#     plt.scatter(x,y,c=colors)
-#     plt.grid()
-#     # print(len(x))
-#     count+=1
-    
-# plt.show()
-
-# xs = []
-# ys = []
-# colorss = []
-# for file in files:
-#     info = readfile(file)
-#     x,y,colors = extractData(info,x,y,colors)
-#     xs.append(x)
-#     ys.append(y)
-#     colorss.append(colors)
-# x1 = [] 
-# y1 = []
-# color1= []
-# for x in xs:
-#     for a in x:
-#         x1.append(a)
-# for y in ys:
-#     for a in y:
-#         y1.append(a)
-# for c in colorss:
-#     for a in c:
-#         color1.append(a)
-# plt.scatter(x1,y1,c=color1)
-# plt.show()

@@ -24,6 +24,8 @@ def readfile(file):
 import random
 from datetime import datetime
 def extractData(info,x,y,colors):
+    cone, sCone = loadCone()
+
     #(r,g,b,a)
     random.seed(datetime.now().timestamp())
     r = random.randint(0,100)
@@ -35,11 +37,15 @@ def extractData(info,x,y,colors):
     
     colorFail    = (value, 0, 0, 1)
     for hijackerASN in info:
-        
-        neighbors = int(info[hijackerASN]['neighbors'])
+        try:
+                neighbors = len(cone[hijackerASN]) #int(info[hijackerASN]['neighbors'])
+        except:
+            continue
+            neighbors = 0
         success = int(info[hijackerASN]['success'])
         partial = int(info[hijackerASN]['partial'])
         failure = int(info[hijackerASN]['failure'])
+        print("success partial failure",success,partial,failure)
         # print(f"({x1},{y1})")
         # coords.append((x1,y1))
         x.append(neighbors)
@@ -74,16 +80,21 @@ def countData(asGraph:networkx.Graph):
 
 import os 
 files = os.listdir('scores/')
+testASNs = [3257,21320,4755,132337,3303,20495,18041,50509,28716,42020,28910,4270,4058,1311,1967,3634]
 datafiles = []
+# for asn in testASNs:
+#     datafiles.append('scores/hijackingScores-'+str(asn)+'.csv')
 for file in files:
     if file.startswith('hijackingScores-') and file.endswith('.csv'):
         print(file)
         datafiles.append('scores/'+file)
 
 
+
 def loadCone():
-    cone = pickle.open('cone-test3.py/asnCone.pickle','rb')
-    return cone
+    cone = pickle.load(open('cone-test3.py/asnCone.pickle','rb'))
+    sCone = sorted(list(cone.items()), key=lambda a_c: len(a_c[1]),reverse=True)
+    return cone,sCone
 
 maxFiles = 2
 # fig = plt.figure()
@@ -103,9 +114,12 @@ def getNeighbor(asn,query_time):
     if os.path.exists(f'pickles/neighbors/{asn}-{safeTime}'):
         neighbors = pickle.load(open(f'pickles/neighbors/{asn}-{safeTime}','rb'))
         return neighbors
+
+cone, sCone = loadCone()
+
 for file in datafiles: 
     plt = pyplot
-    # plt.subplot(3,4,count)
+    # plt.subplot(4,4,count)
     
     x = []
     y = []
@@ -118,28 +132,35 @@ for file in datafiles:
     b = file.find('.')
     graphPath = 'pickles/asGraph-'+file[a+1:b]+'.pickle'
     asGraph = pickle.load(open(graphPath,'rb'))
-    lv1, lv2, lv3 = countData(asGraph)
+    # lv1, lv2, lv3 = countData(asGraph)
     title = 'AS '+file[a+1:b]# + " n1= " +str(lv1)+ " n2= " +str(lv2)+ " n3= " +str(lv3)
     color = 'maroon'
     width = 3
-    plt.axvline(lv1,0,max(y),c=color,linewidth=width)
+    try:
+        xpos = len(cone[file[a+1:b]])
+        plt.axvline(xpos,0,max(y),c=color,linewidth=width)
+    except:
+        pass
+    
     # plt.annotate(str(lv1), xy=(lv1, -1))
-    plt.axvline(lv2,0,max(y),c=color,linewidth=width)
+    # plt.axvline(lv2,0,max(y),c=color,linewidth=width)
     # plt.annotate(str(lv2), xy=(lv2, -1))
     #plt.axvline(lv3,0,10,c='lavenderblush')
     plt.title(title)
-    plt.xlabel('Hijacker Neighbors')
+    plt.xlabel('Hijacker Cone Size')
     plt.ylabel('Count')
     plt.scatter(x,y,c=colors)
     #plt.axvline(xpoint,ymin,ymax,c='red')
     plt.grid()
     # print(len(x))
-    count+=1
-    plt.savefig(f'imgs/{file[a+1:b]}-picture.png')
+    
+    plt.savefig(f'imgs/cone/{file[a+1:b]}-picture.png')
     plt.clf()
+    print(count,"/",len(datafiles))
+    count+=1
 
-plt.subplot_tool()    
-plt.show()
+# plt.subplot_tool()    
+# plt.show()
 # plt.show()
     # ax.scatter(x,y,c=colors)
 
@@ -147,9 +168,9 @@ plt.show()
 # print(x,y,colors)
 # for c in colors:
 #     print(c)
-print(len(x))
+# print(len(x))
 # ax.scatter(x,y,c=colors)
-print(len(datafiles))
+# print(len(datafiles))
 
 # infos = []
 

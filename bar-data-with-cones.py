@@ -66,6 +66,12 @@ def findAvg(success, partial, failure):
     print("average success: ",average, "%")
     return average
 
+
+def loadCone():
+    cone = pickle.load(open('cone-test3.py/asnCone.pickle','rb'))
+    sCone = sorted(list(cone.items()), key=lambda a_c: len(a_c[1]),reverse=True)
+    return cone,sCone
+
 files = os.listdir('scores/')
 datafiles = []
 for file in files:
@@ -75,6 +81,8 @@ for file in files:
 count = 1
 color1 = "#fa0505"
 color2 = "#05fa05"
+
+cone, sCone = loadCone()
 
 for file in datafiles:
     
