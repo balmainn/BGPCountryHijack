@@ -19,7 +19,7 @@ def getCollector(file):
 def getVictimASes(file):
     vicASRE = r'\[.*\]' #victim AS regular expression
     m = re.search(vicASRE,file)
-    vicASes = m[0][1:-1].split(', ')
+    vicASes = m[0][1:-1].split(', ') #idea make this a set
     print(vicASes)
     return vicASes
 
@@ -42,11 +42,20 @@ for file in files:
     #try:
     with gzip.open(pref+file,'rb') as f:
         results = pickle.load(f)
+    #monitors that sent the update to the collector
+    vicSenders = set() #probably the same for each file (this makes sense)
+    hijackSenders = set() 
+
     for vicAS in vicASes:
         for result in results:
             # if result['vicASN'] == vicAS:
-            print(result,len(results))
-            exit(0)
+            vicSenders.add(result['vicSender'])
+            hijackSenders.add(result['hijackSender'])
+            # print(result,len(results))
+    print(len(vicSenders))
+    print(len(hijackSenders))
+    uset = vicSenders.union(hijackSenders)
+    print(uset,len(uset))
     exit(0)
     
 #     except Exception as e:
