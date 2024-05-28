@@ -6,12 +6,14 @@ import os
 import pickle 
 #save data to disk or just run tests with False
 SAVEDATA = True
+#NOTE THIS SAVES DUPLICATE DATA, USE SIMILAR METHOD IN fixUpdates.py TO RESOLVE IF USING AGAIN LATER 
+
 
 url = "https://data.ris.ripe.net/rrc01/2024.02/bview.20240201.0000.gz"
 broker = bgpkit.Broker(page_size=1000)
 dataUrls = []
-tStart="2024-03-31T00:00:00"
-tEnd="2024-03-31T02:00:00"
+tStart="2024-03-31T12:00:00"
+tEnd="2024-03-31T14:00:00"
 items = broker.query(ts_start=tStart, ts_end=tEnd)
 ribs = []
 updates = []

@@ -2,12 +2,16 @@ import os
 import gzip 
 import pickle
 import re 
+import policies
 #'pickles/ribData/{collectorID}-{startTime}-{endTime}.pickle
 updatesFileDir = 'pickles/updateData/'
 ribsFileDir = 'pickles/ribData/'
 
 ribsPath = 'pickles/ribData/'
 updatesPath = 'pickles/updateData/'
+
+#dictionary with all collectors their peers
+masterPeers = policies.getMasterPeers()
 
 # This function is used to produce an array of strings from the victim and hij in order to give a 
 # path length for comparison.
@@ -37,7 +41,7 @@ def isNeighborSame(victim,hij):
     else:
         return False, vicNeigh,hijNeigh
 
-def applyPolicy(victim, hij):
+def asPath(victim, hij):
     # print('applying policy')
     # # print('checking victim',victim)
     
@@ -59,7 +63,7 @@ def applyPolicy(victim, hij):
     elif legitPath < hijackPath:
         return False
     else: # if the paths are the same lenght 50/50
-        return "Equal"
+        return 'E' #paths are equal, we dont know yet
     
         # coinFlip = random.randint(0, 100)
         # if coinFlip <= 50:
@@ -183,19 +187,21 @@ def combineRibWithRibs(ribFileGroup,updatesFileGroup,collector):
     return combos
 
 
-def storeResults(collector,results,tid,victimASN,shouldPrint=False):
+def storeResults(collector,results,tid,victimASN,hijackerASNS,shouldPrint=False):
+    
+    # exit(0)
+    # print(results)
+    filepath = f'pickles/results/{collector}-v{victimASN}-h{hijackerASNS}-tid{tid}-results-0'
     if len(results) ==0:
         return #dont store empty things
     if shouldPrint:
-        print(f'tid {tid} storing results!',len(results))
-    # exit(0)
-    # print(results)
-    filepath = f'pickles/results/{collector}-{victimASN}-tid{tid}-results-0'
+        print(f'tid {tid} storing {len(results)} results!')
+        # print(f'tid {tid} storing results in!',filepath,len(results))
     #find the next available filepath
     if os.path.exists(filepath):
         dashLoc= filepath.rfind('-')
         fileNum = int(filepath[dashLoc+1:].strip()) +1
-        filepath = f'pickles/results/{collector}-{victimASN}-tid{tid}-results-{fileNum}'
+        filepath = f'pickles/results/{collector}-v{victimASN}-h{hijackerASNS}-tid{tid}-results-{fileNum}'
         
     #compress with gzip to save some space
     #NOTE: MUST use gzip to load this picklefile
@@ -217,44 +223,124 @@ def timeDiffSkip(lastTime,update):
     else:
         # print(False)
         return False
+from random import uniform,randint
+def randomPolicy(collector):
+    numPeers = masterPeers[collector]['numPeers']
+    vicLP = randint(0,numPeers) #victim
+    hijLP = randint(0,numPeers) #hijacker
+    if hijLP < vicLP:
+        return False
+    elif hijLP > vicLP: 
+        return True
+    else:
+        return None
+# def trueRandomPref(numPeers):
+#duplicate of the above
+#     vicLP = randint(0,numPeers) #victim
+#     hijLP = randint(0,numPeers) #hijacker
+#     if vicLP == hijLP:
+#         return "E"
+#     else:
+#         return hijLP > vicLP # hijacker wins = True, hijacker loses = False
+def doLocalPrefCalc(preferenceN):
+    t = preferenceN*preferenceN
+    bothRange = ((preferenceN*preferenceN -preferenceN ) / 2)
+    i = uniform(0,1) #off by 1 figure this out 
+    # print(bothRange,i)
+    leRange = bothRange/t
+    gtRange = leRange+leRange
+    #eqRange = preferenceN/t #implied by the else
+    # print(leRange,gtRange,eqRange, i)
+    if i <= leRange:
+        # print('less')
+        return False #victim had higher local pref 
+    elif i > leRange and i <= gtRange:
+        return True #hijacker had higher local pref
+    else:
+        return 'E' #we dont know
+        # print('equal')
+        eq+=1
+def compareLocalPreference(sameSenderASN,collector):
+    #TODO DONE"""need to consider preference 3, 5, random, and uniform random"""
     
-def doTheThingGandalf(update,ribUpdate,ribASN,updateASN):
-                                    
-    storeDict = {}
-    success = applyPolicy(ribUpdate,update)
-    # if success == 'Equal':
-    #     partials+=1
-    # elif success:
-    #     hijWins+=1
-    # else:
-    #     vicWins +=1
+    #if the same ASN sent both updates theres no reason to do any of the below
+    #since they have the same LP
+    if sameSenderASN:
+        policyResults = {3:None,5:None,12:None,
+                        20:None,50:None,'random':None}
+        return policyResults
+    
+    policy3Result = doLocalPrefCalc(3)
+    policy5Result = doLocalPrefCalc(5)
+    policy12Result = doLocalPrefCalc(12)
+    policy20Result = doLocalPrefCalc(20)
+    policy50Result = doLocalPrefCalc(50)
+    randomPolicyResult = randomPolicy(collector)
+    policyResults = {3:policy3Result,5:policy5Result,12:policy12Result,
+                     20:policy20Result,50:policy50Result,'random':randomPolicyResult}
+    return policyResults
+
+
+def originType(vicUpdate,hijUpdate):
+    #preferred in this order: IGP- EGP- Incomplete
+    originPrefTable = {'IGP':3,'EGP':2,'INCOMPLETE':1}
+    
+    vicTypeVal = originPrefTable[vicUpdate['origin']]
+    hijTypeVal = originPrefTable[hijUpdate['origin']]
+    if vicTypeVal < hijTypeVal:
+        return True
+    elif vicTypeVal > hijTypeVal:
+        return False
+    else:
+        return 'E' #we dont know
+    
+    
+
+def doTheThingGandalf(update,ribUpdate,ribASN,updateASN,collector):
+    #apply things in this order
+    # Local preference (highest, local AS)
+    # Locally originated (no idea, so we skip)
+    # AS Path (shortest)
+    # Origin type ( i < e < ?) preferred in this order: IGP- EGP- Incomplete 
+    
+    sameSenderASN, victimSender,hijackSender = isNeighborSame(ribUpdate,update)    
+    localPrefResults = compareLocalPreference(sameSenderASN,collector)
+    
+    #ultimateReason='localPref'
+    
+    asPathSuccess = asPath(victim=update,hij=ribUpdate)
+    # ultimateReason='asPath'
+
+    originTypeSuccess = originType(ribUpdate,update)
+
+    #if all of the following are true, we have no idea.
+    if sameSenderASN and asPathSuccess == "E" and originTypeSuccess == "E":
+        determined = False 
+    else:
+        determined = True
+        
+    #store the results
     vicOrigin = ribUpdate['origin']
     hijOrigin = update['origin']
-    sameSenderASN, victimSender,hijackSender = isNeighborSame(ribUpdate,update)
     vicASN = ribASN
     hijASN = updateASN
-    if success == True:
-        success = 1
-    if success == False:
-        success = 0
-    if success == 'Equal':
-        success = 'E' #reduce the amount of stored data 
-    
+    successDict ={'localPref': localPrefResults, 'asPath':asPathSuccess,'originType':originTypeSuccess,'determined':determined}
     storeDict = {'victimASN':vicASN, 'hijASN':hijASN,
-            'success':success,'vicOrigin':vicOrigin,
+            'success':successDict,'vicOrigin':vicOrigin,
             'hijOrigin':hijOrigin,'sameSenderASN':sameSenderASN,
             'vicSender':victimSender, 'hijackSender': hijackSender }
+    
     return storeDict
 
 def gogogadgetmagicfunction2(ribEnd,updateEnd,tid):
     #number of hijacker ASNs to consider 
-    num_hijacker_asns_to_consider_updates = 20
+    num_hijacker_asns_to_consider_updates = 5
     #number of victim ASNs to consider 
-    num_victim_asns_to_consider_ribs = 20
+    num_victim_asns_to_consider_ribs = 2
     #number of victim updates to consider
-    num_victim_updates_to_consider = 20
+    num_victim_updates_to_consider = 2
     #number of hijacking updates to compare against the rib (victim) (will do at most this many)
-    number_hijack_updates_to_consider_at_most = 5 
+    number_hijack_updates_to_consider_at_most = 2 
     
     print(f"tid {tid} is working on {ribEnd}\n \
                   and {updateEnd}")
@@ -282,6 +368,7 @@ def gogogadgetmagicfunction2(ribEnd,updateEnd,tid):
         print(f'tid {tid} is working on rib monitor asn {count0}/{len(ribUpdates.keys())}')
         count0+=1
         count = 1
+        hijackerASNS = []
         for ribPeerIP in ribUpdates[ribMonitorASN]:
             print(f'tid {tid} is working on rib peer ip {count}/{len(ribUpdates[ribMonitorASN].keys())}')
             count +=1
@@ -289,10 +376,11 @@ def gogogadgetmagicfunction2(ribEnd,updateEnd,tid):
             ribASNCTR = 0
             ribasns = []
             for ribASN in ribUpdates[ribMonitorASN][ribPeerIP]:
-                ribasns.append(ribASN)
+                
                 if ribASNCTR > num_victim_asns_to_consider_ribs:
                     # print('ribASNCTR break')
                     break
+                ribasns.append(ribASN)
                 ribASNCTR+=1
                 # print(f'tid {tid} is working on rib asn {count}/{len(ribUpdates[ribMonitorASN][ribPeerIP][ribASN])}')
                 # count +=1
@@ -316,11 +404,13 @@ def gogogadgetmagicfunction2(ribEnd,updateEnd,tid):
                                     printed2 = False
                                 printed3 = True
                                 updateASNCTR = 0
+                                hijackerASNS = []
                                 for updateASN in updates[updateMonitorASN][updatePeerIP]:
                                     if updateASNCTR > num_hijacker_asns_to_consider_updates:
                                         # print('update asn ctr break')
                                         break
                                     if updateASN!=ribASN:   
+                                        hijackerASNS.append(updateASN)
                                         updateASNCTR+=1 
                                         # if printed3:
                                         #     print(f'updateASN: {tid}',len(updates[updateMonitorASN][updatePeerIP]))
@@ -328,43 +418,19 @@ def gogogadgetmagicfunction2(ribEnd,updateEnd,tid):
                                         
                                         printed4 = True
                                         for update in updates[updateMonitorASN][updatePeerIP][updateASN][:number_hijack_updates_to_consider_at_most]:#[:updateTestCount]:
-                                            results.append(doTheThingGandalf(update,ribUpdate,ribASN,updateASN))
-                                        # for update in 
-                                        # if printed4:
-                                        #     print(f'update, {tid}',len(updates[updateMonitorASN][updatePeerIP][updateASN]))
-                                            
-                                        #     printed4 = False
+                                            results.append(doTheThingGandalf(update,ribUpdate,ribASN,updateASN,ribCollector))
                                         
-                                        
-                                        # print(update)
-                                    # exit(1)
-                                        # prefix = update['prefix']
-                                        # if prefix not in prefixes: #have not already looked at it
-                                        #     prefixes.append(prefix)
-                                        #     prevTime = update['timestamp']
-                                        
-                                            
-                                        # else:#prefix already seen 
-                                        #     if timeDiffSkip(prevTime,update): #and theres a time difference of > 3 min
-                                        #         prevTime = update['timestamp']
-                                        #         results.append(doTheThingGandalf(update,ribUpdate,ribASN,updateASN))                                                    
-                                        #     else:#there is < a 3 min timediff
-                                        #         break   
-                                            #its getting TOO BIG
-                                        # if len(results) >= 1000000:
-                                        #     # storeResults(ribCollector,results,tid,victimASN=ribASN)
-                                        #     #MEM BE FREE!
-                                        #     print("MEM BE FREE~~~~~ from length")
-                                        #     # results = []            
-                                            # print(success)
                   
                     except Exception as e:
+                            # print(results)
                             print("exception in gogomagic ", e)
                             pass
                 
                 #MEM BE FREE!
     #<---pushed too far will crash when storeResults is there
-        storeResults(ribCollector,results,tid,victimASN=ribasns,shouldPrint=True)
+        if len(hijackerASNS) == 0:
+            hijackerASNS = 'unknown'
+        storeResults(ribCollector,results,tid,victimASN=ribasns,hijackerASNS=hijackerASNS, shouldPrint=True)
         # print("~~~~normal store mem be free! ~~~")
         results = []
     #percentages                                
@@ -380,84 +446,12 @@ def gogogadgetmagicfunction2(ribEnd,updateEnd,tid):
     #memory be FREE!
     updates = ""
     ribUpdates = ""
-    for i in range(10):
+    for _ in range(10):
         print("~~~~~~~~~DONE~~~~~~~~~")
     # if isZero:
     #     for i in range(20):
     #         print("~~ZERO~~~~ZERO~~~DONE~~ZERO~~~~ZERO~~~")
-# def gogogadgetmagicfunction(ribEnd,updateEnd,tid):
-#     #compares for a single monitor
-#     #used for testing
-#     ribTestCount = 2 
-#     updateTestCount = 2
-#     print("LOADING RIB")
-#     with gzip.open(ribsPath+ribEnd,'rb') as f:
-#         ribUpdates = pickle.load(f)
-#     print("LOADING UPDATE")
-#     updates=pickle.load(open(updatesPath+updateEnd,'rb'))
-#     results = []
-#     for ribMonitorASN in ribUpdates:
-#         for ribPeerIP in ribUpdates[ribMonitorASN]:
-#             for ribASN in ribUpdates[ribMonitorASN][ribPeerIP]:
-#                 hijWins = 0
-#                 partials=0
-#                 vicWins = 0
-#                 for ribUpdate in ribUpdates[ribMonitorASN][ribPeerIP][ribASN][:ribTestCount]:
-#                     # print(ribUpdate)
-#                     try:
-#                         for updateASN in updates[ribMonitorASN][ribPeerIP]:
-#                             if updateASN!=ribASN:     
-#                                 for update in updates[ribMonitorASN][ribPeerIP][updateASN][:updateTestCount]:
-                                    
-#                                     storeDict = {}
-#                                     success = applyPolicy(ribUpdate,update)
-#                                     if success == 'Equal':
-#                                         partials+=1
-#                                     elif success:
-#                                         hijWins+=1
-#                                     else:
-#                                         vicWins +=1
-#                                     vicOrigin = ribUpdate['origin']
-#                                     hijOrigin = update['origin']
-#                                     sameSenderASN = isNeighborSame(ribUpdate,update)
-#                                     vicASN = ribASN
-#                                     hijASN = updateASN
-#                                     if success == True:
-#                                         success = 1
-#                                     if success == False:
-#                                         success = 0
-#                                     if success == 'Equal':
-#                                         success = 'E' #reduce the amount of stored data 
-                                    
-#                                     storeDict = {'victimASN':vicASN, 'hijASN':hijASN,
-#                                             'success':success,'vicOrigin':vicOrigin,
-#                                             'hijOrigin':hijOrigin,'sameSenderASN':sameSenderASN}
-#                                     results.append(storeDict)
-                                    
-#                                 # exit(0)
-#                                     # print(success)
-#                         #store here 
-                        
 
-#                     except Exception as e:
-#                             print("exception in gogomagic ", e)
-#                             pass
-#                 storeResults(results,tid)
-#                 #MEM BE FREE!
-#                 results = []
-#     #percentages                                
-#                 print('hij wins!',hijWins,"percent", hijWins/(hijWins+partials+vicWins)*100)
-#                 print('partials?',partials, "percent",partials/(hijWins+partials+vicWins)*100)
-#                 print('origPath',vicWins,"percent",vicWins/(hijWins+partials+vicWins)*100)
-            
-                                    
-#     # print('hij wins!',hijWins)
-#     # print('partials?',partials)
-#     # print('origPath',vicWins)
-    
-#     #memory be FREE!
-#     updates = ""
-#     ribUpdates = ""
 
 def getCollector(file):
     if 'rrc' in file:
@@ -481,26 +475,81 @@ i = 0
 #     mod = numProcesses+1
 # else:
 #     mod = numProcesses
-
+resultsFiles =os.listdir('pickles/results/')
+collectorsSoFar = set()
+badFiles = []
+cnt = 0
+for file in resultsFiles:
+    # print("examining ", cnt, '/',len(resultsFiles))
+    cnt+=1
+    resultsCollector = getCollector(file)
+    # try:
+    #     with gzip.open('pickles/results/'+file,'rb') as f:
+    #         results = pickle.load(f)
+    # except:
+    #     print("BAD FILE DETECTED")
+    #     badFiles.append(file)
+    collectorsSoFar.add(resultsCollector)
+allCollectors ={}
+#pick N files 
+N = 10
+collectorCounts = {}
 for ribFile in ribFiles:
     ribCollector = getCollector(ribFile)
-
+    
+    # if ribCollector in collectorsSoFar:
+    #     continue
     for updateFile in updateFiles:
         updateCollector = getCollector(updateFile)
+        
+        # if updateCollector in collectorsSoFar:
+        #     continue
         if ribCollector == updateCollector:
             # print("rib ",ribCollector, "update: ",updateCollector)
-            
-            combos.append((ribFile,updateFile, i))
-            i +=1
+            try:
+                collectorCounts[ribCollector] +=1
+            except:
+                collectorCounts[ribCollector] =1
+            if collectorCounts[ribCollector] < N+1: #off by 1 b/c of ordering
+                combos.append((ribFile,updateFile, i))
+                i +=1
 
 c = combos
-# print(combos[:10])
-#wtf even is this name....
-# gogogadgetmagicfunction2(combos[0][0],combos[0][1],combos[0][2])
+
+# print(c,len(c))
+#GO GO GADGET MAGIC FUNCTION DO THE THING GANDALF!
 from multiprocessing import Pool
 pool = Pool(processes=numProcesses)
 pool.starmap(gogogadgetmagicfunction2,c)
 pool.close()
+# gogogadgetmagicfunction2(combos[0][0],combos[0][1],combos[0][2])
+# for c in collectorCounts:
+#     print(c,collectorCounts[c])
+
+# print(len(combos))
+# for file in ribFiles:
+#     collector = getCollector(file)
+#     try:
+#         allCollectors[collector] +=1
+#     except:
+#         allCollectors[collector] =1
+
+# print(allCollectors)       
+# allCollectors = {}
+# for file in updateFiles:
+#     collector = getCollector(file)
+#     try:
+#         allCollectors[collector] +=1
+#     except:
+#         allCollectors[collector] =1
+# print(allCollectors)
+
+
+# print(badFiles,len(badFiles))
+# print(combos[:10])
+#wtf even is this name....
+# gogogadgetmagicfunction2(combos[0][0],combos[0][1],combos[0][2])
+
 
             # print(m)
             # print(m[0][:-1])
@@ -591,6 +640,7 @@ pool.close()
 
             #exit(0)
             #break
+#~~~~ the backup section ~~~ #
 # for updateMonitorASN in updates:
 #     for updatePeerIP in updates[updateMonitorASN]:
 #         for updateASN in updates[updateMonitorASN][updatePeerIP]:
@@ -691,3 +741,107 @@ pool.close()
 #                 normalFileCombos.append((ribFile,updateFile))
 #     except:
 #         pass
+
+
+# def gogogadgetmagicfunction(ribEnd,updateEnd,tid):
+#     #compares for a single monitor
+#     #used for testing
+#     ribTestCount = 2 
+#     updateTestCount = 2
+#     print("LOADING RIB")
+#     with gzip.open(ribsPath+ribEnd,'rb') as f:
+#         ribUpdates = pickle.load(f)
+#     print("LOADING UPDATE")
+#     updates=pickle.load(open(updatesPath+updateEnd,'rb'))
+#     results = []
+#     for ribMonitorASN in ribUpdates:
+#         for ribPeerIP in ribUpdates[ribMonitorASN]:
+#             for ribASN in ribUpdates[ribMonitorASN][ribPeerIP]:
+#                 hijWins = 0
+#                 partials=0
+#                 vicWins = 0
+#                 for ribUpdate in ribUpdates[ribMonitorASN][ribPeerIP][ribASN][:ribTestCount]:
+#                     # print(ribUpdate)
+#                     try:
+#                         for updateASN in updates[ribMonitorASN][ribPeerIP]:
+#                             if updateASN!=ribASN:     
+#                                 for update in updates[ribMonitorASN][ribPeerIP][updateASN][:updateTestCount]:
+                                    
+#                                     storeDict = {}
+#                                     success = applyPolicy(ribUpdate,update)
+#                                     if success == 'Equal':
+#                                         partials+=1
+#                                     elif success:
+#                                         hijWins+=1
+#                                     else:
+#                                         vicWins +=1
+#                                     vicOrigin = ribUpdate['origin']
+#                                     hijOrigin = update['origin']
+#                                     sameSenderASN = isNeighborSame(ribUpdate,update)
+#                                     vicASN = ribASN
+#                                     hijASN = updateASN
+#                                     if success == True:
+#                                         success = 1
+#                                     if success == False:
+#                                         success = 0
+#                                     if success == 'Equal':
+#                                         success = 'E' #reduce the amount of stored data 
+                                    
+#                                     storeDict = {'victimASN':vicASN, 'hijASN':hijASN,
+#                                             'success':success,'vicOrigin':vicOrigin,
+#                                             'hijOrigin':hijOrigin,'sameSenderASN':sameSenderASN}
+#                                     results.append(storeDict)
+                                    
+#                                 # exit(0)
+#                                     # print(success)
+#                         #store here 
+                        
+
+#                     except Exception as e:
+#                             print("exception in gogomagic ", e)
+#                             pass
+#                 storeResults(results,tid)
+#                 #MEM BE FREE!
+#                 results = []
+#     #percentages                                
+#                 print('hij wins!',hijWins,"percent", hijWins/(hijWins+partials+vicWins)*100)
+#                 print('partials?',partials, "percent",partials/(hijWins+partials+vicWins)*100)
+#                 print('origPath',vicWins,"percent",vicWins/(hijWins+partials+vicWins)*100)
+            
+                                    
+#     # print('hij wins!',hijWins)
+#     # print('partials?',partials)
+#     # print('origPath',vicWins)
+    
+#     #memory be FREE!
+#     updates = ""
+#     ribUpdates = ""
+
+# for update in 
+                                        # if printed4:
+                                        #     print(f'update, {tid}',len(updates[updateMonitorASN][updatePeerIP][updateASN]))
+                                            
+                                        #     printed4 = False
+                                        
+                                        
+                                        # print(update)
+                                    # exit(1)
+                                        # prefix = update['prefix']
+                                        # if prefix not in prefixes: #have not already looked at it
+                                        #     prefixes.append(prefix)
+                                        #     prevTime = update['timestamp']
+                                        
+                                            
+                                        # else:#prefix already seen 
+                                        #     if timeDiffSkip(prevTime,update): #and theres a time difference of > 3 min
+                                        #         prevTime = update['timestamp']
+                                        #         results.append(doTheThingGandalf(update,ribUpdate,ribASN,updateASN))                                                    
+                                        #     else:#there is < a 3 min timediff
+                                        #         break   
+                                            #its getting TOO BIG
+                                        # if len(results) >= 1000000:
+                                        #     # storeResults(ribCollector,results,tid,victimASN=ribASN)
+                                        #     #MEM BE FREE!
+                                        #     print("MEM BE FREE~~~~~ from length")
+                                        #     # results = []            
+                                            # print(success)
