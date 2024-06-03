@@ -302,7 +302,7 @@ def doTheThingGandalf(update,ribUpdate,ribASN,updateASN,collector):
     # Locally originated (no idea, so we skip)
     # AS Path (shortest)
     # Origin type ( i < e < ?) preferred in this order: IGP- EGP- Incomplete 
-    
+    #^how i heard about a number from the update 
     sameSenderASN, victimSender,hijackSender = isNeighborSame(ribUpdate,update)    
     localPrefResults = compareLocalPreference(sameSenderASN,collector)
     
