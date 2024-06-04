@@ -78,7 +78,7 @@ def extractData(dataDict,keyType):
         results['Failure'].append(0)
     return x,y,colors, results
 
-def createPlots(dataDict, victim, cone,whatKey,whatName,useHistorgram=False,saveData=False):
+def createPlots(dataDict, victim, cone,whatKey,whatName,useHistorgram=False,saveData=False,display=True):
     x, y, colors, boxData = extractData(dataDict, whatKey)
     fig, axs = plt.subplots(1, 3, figsize=(21, 7))
 
@@ -158,7 +158,8 @@ def createPlots(dataDict, victim, cone,whatKey,whatName,useHistorgram=False,save
     plt.tight_layout()
     if saveData:
         plt.savefig(f'plots/{whatKey}-{whatName}-fig.png')
-    plt.show()
+    if display:
+        plt.show()
     
 
 
@@ -169,11 +170,12 @@ def createPlots(dataDict, victim, cone,whatKey,whatName,useHistorgram=False,save
 #processed = pickle.load(open('processedResults.pickle','rb'))
 
 
-ALL = True
-USE_HIJACKER = True
-FNAME='allData-stackedBar'
-USEHISTO=True 
-SAVEDATA = False
+ALL = False
+USE_HIJACKER = not ALL #if this isnt set like this we get individual hijackers
+FNAME='collated-stackedBars'
+USEHISTO=False 
+SAVEDATA = True
+DISPLAY = False #show the graphs?
 #data with things removed
 if not ALL:
     if USE_HIJACKER:
@@ -198,9 +200,9 @@ for victim in processed:
         break
     print(f"Creating plots for AS {victim}")
 
-    createPlots(processed[victim], victim, None,'policy',FNAME,useHistorgram=USEHISTO,saveData=SAVEDATA)
-    createPlots(processed[victim], victim, None,'asPath',FNAME,useHistorgram=USEHISTO,saveData=SAVEDATA)
-    createPlots(processed[victim], victim, None,'originType',FNAME,useHistorgram=USEHISTO,saveData=SAVEDATA)
+    createPlots(processed[victim], victim, None,'policy',FNAME,useHistorgram=USEHISTO,saveData=SAVEDATA,display=DISPLAY)
+    createPlots(processed[victim], victim, None,'asPath',FNAME,useHistorgram=USEHISTO,saveData=SAVEDATA,display=DISPLAY)
+    createPlots(processed[victim], victim, None,'originType',FNAME,useHistorgram=USEHISTO,saveData=SAVEDATA,display=DISPLAY)
     count+=1
     
     #key values can be 'asPath' or 'originType', key: 'policy' is changing

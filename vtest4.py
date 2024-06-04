@@ -3,11 +3,7 @@ import gzip
 # results = pickle.load(open('supersecretpickles.pickle','rb'))
 # for r in results:
 #     print(r)
-import os
-#files = os.listdir('pickles/results/')
 
-with gzip.open('pickles/results/route-views.nwax-tid14-results-0','rb') as f:
-    res = pickle.load(f)
 
 def findResult(res):
     if res == None or res == "E":
@@ -164,8 +160,26 @@ def processResult(storeDict,result,asn1,asn2):
     localPreferenceResult = success['localPref']['result']
     asPathResult = success['asPath']
     originResult = success['originType']
-    storeDict = dictReady(storeDict,asn1,asn2)
-        
+    #storeDict = dictReady(storeDict,asn1,asn2)
+    try:
+        dictHijacker = storeDict[asn1]
+    except:
+        storeDict[asn1] = {
+                    asn2:{
+                    'policy' : {'hijackerWins':0,"hijackerLosses":0,"hijackerTies":0},
+                    'asPath' : {'hijackerWins':0,"hijackerLosses":0,"hijackerTies":0},
+                    'originType' : {'hijackerWins':0,"hijackerLosses":0,"hijackerTies":0}
+                    }
+                }
+        #dictHijacker = storeDict[asn1]
+    try:
+        dictResults = storeDict[asn1][asn2]
+    except:
+        storeDict[asn1][asn2] = {
+                    'policy' : {'hijackerWins':0,"hijackerLosses":0,"hijackerTies":0},
+                    'asPath' : {'hijackerWins':0,"hijackerLosses":0,"hijackerTies":0},
+                    'originType' : {'hijackerWins':0,"hijackerLosses":0,"hijackerTies":0}
+                    }    
     location = storeDict[asn1][asn2]
     #print(result)
     #just add the results to allresults TODO
@@ -173,22 +187,7 @@ def processResult(storeDict,result,asn1,asn2):
     storeSingleResult('asPath',location,success)
     storeSingleResult('originType',location,success)
     return storeDict
-allVictimResults = {}
-allHijackerResults = {}
-normalizedVictimResults = {}
-print(normalizedVictimResults)
-normalizedHijackerResults = {}
-ct = 0
-# for result in res:
-#     print(result)
-    
-#     victimASN = result['victimASN']
-#     hijackerASN = result['hijASN']
-    
-#     filterProcessResults(normalizedVictimResults,victimASN,hijackerASN,hijASN)
-#     filterProcessResults(normalizedHijackerResults,hijackerASN,victimASN)
-#     processResult(allVictimResults,result,victimASN,hijackerASN)
-#     processResult(allHijackerResults,result,hijackerASN,victimASN)
+
 
 def doNeighborThings(storeDict,asn1,asn2):
     try:
@@ -233,30 +232,56 @@ def doNeighborThings(storeDict,asn1,asn2):
     else:
         print("UKNOWN VALUE IN STORE SINGLE RESULT WTF")
         #exit(0)
-
+import os
+files = os.listdir('pickles/results/')
+allVictimResults = {}
+allHijackerResults = {}
+normalizedVictimResults = {}
+print(normalizedVictimResults)
+normalizedHijackerResults = {}
 vicNeighborDict = {}
 hijNeighborDict = {}
-for result in res:    
-    victimNeighbor = result['success']['localPref']['victim_neighbor']
-    hijackerNeighbor = result['success']['localPref']['hijacker_neighbor']
-    victimASN = result['victimASN']
-    hijackerASN = result['hijASN']
-    doNeighborThings(vicNeighborDict,victimNeighbor,hijackerNeighbor)
-    doNeighborThings(hijNeighborDict,hijackerNeighbor,victimNeighbor)
-print(vicNeighborDict)
-print("~~~~~~~")
-print(hijNeighborDict)
-    # if ct > 10:
-    #     break
-print("~~~~~~~")
+for file in files:
+    if 'tk-route-views.nwax' not in file:
+        continue
+    #route-views.nwax-tid14-results-0
+    with gzip.open('pickles/results/'+file,'rb') as f:
+        res = pickle.load(f)
+
+    ct = 0
+
+    for result in res:
+        #print(result)
+        
+        victimASN = result['victimASN']
+        hijackerASN = result['hijASN']
+        
+        filterProcessResults(normalizedVictimResults,victimASN,hijackerASN)
+        filterProcessResults(normalizedHijackerResults,hijackerASN,victimASN)
+        processResult(allVictimResults,result,victimASN,hijackerASN)
+        processResult(allHijackerResults,result,hijackerASN,victimASN)
+
+    for result in res:    
+        victimNeighbor = result['success']['localPref']['victim_neighbor']
+        hijackerNeighbor = result['success']['localPref']['hijacker_neighbor']
+        victimASN = result['victimASN']
+        hijackerASN = result['hijASN']
+        doNeighborThings(vicNeighborDict,victimNeighbor,hijackerNeighbor)
+        doNeighborThings(hijNeighborDict,hijackerNeighbor,victimNeighbor)
+    print(vicNeighborDict)
+    print("~~~~~~~")
+    # print(hijNeighborDict)
+        # if ct > 10:
+        #     break
+    print("~~~~~~~")
 # print(len(normalizedHijackerResults))
 # print(len(normalizedVictimResults))
 # print(len(allVictimResults))
 # print(len(allHijackerResults))
-# pickle.dump(normalizedHijackerResults,open('pickles/results/normalizedHijackerResults.pickle','wb'))
-# pickle.dump(normalizedVictimResults,open('pickles/results/normalizedVictimResults.pickle','wb'))
-# pickle.dump(allVictimResults,open('pickles/results/allVictimResults.pickle','wb'))
-# pickle.dump(allHijackerResults,open('pickles/results/allHijackerResults.pickle','wb'))
+pickle.dump(normalizedHijackerResults,open('pickles/results/normalizedHijackerResults.pickle','wb'))
+pickle.dump(normalizedVictimResults,open('pickles/results/normalizedVictimResults.pickle','wb'))
+pickle.dump(allVictimResults,open('pickles/results/allVictimResults.pickle','wb'))
+pickle.dump(allHijackerResults,open('pickles/results/allHijackerResults.pickle','wb'))
 # # for v in normalizedVictimResults:
 #     for h in normalizedVictimResults[v]:
 #         print(h, normalizedVictimResults[v][h]['asPath'])
