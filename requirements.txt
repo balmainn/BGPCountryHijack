@@ -1,0 +1,6 @@
+networkx
+matplotlib
+requests 
+pickle
+multiprocessing
+gzip

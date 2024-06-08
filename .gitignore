@@ -1,5 +1,13 @@
 pickles/
 backup-pickles/
+test.py
+cache/
+updates.txt
+caidafiles/
+cone-test3.py/
+asDictTest.txt
+scores/
+oldfiles-2/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,1212 @@
+ROUTEVIEWS COLLECTOR,        AS NUMBER,               PEERING ADDRESS,PREFIXES
+amsix.ams,1103,                 80.249.208.34,946941
+amsix.ams,34177,                 80.249.210.38,941126
+amsix.ams,271253,                 80.249.210.48,935696
+amsix.ams,213241,                80.249.211.162,836875
+amsix.ams,398465,                 80.249.212.41,939331
+amsix.ams,37271,                 80.249.213.52,943700
+amsix.ams,328832,                 80.249.213.88,939507
+amsix.ams,28283,                80.249.214.120,1255
+amsix.ams,6204,                80.249.214.200,944334
+amsix.ams,1103,       2001:7f8:1::a500:1103:2,196107
+amsix.ams,6204,       2001:7f8:1::a502:5198:1,196746
+amsix.ams,28283,       2001:7f8:1::a502:8283:1,492
+amsix.ams,34177,       2001:7f8:1::a503:4177:1,201377
+amsix.ams,37271,       2001:7f8:1::a503:7271:1,196422
+amsix.ams,213241,   2001:7f8:1:0:a500:21:3241:1,188001
+amsix.ams,271253,   2001:7f8:1:0:a500:27:1253:1,22429
+amsix.ams,328832,   2001:7f8:1:0:a500:32:8832:1,192853
+amsix.ams,398465,   2001:7f8:1:0:a500:39:8465:1,199857
+decix.jhb,38175,               103.119.232.252,345
+decix.jhb,38175,               103.119.233.252,345
+decix.jhb,13335,                103.119.234.13,4193
+decix.jhb,56286,                103.119.234.56,11
+decix.jhb,56140,                103.119.234.59,4
+decix.jhb,38194,               103.119.234.252,92052
+decix.jhb,38194,               103.119.234.253,92052
+decix.jhb,56286,                103.162.254.56,11
+decix.jhb,199524,               103.162.254.114,945314
+decix.jhb,38137,               103.162.254.252,109849
+decix.jhb,38137,               103.162.254.253,109850
+decix.jhb,38137,        2001:df6:480::94f9:a:1,53284
+decix.jhb,38137,        2001:df6:480::94f9:a:2,53284
+decix.jhb,56286,        2001:df6:480::dbde:0:1,5
+decix.jhb,199524,      2001:df6:480:0:3:b64:0:1,205723
+decix.jhb,38175,           2403:4ac0::951f:a:1,90
+decix.jhb,38175,           2403:4ac0::951f:a:2,90
+decix.jhb,13335,         2403:4ac0:1::3417:0:1,226
+decix.jhb,38194,         2403:4ac0:1::9532:a:1,52360
+decix.jhb,38194,         2403:4ac0:1::9532:a:2,52360
+decix.jhb,56140,         2403:4ac0:1::db4c:0:1,1
+decix.jhb,56286,         2403:4ac0:1::dbde:0:1,5
+iraq-ixp.bgw,211100,                  128.0.45.252,86
+iraq-ixp.bgw,211100,                  128.0.45.253,82
+iraq-ixp.bgw,211100,      2a10:fa42:0:6:3:389c:a:1,56
+iraq-ixp.bgw,211100,      2a10:fa42:0:6:3:389c:a:2,56
+pacwave.lax,2153,               207.231.240.129,19713
+pacwave.lax,101,                 207.231.241.1,18928
+pacwave.lax,101,                 207.231.243.1,18928
+pacwave.lax,2153,                 207.231.246.1,19715
+pacwave.lax,2153,            2001:504:b:20::129,31610
+pacwave.lax,101,              2001:504:b:80::1,7985
+pacwave.lax,101,              2001:504:b:81::1,7985
+pacwave.lax,2153,              2001:504:b:90::1,31610
+pit.scl,61522,                    45.68.16.1,111284
+pit.scl,61522,                    45.68.16.2,111284
+pit.scl,64112,                    45.68.16.3,940356
+pit.scl,269956,                   45.68.16.19,26529
+pit.scl,13335,                  45.68.16.227,4054
+pit.scl,28283,                   45.68.17.30,1260
+pit.scl,61522,               2801:14:9000::1,56995
+pit.scl,61522,               2801:14:9000::2,56995
+pit.scl,13335,        2801:14:9000::1:3335:1,178
+pit.scl,28283,        2801:14:9000::2:8283:1,492
+pit.scl,64112,        2801:14:9000::6:4112:1,188164
+pit.scl,269956,       2801:14:9000::26:9956:1,64030
+pitmx.qro,61525,                  200.23.206.1,1285
+pitmx.qro,61525,                  200.23.206.2,1285
+pitmx.qro,64112,                  200.23.206.3,9678
+pitmx.qro,13335,                200.23.206.206,4110
+pitmx.qro,61525,             2803:3440:9025::1,335
+pitmx.qro,61525,             2803:3440:9025::2,335
+pitmx.qro,13335,      2803:3440:9025::1:3335:1,177
+pitmx.qro,64112,      2803:3440:9025::6:4112:1,180191
+route-views.amsix,8821,                 80.249.208.12,28
+route-views.amsix,12859,                 80.249.208.35,939281
+route-views.amsix,1140,                 80.249.208.49,566078
+route-views.amsix,1103,                 80.249.208.50,946938
+route-views.amsix,6830,                80.249.208.106,937880
+route-views.amsix,24875,                80.249.208.126,387
+route-views.amsix,6667,                80.249.208.127,487
+route-views.amsix,39591,                80.249.208.152,939283
+route-views.amsix,49544,                80.249.208.162,954537
+route-views.amsix,12414,                80.249.208.165,23
+route-views.amsix,16298,                80.249.208.183,2
+route-views.amsix,51088,                80.249.208.209,938917
+route-views.amsix,6777,                80.249.208.255,101335
+route-views.amsix,6777,                  80.249.209.0,101261
+route-views.amsix,12779,                 80.249.209.17,938741
+route-views.amsix,34968,                 80.249.209.81,22
+route-views.amsix,12414,                80.249.209.165,23
+route-views.amsix,2119,                80.249.209.192,1052
+route-views.amsix,9002,                80.249.209.216,943899
+route-views.amsix,42184,                  80.249.210.6,32
+route-views.amsix,39120,                 80.249.210.28,959991
+route-views.amsix,5394,                 80.249.210.29,22
+route-views.amsix,38182,                 80.249.210.50,214
+route-views.amsix,31449,                 80.249.210.71,2
+route-views.amsix,50763,                 80.249.210.99,319756
+route-views.amsix,16509,                80.249.210.100,2037
+route-views.amsix,8859,                80.249.210.122,7
+route-views.amsix,25091,                80.249.210.135,407
+route-views.amsix,199524,                80.249.210.150,942233
+route-views.amsix,16509,                80.249.210.217,2037
+route-views.amsix,47957,                80.249.210.248,405540
+route-views.amsix,6762,                 80.249.211.42,208212
+route-views.amsix,30844,                 80.249.211.45,3201
+route-views.amsix,61955,                80.249.211.155,52
+route-views.amsix,714,                80.249.211.160,1157
+route-views.amsix,15943,                80.249.211.221,110
+route-views.amsix,7713,                80.249.211.240,0
+route-views.amsix,38880,                 80.249.212.75,980597
+route-views.amsix,42541,                 80.249.212.84,939189
+route-views.amsix,58511,                80.249.212.104,947658
+route-views.amsix,62955,                80.249.212.124,23
+route-views.amsix,3399,                80.249.212.156,939135
+route-views.amsix,54113,                80.249.212.183,36
+route-views.amsix,293,                  80.249.213.7,962734
+route-views.amsix,39351,                80.249.213.131,96
+route-views.amsix,267613,                80.249.213.223,953327
+route-views.amsix,16552,                 80.249.214.44,938857
+route-views.amsix,38195,                80.249.214.119,0
+route-views.amsix,41805,                80.249.215.106,323433
+route-views.amsix,213151,                 185.1.166.237,964733
+route-views.amsix,3214,                  185.1.167.24,441052
+route-views.amsix,51019,                  185.1.167.88,193120
+route-views.amsix,8888,                 185.1.167.118,946411
+route-views.amsix,200242,                 185.1.167.149,258403
+route-views.amsix,293,        2001:7f8:1::a500:293:1,201300
+route-views.amsix,714,        2001:7f8:1::a500:714:1,308
+route-views.amsix,1103,       2001:7f8:1::a500:1103:1,196111
+route-views.amsix,1140,       2001:7f8:1::a500:1140:1,194842
+route-views.amsix,2119,       2001:7f8:1::a500:2119:1,135
+route-views.amsix,3399,       2001:7f8:1::a500:3399:1,192225
+route-views.amsix,6667,       2001:7f8:1::a500:6667:1,109
+route-views.amsix,6762,       2001:7f8:1::a500:6762:1,35039
+route-views.amsix,6777,       2001:7f8:1::a500:6777:1,19530
+route-views.amsix,6777,       2001:7f8:1::a500:6777:2,19354
+route-views.amsix,6830,       2001:7f8:1::a500:6830:2,191415
+route-views.amsix,7713,       2001:7f8:1::a500:7713:1,0
+route-views.amsix,8821,       2001:7f8:1::a500:8821:1,22
+route-views.amsix,9002,       2001:7f8:1::a500:9002:1,193320
+route-views.amsix,12414,       2001:7f8:1::a501:2414:1,9
+route-views.amsix,12414,       2001:7f8:1::a501:2414:2,9
+route-views.amsix,12779,       2001:7f8:1::a501:2779:1,192473
+route-views.amsix,12859,       2001:7f8:1::a501:2859:1,194448
+route-views.amsix,15943,       2001:7f8:1::a501:5943:1,18
+route-views.amsix,16298,       2001:7f8:1::a501:6298:1,1
+route-views.amsix,16509,       2001:7f8:1::a501:6509:1,1098
+route-views.amsix,16509,       2001:7f8:1::a501:6509:2,1098
+route-views.amsix,16552,       2001:7f8:1::a501:6552:1,191863
+route-views.amsix,24875,       2001:7f8:1::a502:4875:1,15
+route-views.amsix,25091,       2001:7f8:1::a502:5091:1,196
+route-views.amsix,30844,        2001:7f8:1::a503:844:1,256
+route-views.amsix,34968,       2001:7f8:1::a503:4968:1,6
+route-views.amsix,38195,       2001:7f8:1::a503:8195:1,0
+route-views.amsix,38880,       2001:7f8:1::a503:8880:1,206648
+route-views.amsix,39120,       2001:7f8:1::a503:9120:1,19
+route-views.amsix,39351,       2001:7f8:1::a503:9351:1,303
+route-views.amsix,39591,       2001:7f8:1::a503:9591:1,65369
+route-views.amsix,41805,       2001:7f8:1::a504:1805:1,84198
+route-views.amsix,42184,       2001:7f8:1::a504:2184:3,13
+route-views.amsix,42541,       2001:7f8:1::a504:2541:1,200312
+route-views.amsix,47957,       2001:7f8:1::a504:7957:1,195676
+route-views.amsix,49544,       2001:7f8:1::a504:9544:1,201934
+route-views.amsix,50763,        2001:7f8:1::a505:763:1,197016
+route-views.amsix,51088,       2001:7f8:1::a505:1088:1,191923
+route-views.amsix,54113,       2001:7f8:1::a505:4113:2,39
+route-views.amsix,58511,       2001:7f8:1::a505:8511:1,205152
+route-views.amsix,61955,       2001:7f8:1::a506:1955:1,16986
+route-views.amsix,62955,       2001:7f8:1::a506:2955:1,1
+route-views.amsix,199524,   2001:7f8:1:0:a500:19:9524:1,201062
+route-views.amsix,267613,   2001:7f8:1:0:a500:26:7613:1,198114
+route-views.amsix,3214,        2001:7f8:f2:e1::3214:2,168846
+route-views.amsix,8888,        2001:7f8:f2:e1::8888:1,200408
+route-views.amsix,51019,     2001:7f8:f2:e1:0:5:1019:1,201142
+route-views.amsix,200242,     2001:7f8:f2:e1:0:20:242:1,200792
+route-views.amsix,211398,    2001:7f8:f2:e1:0:21:1398:2,199561
+route-views.amsix,213151,    2001:7f8:f2:e1:0:21:3151:1,201020
+route-views.amsix,56662,  2001:7f8:f2:e1:0:a105:6662:1,194834
+route-views.amsix,208753,  2001:7f8:f2:e1:0:a520:8753:1,200468
+route-views.bdix,140684,              2001:df3:d680::1,562
+route-views.bdix,140684,              2001:df3:d680::5,598
+route-views.bknix,63528,                  203.159.68.1,3
+route-views.bknix,63528,                  203.159.68.2,4
+route-views.bknix,63528,                  203.159.68.5,6
+route-views.bknix,59238,                 203.159.68.12,49438
+route-views.bknix,135419,                203.159.68.107,14
+route-views.bknix,132280,                203.159.68.122,500
+route-views.bknix,16509,                203.159.68.130,768
+route-views.bknix,16509,                203.159.68.131,768
+route-views.bknix,137566,                203.159.68.158,5
+route-views.bknix,32934,                203.159.68.162,8
+route-views.bknix,32934,                203.159.68.163,8
+route-views.bknix,63528,              2001:deb:0:68::1,1
+route-views.bknix,63528,              2001:deb:0:68::2,1
+route-views.bknix,63528,              2001:deb:0:68::5,2
+route-views.bknix,59238,             2001:deb:0:68::12,195535
+route-views.bknix,132280,            2001:deb:0:68::122,40
+route-views.bknix,16509,            2001:deb:0:68::130,279
+route-views.bknix,16509,            2001:deb:0:68::131,279
+route-views.bknix,137566,            2001:deb:0:68::158,1
+route-views.bknix,63528,              2001:df5:b881::1,1
+route-views.bknix,63528,              2001:df5:b881::2,1
+route-views.bknix,63528,              2001:df5:b881::5,2
+route-views.bknix,59238,             2001:df5:b881::12,195535
+route-views.bknix,32934,            2001:df5:b881::162,12
+route-views.bknix,32934,            2001:df5:b881::163,12
+route-views.chicago,           17350,                 208.115.136.5,940567
+route-views.chicago,           19151,                208.115.136.18,944783
+route-views.chicago,            6325,                208.115.136.22,61
+route-views.chicago,          199524,                208.115.136.42,943627
+route-views.chicago,             293,                208.115.136.58,962735
+route-views.chicago,             852,                208.115.136.67,939780
+route-views.chicago,           17350,                208.115.136.95,940567
+route-views.chicago,           16509,                208.115.136.98,3136
+route-views.chicago,           13727,               208.115.136.117,14
+route-views.chicago,           19016,               208.115.136.119,33
+route-views.chicago,           19653,               208.115.136.133,962494
+route-views.chicago,           32709,               208.115.136.134,966037
+route-views.chicago,           62955,               208.115.136.179,23
+route-views.chicago,           13335,               208.115.136.180,4458
+route-views.chicago,             714,               208.115.136.182,1172
+route-views.chicago,           16509,               208.115.136.210,3136
+route-views.chicago,           53828,               208.115.136.220,940784
+route-views.chicago,            4775,               208.115.136.231,644
+route-views.chicago,            8220,                208.115.137.35,937826
+route-views.chicago,          398465,                208.115.137.47,939630
+route-views.chicago,           49544,                208.115.137.50,956341
+route-views.chicago,           26744,                208.115.137.62,352
+route-views.chicago,           16552,                208.115.137.69,938457
+route-views.chicago,           13335,                208.115.137.77,4441
+route-views.chicago,           14630,               208.115.137.100,938995
+route-views.chicago,           14630,               208.115.137.200,938995
+route-views.chicago,             293,           2001:504:0:4::293:1,201306
+route-views.chicago,             714,           2001:504:0:4::714:2,320
+route-views.chicago,             852,           2001:504:0:4::852:1,192594
+route-views.chicago,            3257,          2001:504:0:4::3257:1,191510
+route-views.chicago,            4775,          2001:504:0:4::4775:1,3
+route-views.chicago,            6325,          2001:504:0:4::6325:1,2
+route-views.chicago,            8220,          2001:504:0:4::8220:1,191308
+route-views.chicago,           13335,       2001:504:0:4:0:1:3335:1,372
+route-views.chicago,           13335,       2001:504:0:4:0:1:3335:2,373
+route-views.chicago,           14630,       2001:504:0:4:0:1:4630:1,199498
+route-views.chicago,           14630,       2001:504:0:4:0:1:4630:2,200040
+route-views.chicago,           16509,       2001:504:0:4:0:1:6509:2,1021
+route-views.chicago,           16509,       2001:504:0:4:0:1:6509:3,1021
+route-views.chicago,           16552,       2001:504:0:4:0:1:6552:1,191597
+route-views.chicago,           17350,       2001:504:0:4:0:1:7350:1,191550
+route-views.chicago,           17350,       2001:504:0:4:0:1:7350:2,191438
+route-views.chicago,           19016,       2001:504:0:4:0:1:9016:1,4
+route-views.chicago,           19151,       2001:504:0:4:0:1:9151:1,193853
+route-views.chicago,           19653,       2001:504:0:4:0:1:9653:1,201135
+route-views.chicago,           49544,       2001:504:0:4:0:4:9544:1,201914
+route-views.chicago,           53828,       2001:504:0:4:0:5:3828:1,203885
+route-views.chicago,           62955,       2001:504:0:4:0:6:2955:1,1
+route-views.chicago,          199524,      2001:504:0:4:0:19:9524:1,200101
+route-views.chicago,          398465,      2001:504:0:4:0:59:6844:1,199629
+route-views.chile,27678,                 200.16.114.34,958688
+route-views.chile,27678,                 200.16.114.53,0
+route-views.eqix,2914,                206.126.236.12,938140
+route-views.eqix,3257,                206.126.236.19,938114
+route-views.eqix,6079,                206.126.236.25,939152
+route-views.eqix,16509,                206.126.236.35,3134
+route-views.eqix,6939,                206.126.236.37,960866
+route-views.eqix,37721,                206.126.236.40,252298
+route-views.eqix,19151,                206.126.236.47,944781
+route-views.eqix,32098,                206.126.236.58,6499
+route-views.eqix,16509,                206.126.236.68,3134
+route-views.eqix,6830,               206.126.236.117,937880
+route-views.eqix,41095,               206.126.236.120,943777
+route-views.eqix,293,               206.126.236.137,962726
+route-views.eqix,61461,               206.126.236.143,116
+route-views.eqix,7795,               206.126.236.156,394
+route-views.eqix,11039,               206.126.236.172,944562
+route-views.eqix,8781,               206.126.236.181,1107
+route-views.eqix,6057,               206.126.236.189,962960
+route-views.eqix,398465,               206.126.236.209,941830
+route-views.eqix,57695,               206.126.236.214,944920
+route-views.eqix,40934,               206.126.236.218,374606
+route-views.eqix,62955,               206.126.236.224,22
+route-views.eqix,399728,               206.126.236.243,6
+route-views.eqix,199524,                206.126.237.22,944117
+route-views.eqix,4775,                206.126.237.90,510
+route-views.eqix,26744,               206.126.237.130,272
+route-views.eqix,54113,               206.126.237.169,36
+route-views.eqix,54054,               206.126.237.179,7
+route-views.eqix,45102,               206.126.237.184,52
+route-views.eqix,49544,               206.126.237.210,956341
+route-views.eqix,40217,                206.126.238.27,6
+route-views.eqix,37468,                206.126.238.56,77490
+route-views.eqix,8220,                206.126.238.64,938072
+route-views.eqix,16552,                206.126.238.92,938934
+route-views.eqix,7195,               206.126.238.207,8022
+route-views.eqix,17350,               206.126.238.208,940568
+route-views.eqix,17350,               206.126.238.209,940568
+route-views.eqix,293,           2001:504:0:2::293:1,201304
+route-views.eqix,2914,          2001:504:0:2::2914:1,187546
+route-views.eqix,3257,          2001:504:0:2::3257:1,191511
+route-views.eqix,4775,          2001:504:0:2::4775:1,3
+route-views.eqix,6057,          2001:504:0:2::6057:1,199896
+route-views.eqix,6762,          2001:504:0:2::6762:1,35105
+route-views.eqix,6830,          2001:504:0:2::6830:1,191416
+route-views.eqix,6939,          2001:504:0:2::6939:1,196588
+route-views.eqix,7195,          2001:504:0:2::7195:1,3458
+route-views.eqix,8220,          2001:504:0:2::8220:1,191289
+route-views.eqix,8781,          2001:504:0:2::8781:1,1548
+route-views.eqix,11039,       2001:504:0:2:0:1:1039:1,201972
+route-views.eqix,16509,       2001:504:0:2:0:1:6509:1,1012
+route-views.eqix,16509,       2001:504:0:2:0:1:6509:2,1012
+route-views.eqix,16552,       2001:504:0:2:0:1:6552:1,191693
+route-views.eqix,17350,       2001:504:0:2:0:1:7350:1,192022
+route-views.eqix,17350,       2001:504:0:2:0:1:7350:2,188897
+route-views.eqix,19151,       2001:504:0:2:0:1:9151:1,193876
+route-views.eqix,26744,     2001:504:0:2:0:2:6744:130,6
+route-views.eqix,32098,       2001:504:0:2:0:3:2098:1,3243
+route-views.eqix,37468,       2001:504:0:2:0:3:7468:1,13484
+route-views.eqix,37721,       2001:504:0:2:0:3:7721:1,24132
+route-views.eqix,40217,        2001:504:0:2:0:4:217:1,6
+route-views.eqix,40934,        2001:504:0:2:0:4:934:2,0
+route-views.eqix,49544,       2001:504:0:2:0:4:9544:1,201920
+route-views.eqix,54054,       2001:504:0:2:0:5:4054:1,3
+route-views.eqix,54113,       2001:504:0:2:0:5:4113:2,40
+route-views.eqix,57695,       2001:504:0:2:0:5:7695:1,193906
+route-views.eqix,61461,       2001:504:0:2:0:6:1461:1,42
+route-views.eqix,62955,       2001:504:0:2:0:6:2955:1,1
+route-views.eqix,199524,      2001:504:0:2:0:19:9524:1,193008
+route-views.eqix,398465,      2001:504:0:2:0:39:8465:1,200442
+route-views.eqix,399728,      2001:504:0:2:0:39:9728:1,2
+route-views.flix,19151,                 206.41.108.11,944785
+route-views.flix,16509,                 206.41.108.16,3067
+route-views.flix,20940,                 206.41.108.17,20
+route-views.flix,13335,                 206.41.108.18,4372
+route-views.flix,6939,                 206.41.108.23,960889
+route-views.flix,33132,                 206.41.108.40,355
+route-views.flix,28283,                 206.41.108.56,1260
+route-views.flix,52320,                 206.41.108.60,937515
+route-views.flix,15280,                 206.41.108.66,213485
+route-views.flix,395880,                 206.41.108.79,33
+route-views.flix,26744,                206.41.108.102,272
+route-views.flix,52468,                206.41.108.110,939142
+route-views.flix,62955,                206.41.108.117,22
+route-views.flix,16509,                206.41.108.136,3067
+route-views.flix,7195,                206.41.108.146,7981
+route-views.flix,16552,                206.41.108.147,938756
+route-views.flix,52468,                206.41.108.150,940475
+route-views.flix,263237,                206.41.108.153,960
+route-views.flix,61461,                206.41.108.157,116
+route-views.flix,263009,                206.41.108.158,180469
+route-views.flix,13335,                206.41.108.169,4372
+route-views.flix,264409,                206.41.108.178,939107
+route-views.flix,1031,                206.41.108.179,913456
+route-views.flix,19151,         2001:504:40:108::1:11,193875
+route-views.flix,16509,         2001:504:40:108::1:16,981
+route-views.flix,20940,         2001:504:40:108::1:17,4
+route-views.flix,13335,         2001:504:40:108::1:18,362
+route-views.flix,6939,         2001:504:40:108::1:23,196608
+route-views.flix,33132,         2001:504:40:108::1:40,42
+route-views.flix,28283,         2001:504:40:108::1:56,493
+route-views.flix,52320,         2001:504:40:108::1:60,190739
+route-views.flix,15280,         2001:504:40:108::1:66,72805
+route-views.flix,395880,         2001:504:40:108::1:79,1
+route-views.flix,26744,        2001:504:40:108::1:102,6
+route-views.flix,52468,        2001:504:40:108::1:110,191837
+route-views.flix,62955,        2001:504:40:108::1:117,1
+route-views.flix,16509,        2001:504:40:108::1:136,981
+route-views.flix,7195,        2001:504:40:108::1:146,3473
+route-views.flix,16552,        2001:504:40:108::1:147,191395
+route-views.flix,52468,        2001:504:40:108::1:150,192584
+route-views.flix,263237,        2001:504:40:108::1:153,347
+route-views.flix,61461,        2001:504:40:108::1:157,42
+route-views.flix,263009,        2001:504:40:108::1:158,62121
+route-views.flix,13335,        2001:504:40:108::1:169,362
+route-views.flix,264409,        2001:504:40:108::1:178,190390
+route-views.flix,1031,        2001:504:40:108::1:179,191978
+route-views.fortaleza.routeviewsorg,        263945,                 45.184.144.39,181683
+route-views.fortaleza.routeviewsorg,        267613,                45.184.144.102,953324
+route-views.fortaleza.routeviewsorg,         52320,                45.184.144.128,937527
+route-views.fortaleza.routeviewsorg,         13335,                45.184.144.137,4027
+route-views.fortaleza.routeviewsorg,         28191,                45.184.144.149,62
+route-views.fortaleza.routeviewsorg,         28624,                45.184.144.187,971414
+route-views.fortaleza.routeviewsorg,        265269,                45.184.144.213,322
+route-views.fortaleza.routeviewsorg,        262393,                 45.184.145.12,6
+route-views.fortaleza.routeviewsorg,        264479,                 45.184.145.15,977926
+route-views.fortaleza.routeviewsorg,        266413,                45.184.145.122,56
+route-views.fortaleza.routeviewsorg,          7195,                45.184.145.162,12539
+route-views.fortaleza.routeviewsorg,        262462,                  45.184.146.7,392
+route-views.fortaleza.routeviewsorg,        199524,                 45.184.146.59,939211
+route-views.fortaleza.routeviewsorg,          1031,                 45.184.147.17,389694
+route-views.fortaleza.routeviewsorg,        264409,                 45.184.147.74,194675
+route-views.fortaleza.routeviewsorg,        263945,             2001:12f8:0:9::39,196615
+route-views.fortaleza.routeviewsorg,        267613,            2001:12f8:0:9::102,198114
+route-views.fortaleza.routeviewsorg,         52320,            2001:12f8:0:9::128,190868
+route-views.fortaleza.routeviewsorg,         13335,            2001:12f8:0:9::137,173
+route-views.fortaleza.routeviewsorg,         28191,            2001:12f8:0:9::149,6
+route-views.fortaleza.routeviewsorg,         28624,            2001:12f8:0:9::187,212323
+route-views.fortaleza.routeviewsorg,        265269,            2001:12f8:0:9::213,177
+route-views.fortaleza.routeviewsorg,        262393,         2001:12f8:0:9::145:12,3
+route-views.fortaleza.routeviewsorg,        264479,         2001:12f8:0:9::145:15,0
+route-views.fortaleza.routeviewsorg,        266413,        2001:12f8:0:9::145:122,178
+route-views.fortaleza.routeviewsorg,          7195,        2001:12f8:0:9::145:162,5469
+route-views.fortaleza.routeviewsorg,        262462,          2001:12f8:0:9::146:7,202
+route-views.fortaleza.routeviewsorg,        199524,         2001:12f8:0:9::146:59,190799
+route-views.fortaleza.routeviewsorg,          1031,         2001:12f8:0:9::147:17,73222
+route-views.fortaleza.routeviewsorg,        264409,         2001:12f8:0:9::147:74,434
+route-views.gixa,30997,                   196.201.2.1,4377
+route-views.gixa,30997,                   196.201.2.2,1300
+route-views.gixa,327992,                  196.201.2.33,37
+route-views.gixa,37721,                  196.201.2.35,5221
+route-views.gorex,35889,                 192.35.145.24,1991
+route-views.gorex,35889,        2604:8ac0:3000:3005::1,194
+route-views.isc,1280,                  198.32.176.3,16
+route-views.isc,6939,                 198.32.176.20,960923
+route-views.isc,16509,                 198.32.176.36,1872
+route-views.isc,6762,                 198.32.176.70,225943
+route-views.isc,49544,                 198.32.176.95,954564
+route-views.isc,30286,                198.32.176.142,168
+route-views.isc,19151,                198.32.176.164,944785
+route-views.isc,13335,                198.32.176.171,4476
+route-views.isc,7575,                198.32.176.177,947825
+route-views.isc,36351,                198.32.176.207,962677
+route-views.isc,16509,                198.32.176.217,1872
+route-views.isc,199524,                198.32.176.226,943868
+route-views.isc,714,                198.32.176.237,1147
+route-views.isc,1280,                 2001:504:d::1,15
+route-views.isc,6939,                2001:504:d::10,196605
+route-views.isc,16509,                2001:504:d::24,811
+route-views.isc,6762,                2001:504:d::46,35690
+route-views.isc,16509,                2001:504:d::d9,811
+route-views.isc,714,             2001:504:d::714:1,317
+route-views.isc,13335,          2001:504:d::1:3335:2,353
+route-views.isc,49544,          2001:504:d::4:9544:1,201917
+route-views.isc,199524,         2001:504:d::19:9524:1,193367
+route-views.kixp,37578,                 196.223.21.38,3
+route-views.kixp,37704,                 196.223.21.65,98211
+route-views.kixp,37704,                 196.223.21.66,98073
+route-views.kixp,37271,                 196.223.21.72,943703
+route-views.kixp,37271,                 196.223.21.73,943703
+route-views.kixp,6939,                 196.223.21.74,960936
+route-views.kixp,328475,                 196.223.21.99,28
+route-views.kixp,16509,                196.223.21.103,1961
+route-views.kixp,16509,                196.223.21.114,1961
+route-views.kixp,37704,            2001:43f8:60:1::65,21733
+route-views.kixp,37704,            2001:43f8:60:1::66,21732
+route-views.kixp,37271,            2001:43f8:60:1::72,196423
+route-views.kixp,37271,            2001:43f8:60:1::73,196423
+route-views.kixp,6939,            2001:43f8:60:1::74,196607
+route-views.kixp,328475,            2001:43f8:60:1::99,18
+route-views.kixp,16509,           2001:43f8:60:1::103,1056
+route-views.kixp,16509,           2001:43f8:60:1::114,1056
+route-views.linx,47957,                 195.66.224.12,405540
+route-views.linx,61955,                 195.66.224.13,52
+route-views.linx,6939,                 195.66.224.21,960939
+route-views.linx,328832,                 195.66.224.25,939510
+route-views.linx,5413,                 195.66.224.29,0
+route-views.linx,3257,                 195.66.224.32,937928
+route-views.linx,6453,                 195.66.224.51,937966
+route-views.linx,3292,                 195.66.224.64,736
+route-views.linx,8426,                 195.66.224.66,107
+route-views.linx,5511,                 195.66.224.83,157456
+route-views.linx,6830,                 195.66.224.89,937881
+route-views.linx,13237,                 195.66.224.99,940861
+route-views.linx,6667,                195.66.224.114,939591
+route-views.linx,14537,                195.66.224.118,941897
+route-views.linx,2914,                195.66.224.138,938189
+route-views.linx,6762,                195.66.224.153,207739
+route-views.linx,16552,                195.66.224.157,938867
+route-views.linx,38880,                195.66.224.165,980597
+route-views.linx,3491,                195.66.224.167,933571
+route-views.linx,13030,                195.66.224.175,938473
+route-views.linx,9002,                195.66.224.193,943900
+route-views.linx,31500,                195.66.224.215,3768
+route-views.linx,5459,                195.66.224.254,0
+route-views.linx,45102,                 195.66.225.79,39
+route-views.linx,25091,                 195.66.225.82,407
+route-views.linx,34288,                 195.66.225.86,951073
+route-views.linx,35313,                195.66.225.145,12
+route-views.linx,49544,                195.66.225.146,954524
+route-views.linx,8674,                195.66.225.151,4
+route-views.linx,8674,                195.66.225.152,1
+route-views.linx,16509,                195.66.225.175,2161
+route-views.linx,38182,                195.66.225.178,181
+route-views.linx,41811,                195.66.225.196,935949
+route-views.linx,6424,                195.66.225.212,953901
+route-views.linx,8714,                195.66.225.230,215878
+route-views.linx,8714,                195.66.225.231,216558
+route-views.linx,14061,                 195.66.226.25,255
+route-views.linx,59605,                 195.66.226.33,951642
+route-views.linx,267613,                 195.66.226.39,953327
+route-views.linx,39122,                 195.66.226.97,939118
+route-views.linx,37271,                195.66.226.102,943703
+route-views.linx,714,                195.66.226.145,1154
+route-views.linx,58511,                195.66.226.214,947630
+route-views.linx,48070,                195.66.226.254,938574
+route-views.linx,62955,                 195.66.227.75,22
+route-views.linx,8455,                195.66.227.118,939715
+route-views.linx,398465,                195.66.227.122,928990
+route-views.linx,4775,                195.66.227.151,929
+route-views.linx,38195,                195.66.227.164,0
+route-views.linx,3170,                195.66.227.195,939559
+route-views.linx,41805,                195.66.227.196,323433
+route-views.linx,1031,                 195.66.231.48,883479
+route-views.linx,5413,                 195.66.236.29,939765
+route-views.linx,8426,                 195.66.236.66,162
+route-views.linx,6667,                195.66.236.114,939591
+route-views.linx,13030,                195.66.236.175,938470
+route-views.linx,5459,                195.66.236.254,0
+route-views.linx,16509,                195.66.237.175,2161
+route-views.linx,14061,                 195.66.238.25,255
+route-views.linx,58511,                195.66.238.214,947630
+route-views.linx,62955,                 195.66.239.75,22
+route-views.linx,714,             2001:7f8:4::2ca:1,309
+route-views.linx,1031,             2001:7f8:4::407:1,56720
+route-views.linx,2914,             2001:7f8:4::b62:1,187546
+route-views.linx,3170,             2001:7f8:4::c62:1,192840
+route-views.linx,3257,             2001:7f8:4::cb9:1,191512
+route-views.linx,3491,             2001:7f8:4::da3:1,191514
+route-views.linx,4775,            2001:7f8:4::12a7:1,218
+route-views.linx,5413,            2001:7f8:4::1525:1,0
+route-views.linx,5459,            2001:7f8:4::1553:1,0
+route-views.linx,6424,            2001:7f8:4::1918:1,199128
+route-views.linx,6667,            2001:7f8:4::1a0b:1,191993
+route-views.linx,6762,            2001:7f8:4::1a6a:1,35210
+route-views.linx,6830,            2001:7f8:4::1aae:4,191419
+route-views.linx,6939,            2001:7f8:4::1b1b:1,196610
+route-views.linx,8426,            2001:7f8:4::20ea:1,29
+route-views.linx,8455,            2001:7f8:4::2107:1,192585
+route-views.linx,8674,            2001:7f8:4::21e2:1,4
+route-views.linx,8674,            2001:7f8:4::21e2:2,1
+route-views.linx,8714,            2001:7f8:4::220a:1,47258
+route-views.linx,8714,            2001:7f8:4::220a:2,47259
+route-views.linx,9002,            2001:7f8:4::232a:1,193320
+route-views.linx,13030,            2001:7f8:4::32e6:1,191629
+route-views.linx,16509,            2001:7f8:4::407d:1,1156
+route-views.linx,16552,            2001:7f8:4::40a8:1,191893
+route-views.linx,25091,            2001:7f8:4::6203:1,196
+route-views.linx,34288,            2001:7f8:4::85f0:1,205343
+route-views.linx,37271,            2001:7f8:4::9197:1,196424
+route-views.linx,38195,            2001:7f8:4::9533:1,0
+route-views.linx,39122,            2001:7f8:4::98d2:1,192234
+route-views.linx,41805,            2001:7f8:4::a34d:1,84198
+route-views.linx,41811,            2001:7f8:4::a353:1,1
+route-views.linx,47957,            2001:7f8:4::bb55:1,195677
+route-views.linx,48070,            2001:7f8:4::bbc6:1,192045
+route-views.linx,49544,            2001:7f8:4::c188:1,201924
+route-views.linx,35313,            2001:7f8:4::c8ce:1,3
+route-views.linx,58511,            2001:7f8:4::e48f:1,205149
+route-views.linx,59605,            2001:7f8:4::e8d5:1,193346
+route-views.linx,62955,            2001:7f8:4::f5eb:1,1
+route-views.linx,267613,          2001:7f8:4::4:155d:1,198114
+route-views.linx,328832,           2001:7f8:4::5:480:1,192859
+route-views.linx,398465,          2001:7f8:4::6:1481:1,199810
+route-views.linx,5413,          2001:7f8:4:1::1525:1,192143
+route-views.linx,5459,          2001:7f8:4:1::1553:2,6
+route-views.linx,6667,          2001:7f8:4:1::1a0b:1,191993
+route-views.linx,8426,          2001:7f8:4:1::20ea:1,40
+route-views.linx,13030,          2001:7f8:4:1::32e6:1,191389
+route-views.linx,16509,          2001:7f8:4:1::407d:1,1156
+route-views.linx,58511,          2001:7f8:4:1::e48f:1,205149
+route-views.linx,62955,          2001:7f8:4:1::f5eb:1,1
+route-views.mwix,19782,                 206.53.139.23,0
+route-views.mwix,19782,          2001:504:45:f3e8::16,0
+route-views.napafrica.routeviewsorg,         49544,                    196.60.8.6,956339
+route-views.napafrica.routeviewsorg,        327991,                   196.60.8.55,9
+route-views.napafrica.routeviewsorg,         37468,                   196.60.8.60,955696
+route-views.napafrica.routeviewsorg,        328512,                  196.60.8.113,967419
+route-views.napafrica.routeviewsorg,          3741,                  196.60.8.126,1353
+route-views.napafrica.routeviewsorg,         32653,                  196.60.8.139,205050
+route-views.napafrica.routeviewsorg,         37271,                  196.60.8.142,943703
+route-views.napafrica.routeviewsorg,          3491,                  196.60.8.152,934780
+route-views.napafrica.routeviewsorg,        327754,                  196.60.8.172,27
+route-views.napafrica.routeviewsorg,         37271,                  196.60.8.178,943703
+route-views.napafrica.routeviewsorg,         37053,                  196.60.8.179,119
+route-views.napafrica.routeviewsorg,         37497,                  196.60.8.185,0
+route-views.napafrica.routeviewsorg,          2018,                  196.60.8.216,452
+route-views.napafrica.routeviewsorg,         37650,                  196.60.8.218,42
+route-views.napafrica.routeviewsorg,         36968,                  196.60.8.219,31
+route-views.napafrica.routeviewsorg,        328137,                   196.60.9.37,194441
+route-views.napafrica.routeviewsorg,         15133,                   196.60.9.70,44
+route-views.napafrica.routeviewsorg,        328266,                  196.60.9.124,43031
+route-views.napafrica.routeviewsorg,         32653,                  196.60.9.139,204639
+route-views.napafrica.routeviewsorg,        328320,                  196.60.9.155,187943
+route-views.napafrica.routeviewsorg,          8674,                  196.60.9.160,5
+route-views.napafrica.routeviewsorg,           714,                  196.60.9.161,17
+route-views.napafrica.routeviewsorg,           714,                  196.60.9.162,17
+route-views.napafrica.routeviewsorg,        199524,                  196.60.9.188,944631
+route-views.napafrica.routeviewsorg,          5583,                  196.60.9.189,16
+route-views.napafrica.routeviewsorg,        327991,                  196.60.10.48,9
+route-views.napafrica.routeviewsorg,          3257,                  196.60.10.50,939273
+route-views.napafrica.routeviewsorg,         16552,                  196.60.10.62,946835
+route-views.napafrica.routeviewsorg,         37650,                 196.60.10.111,42
+route-views.napafrica.routeviewsorg,         25139,                 196.60.10.203,17
+route-views.napafrica.routeviewsorg,        329035,                 196.60.10.230,971499
+route-views.napafrica.routeviewsorg,         13150,                   196.60.11.8,1
+route-views.napafrica.routeviewsorg,         49544,              2001:43f8:6d0::6,202029
+route-views.napafrica.routeviewsorg,         36968,              2001:43f8:6d0::c,1
+route-views.napafrica.routeviewsorg,         37271,             2001:43f8:6d0::19,196421
+route-views.napafrica.routeviewsorg,          3491,             2001:43f8:6d0::1b,191502
+route-views.napafrica.routeviewsorg,        327991,             2001:43f8:6d0::55,1
+route-views.napafrica.routeviewsorg,         37468,             2001:43f8:6d0::60,200309
+route-views.napafrica.routeviewsorg,        328512,            2001:43f8:6d0::113,200574
+route-views.napafrica.routeviewsorg,          3741,            2001:43f8:6d0::126,0
+route-views.napafrica.routeviewsorg,         32653,            2001:43f8:6d0::139,4
+route-views.napafrica.routeviewsorg,        327754,            2001:43f8:6d0::172,4
+route-views.napafrica.routeviewsorg,         37271,            2001:43f8:6d0::178,196421
+route-views.napafrica.routeviewsorg,          2018,            2001:43f8:6d0::216,22
+route-views.napafrica.routeviewsorg,        328137,           2001:43f8:6d0::9:37,196649
+route-views.napafrica.routeviewsorg,        328206,           2001:43f8:6d0::9:66,196638
+route-views.napafrica.routeviewsorg,         15133,           2001:43f8:6d0::9:70,23
+route-views.napafrica.routeviewsorg,        328266,          2001:43f8:6d0::9:124,1169
+route-views.napafrica.routeviewsorg,         32653,          2001:43f8:6d0::9:139,4
+route-views.napafrica.routeviewsorg,          8674,          2001:43f8:6d0::9:160,4
+route-views.napafrica.routeviewsorg,           714,          2001:43f8:6d0::9:161,10
+route-views.napafrica.routeviewsorg,           714,          2001:43f8:6d0::9:162,10
+route-views.napafrica.routeviewsorg,        199524,          2001:43f8:6d0::9:188,201107
+route-views.napafrica.routeviewsorg,          5583,          2001:43f8:6d0::9:189,1
+route-views.napafrica.routeviewsorg,        327991,          2001:43f8:6d0::10:48,1
+route-views.napafrica.routeviewsorg,          3257,          2001:43f8:6d0::10:50,191512
+route-views.napafrica.routeviewsorg,         16552,          2001:43f8:6d0::10:62,199335
+route-views.nwax,1798,                 198.32.195.23,21
+route-views.nwax,15301,                 198.32.195.24,6
+route-views.nwax,6423,                 198.32.195.30,964496
+route-views.nwax,32869,                 198.32.195.32,39
+route-views.nwax,2044,                 198.32.195.35,33
+route-views.nwax,13335,                 198.32.195.95,4126
+route-views.nwax,1798,             2620:124:2000::23,3
+route-views.nwax,32869,             2620:124:2000::32,3
+route-views.nwax,13335,             2620:124:2000::95,198
+route-views.ny,13335,                 206.82.104.31,4477
+route-views.ny,49544,                 206.82.104.63,954537
+route-views.ny,13335,                 206.82.104.68,4490
+route-views.ny,11399,                206.82.104.161,970193
+route-views.ny,398465,                206.82.104.185,941439
+route-views.ny,13335,         2001:504:36::3417:0:1,405
+route-views.ny,13335,         2001:504:36::3417:0:2,408
+route-views.ny,49544,         2001:504:36::c188:0:1,202240
+route-views.ny,11399,      2001:504:36:0:1:8783:0:1,206500
+route-views.ny,398465,      2001:504:36:0:6:1481:0:1,199921
+route-views.perth,7606,                  27.106.192.1,107438
+route-views.perth,58511,                  27.106.192.5,947633
+route-views.perth,38195,                 27.106.192.71,2545
+route-views.perth,16509,                27.106.192.114,663
+route-views.perth,16509,                27.106.192.147,663
+route-views.perth,16509,                  218.100.52.9,688
+route-views.perth,45102,                 218.100.52.48,37
+route-views.perth,58511,                 218.100.52.56,947633
+route-views.perth,49544,                 218.100.52.60,943897
+route-views.perth,140627,                 218.100.52.62,965297
+route-views.perth,38195,                 218.100.52.71,2545
+route-views.perth,62955,                218.100.52.160,23
+route-views.perth,199524,                218.100.52.219,950631
+route-views.perth,136557,                218.100.52.247,945733
+route-views.perth,16509,                218.100.54.134,653
+route-views.perth,16509,                218.100.54.135,653
+route-views.perth,7594,                  218.100.76.5,946157
+route-views.perth,58511,                 218.100.76.10,947633
+route-views.perth,140627,                 218.100.76.17,965946
+route-views.perth,38195,                 218.100.76.32,2545
+route-views.perth,136557,                 218.100.76.80,945734
+route-views.perth,17766,                218.100.76.125,79
+route-views.perth,38195,                  218.100.78.4,2545
+route-views.perth,13150,                 218.100.78.29,1
+route-views.perth,58511,                 218.100.78.35,947633
+route-views.perth,140627,                 218.100.78.46,965945
+route-views.perth,16509,                 218.100.78.50,687
+route-views.perth,136557,                 218.100.78.98,945734
+route-views.perth,62955,                218.100.78.125,22
+route-views.perth,16509,                218.100.78.143,687
+route-views.perth,17766,                218.100.78.159,79
+route-views.perth,7606,         2001:7fa:11::1db6:0:1,61221
+route-views.perth,16509,         2001:7fa:11::407d:0:1,249
+route-views.perth,16509,         2001:7fa:11::407d:0:2,249
+route-views.perth,38195,         2001:7fa:11::9533:0:1,267
+route-views.perth,58511,         2001:7fa:11::e48f:0:1,205152
+route-views.perth,136557,      2001:7fa:11:1:0:156d:0:1,21735
+route-views.perth,16509,      2001:7fa:11:1:0:407d:0:1,260
+route-views.perth,16509,      2001:7fa:11:1:0:407d:0:2,260
+route-views.perth,17766,      2001:7fa:11:1:0:4566:0:1,198344
+route-views.perth,38195,      2001:7fa:11:1:0:9533:0:1,267
+route-views.perth,58511,      2001:7fa:11:1:0:e48f:0:1,205152
+route-views.perth,62955,      2001:7fa:11:1:0:f5eb:0:1,1
+route-views.perth,140627,      2001:7fa:11:1:2:2553:0:1,56315
+route-views.perth,7594,      2001:7fa:11:2:0:1daa:0:1,193398
+route-views.perth,17766,      2001:7fa:11:2:0:4566:0:1,7
+route-views.perth,38195,      2001:7fa:11:2:0:9533:0:1,267
+route-views.perth,58511,      2001:7fa:11:2:0:e48f:0:2,205152
+route-views.perth,136557,      2001:7fa:11:2:2:156d:0:1,22949
+route-views.perth,140627,      2001:7fa:11:2:2:2553:0:1,192459
+route-views.perth,16509,      2001:7fa:11:4:0:407d:0:1,262
+route-views.perth,38195,      2001:7fa:11:4:0:9533:0:1,267
+route-views.perth,49544,      2001:7fa:11:4:0:c188:0:1,196622
+route-views.perth,58511,      2001:7fa:11:4:0:e48f:0:1,205152
+route-views.perth,62955,      2001:7fa:11:4:0:f5eb:0:1,1
+route-views.perth,136557,      2001:7fa:11:4:2:156d:0:1,21735
+route-views.perth,140627,      2001:7fa:11:4:2:2553:0:1,193966
+route-views.perth,199524,       2001:7fa:11:4:3:b64:0:1,206178
+route-views.perth,16509,      2001:7fa:11:5:0:407d:0:1,242
+route-views.perth,16509,      2001:7fa:11:5:0:407d:0:2,242
+route-views.peru,64115,                   45.183.47.1,4903
+route-views.peru,64115,                   45.183.47.2,4581
+route-views.peru,64115,           2803:cd60:6411:5::1,1432
+route-views.peru,64115,           2803:cd60:6411:5::2,1416
+route-views.phoix,4775,                  198.32.172.4,1163
+route-views.phoix,135423,                198.32.172.125,26
+route-views.phoix,137818,                198.32.172.129,163
+route-views.phoix,142271,                198.32.172.156,4038
+route-views.phoix,150000,                198.32.172.170,946000
+route-views.phoix,4775,               2001:478:172::4,3
+route-views.phoix,142271,             2001:478:172::156,156
+route-views.phoix,150000,             2001:478:172::170,207095
+route-views.rio,267613,                    45.6.52.62,953335
+route-views.rio,52320,                   45.6.52.193,937435
+route-views.rio,16509,                   45.6.53.102,518
+route-views.rio,268207,                   45.6.53.103,8
+route-views.rio,52720,                   45.6.53.106,156
+route-views.rio,264479,                   45.6.53.167,977928
+route-views.rio,16509,                   45.6.53.216,518
+route-views.rio,7195,                   45.6.53.236,11976
+route-views.rio,1031,                   45.6.53.250,390822
+route-views.rio,267056,                   45.6.54.144,30
+route-views.rio,199524,                   45.6.54.171,942159
+route-views.rio,6057,                   45.6.54.203,962958
+route-views.rio,264409,                     45.6.55.6,944159
+route-views.rio,52468,                    45.6.55.32,956516
+route-views.rio,267613,             2001:12f8:0:2::62,198113
+route-views.rio,52320,            2001:12f8:0:2::193,190887
+route-views.rio,16509,         2001:12f8:0:2::53:102,148
+route-views.rio,268207,         2001:12f8:0:2::53:103,2
+route-views.rio,52720,         2001:12f8:0:2::53:106,89
+route-views.rio,264479,         2001:12f8:0:2::53:167,106240
+route-views.rio,16509,         2001:12f8:0:2::53:216,148
+route-views.rio,7195,         2001:12f8:0:2::53:236,5380
+route-views.rio,1031,         2001:12f8:0:2::53:250,3515
+route-views.rio,267056,         2001:12f8:0:2::54:144,42
+route-views.rio,199524,         2001:12f8:0:2::54:171,194031
+route-views.rio,6057,         2001:12f8:0:2::54:203,199902
+route-views.rio,264409,           2001:12f8:0:2::55:6,189343
+route-views.rio,52468,          2001:12f8:0:2::55:32,0
+route-views,3356,                     4.68.4.46,936605
+route-views,7018,                     12.0.1.63,937334
+route-views,57866,                 37.139.139.17,940639
+route-views,6939,                 64.71.137.241,960923
+route-views,20912,                  77.39.192.30,941142
+route-views,3257,                 89.149.178.10,937872
+route-views,49788,                 91.218.184.60,941981
+route-views,8283,                  94.142.247.3,943193
+route-views,4826,                 114.31.199.16,962663
+route-views,1351,               132.198.255.253,972950
+route-views,20130,                  140.192.8.16,963417
+route-views,1239,               144.228.241.130,46074
+route-views,852,                 154.11.12.212,939780
+route-views,4901,               162.250.137.254,942439
+route-views,53767,                 162.251.163.2,170942
+route-views,3333,                    193.0.0.56,949084
+route-views,20080,                 198.32.252.33,18640
+route-views,24441,                  202.93.8.242,573
+route-views,2497,                   202.232.0.2,944276
+route-views,7660,               203.181.248.195,760189
+route-views,3561,                 206.24.210.80,936486
+route-views,3549,                208.51.134.254,938404
+route-views,3303,                 217.192.89.50,959774
+route-views,7575,                2001:388:1::16,6193
+route-views,3303,               2001:918:0:5::1,199446
+route-views,20912,                 2001:40D0::1E,200374
+route-views,24441,                2404:CC00:1::1,60
+route-views,701,                  2600:803::15,191426
+route-views,53767,                  2605:9D00::2,1197
+route-views,49788,               2A02:D140:1::60,200995
+route-views.sfmix,12276,                 206.197.187.1,0
+route-views.sfmix,10310,                 206.197.187.9,263
+route-views.sfmix,10310,                206.197.187.24,263
+route-views.sfmix,35008,                206.197.187.41,963739
+route-views.sfmix,47787,                206.197.187.81,940020
+route-views.sfmix,397131,                206.197.187.85,960926
+route-views.sfmix,49544,                206.197.187.87,954561
+route-views.sfmix,46997,               206.197.187.100,10
+route-views.sfmix,34927,               206.197.187.106,961775
+route-views.sfmix,63055,               206.197.187.253,97735
+route-views.sfmix,63055,               206.197.187.254,97722
+route-views.sfmix,10310,       2001:504:30::ba01:310:1,114
+route-views.sfmix,10310,       2001:504:30::ba01:310:2,114
+route-views.sfmix,12276,      2001:504:30::ba01:2276:1,0
+route-views.sfmix,34927,      2001:504:30::ba03:4927:1,200148
+route-views.sfmix,35008,      2001:504:30::ba03:5008:1,200132
+route-views.sfmix,47787,      2001:504:30::ba04:7787:1,191841
+route-views.sfmix,49544,      2001:504:30::ba04:9544:1,201912
+route-views.sfmix,63055,      2001:504:30::ba06:3055:1,53336
+route-views.sfmix,63055,      2001:504:30::ba06:3055:2,53336
+route-views.sfmix,397131,      2001:504:30::ba39:7131:1,196610
+route-views.sg,18106,                  27.111.228.6,964275
+route-views.sg,58682,                 27.111.228.13,731
+route-views.sg,4844,                 27.111.228.26,8
+route-views.sg,64096,                 27.111.228.28,14
+route-views.sg,3491,                 27.111.228.43,938585
+route-views.sg,38182,                 27.111.228.61,248
+route-views.sg,7713,                 27.111.228.77,952239
+route-views.sg,16509,                 27.111.228.87,1815
+route-views.sg,6762,                27.111.228.111,224062
+route-views.sg,9583,                27.111.228.121,2783
+route-views.sg,24115,                27.111.228.122,166141
+route-views.sg,24115,                27.111.228.123,166718
+route-views.sg,132337,                27.111.228.134,959649
+route-views.sg,7713,                27.111.228.155,952239
+route-views.sg,24482,                27.111.228.159,950104
+route-views.sg,45494,                27.111.228.161,6
+route-views.sg,62955,                27.111.228.162,24
+route-views.sg,38880,                27.111.228.169,970576
+route-views.sg,136168,                27.111.228.170,191
+route-views.sg,59318,                27.111.228.197,35065
+route-views.sg,14061,                27.111.228.201,74
+route-views.sg,63927,                27.111.228.206,172849
+route-views.sg,9902,                27.111.228.211,289895
+route-views.sg,16509,                27.111.228.215,1815
+route-views.sg,3257,                27.111.228.217,943960
+route-views.sg,199524,                27.111.228.222,945308
+route-views.sg,4775,                27.111.228.226,926
+route-views.sg,134363,                27.111.228.231,3
+route-views.sg,58601,                27.111.228.248,48
+route-views.sg,63516,                 27.111.229.15,171
+route-views.sg,8529,                 27.111.229.38,4538
+route-views.sg,38195,                 27.111.229.43,2539
+route-views.sg,17639,                 27.111.229.71,535
+route-views.sg,9002,                27.111.229.103,950246
+route-views.sg,58952,                27.111.229.109,176183
+route-views.sg,24516,                27.111.229.111,811825
+route-views.sg,8220,                27.111.229.123,941822
+route-views.sg,137367,                27.111.229.148,952
+route-views.sg,14061,                27.111.229.164,74
+route-views.sg,58511,                27.111.229.175,947633
+route-views.sg,49544,                27.111.229.225,947047
+route-views.sg,45102,                27.111.229.234,119
+route-views.sg,137491,                27.111.229.238,212
+route-views.sg,17639,                27.111.229.239,549
+route-views.sg,16552,                27.111.229.252,947028
+route-views.sg,151326,                 27.111.230.32,19
+route-views.sg,37468,                27.111.230.150,7125
+route-views.sg,136557,                27.111.230.158,176366
+route-views.sg,136106,                27.111.230.169,1874
+route-views.sg,983,                27.111.230.208,12
+route-views.sg,983,             2001:de8:4::983:1,7
+route-views.sg,3257,            2001:de8:4::3257:1,191512
+route-views.sg,3491,            2001:de8:4::3491:1,191520
+route-views.sg,4775,            2001:de8:4::4775:1,218
+route-views.sg,4844,            2001:de8:4::4844:1,1
+route-views.sg,7713,            2001:de8:4::7713:1,196129
+route-views.sg,7713,            2001:de8:4::7713:2,196127
+route-views.sg,8220,            2001:de8:4::8220:1,195353
+route-views.sg,8529,            2001:de8:4::8529:1,465
+route-views.sg,9002,            2001:de8:4::9002:1,197921
+route-views.sg,9583,            2001:de8:4::9583:1,1479
+route-views.sg,9902,            2001:de8:4::9902:1,45945
+route-views.sg,14061,          2001:de8:4::1:4061:1,2
+route-views.sg,14061,          2001:de8:4::1:4061:2,2
+route-views.sg,16552,          2001:de8:4::1:6552:1,200491
+route-views.sg,18106,          2001:de8:4::1:8106:1,205164
+route-views.sg,24482,          2001:de8:4::2:4482:1,199888
+route-views.sg,24516,          2001:de8:4::2:4516:2,176489
+route-views.sg,37468,          2001:de8:4::3:7468:1,2294
+route-views.sg,38182,          2001:de8:4::3:8182:1,21
+route-views.sg,38195,          2001:de8:4::3:8195:1,261
+route-views.sg,38880,          2001:de8:4::3:8880:1,203382
+route-views.sg,16509,          2001:de8:4::3:8895:1,774
+route-views.sg,16509,          2001:de8:4::3:8895:2,774
+route-views.sg,45494,          2001:de8:4::4:5494:1,1
+route-views.sg,49544,          2001:de8:4::4:9544:1,196752
+route-views.sg,58511,          2001:de8:4::5:8511:1,205151
+route-views.sg,58682,          2001:de8:4::5:8682:1,1091
+route-views.sg,58952,          2001:de8:4::5:8952:1,9455
+route-views.sg,62955,          2001:de8:4::6:2955:1,1
+route-views.sg,63516,          2001:de8:4::6:3516:2,13
+route-views.sg,63927,          2001:de8:4::6:3927:1,5094
+route-views.sg,64096,          2001:de8:4::6:4096:1,2
+route-views.sg,132337,         2001:de8:4::13:2337:1,208054
+route-views.sg,136106,         2001:de8:4::13:6106:2,297
+route-views.sg,136168,         2001:de8:4::13:6168:1,72
+route-views.sg,137367,         2001:de8:4::13:7367:1,17
+route-views.sg,137491,         2001:de8:4::13:7491:1,52
+route-views.sg,151326,         2001:de8:4::15:1326:1,5
+route-views.sg,199524,         2001:de8:4::19:9524:1,205723
+route-views.soxrs,13004,                    185.1.27.1,204825
+route-views.soxrs,13004,                    185.1.27.5,204825
+route-views.soxrs,199524,                   185.1.27.32,938348
+route-views.soxrs,9009,                   185.1.27.77,33
+route-views.soxrs,13004,                2001:7f8:1e::1,69700
+route-views.soxrs,13004,                2001:7f8:1e::5,69700
+route-views.soxrs,199524,               2001:7f8:1e::32,191673
+route-views.soxrs,9009,               2001:7f8:1e::77,10
+route-views.sydney,63956,                  45.127.172.2,168291
+route-views.sydney,9266,                 45.127.172.38,194927
+route-views.sydney,7575,                 45.127.172.46,948328
+route-views.sydney,148968,                 45.127.172.67,967569
+route-views.sydney,4826,                 45.127.172.74,962665
+route-views.sydney,199524,                 45.127.172.78,950631
+route-views.sydney,3491,                 45.127.172.80,939498
+route-views.sydney,38195,                 45.127.172.89,2545
+route-views.sydney,24115,                45.127.172.122,122611
+route-views.sydney,24115,                45.127.172.123,122600
+route-views.sydney,16509,                45.127.172.131,688
+route-views.sydney,58511,                45.127.172.149,947633
+route-views.sydney,17766,                45.127.172.150,79
+route-views.sydney,132847,                45.127.172.152,942749
+route-views.sydney,45102,                45.127.172.170,37
+route-views.sydney,24516,                45.127.172.196,947039
+route-views.sydney,714,                45.127.172.208,1163
+route-views.sydney,38880,                45.127.172.212,0
+route-views.sydney,62955,                45.127.172.221,23
+route-views.sydney,62955,                45.127.172.222,23
+route-views.sydney,16509,                45.127.172.231,688
+route-views.sydney,8888,                 45.127.173.20,955511
+route-views.sydney,135895,                 45.127.173.40,967678
+route-views.sydney,7594,                 45.127.173.66,946198
+route-views.sydney,16552,                 45.127.173.71,947315
+route-views.sydney,398465,                 45.127.173.76,962669
+route-views.sydney,3257,                 45.127.173.77,943961
+route-views.sydney,4805,                 45.127.173.80,15
+route-views.sydney,714,             2001:de8:6::714:2,346
+route-views.sydney,3257,            2001:de8:6::3257:1,191513
+route-views.sydney,3491,            2001:de8:6::3491:1,191627
+route-views.sydney,4805,            2001:de8:6::4805:1,2
+route-views.sydney,4826,            2001:de8:6::4826:1,204392
+route-views.sydney,7575,            2001:de8:6::7575:1,200645
+route-views.sydney,7594,            2001:de8:6::7594:1,193399
+route-views.sydney,8888,            2001:de8:6::8888:1,205313
+route-views.sydney,16509,          2001:de8:6::1:6509:1,262
+route-views.sydney,17766,          2001:de8:6::1:7766:1,7
+route-views.sydney,24516,          2001:de8:6::2:4516:1,196663
+route-views.sydney,38195,          2001:de8:6::3:8195:1,267
+route-views.sydney,58511,          2001:de8:6::5:8511:1,205139
+route-views.sydney,62955,          2001:de8:6::6:2955:1,1
+route-views.sydney,62955,          2001:de8:6::6:2955:2,1
+route-views.sydney,132847,         2001:de8:6::13:2847:1,200589
+route-views.sydney,135895,         2001:de8:6::13:5895:1,196631
+route-views.sydney,148968,         2001:de8:6::14:8968:1,200509
+route-views.sydney,199524,         2001:de8:6::19:9524:1,206178
+route-views.sydney,398465,         2001:de8:6::39:8465:1,204400
+route-views.telxatl,           19151,                 198.32.132.12,944787
+route-views.telxatl,            4181,                 198.32.132.28,938346
+route-views.telxatl,            6939,                 198.32.132.75,960924
+route-views.telxatl,           53274,                 198.32.132.84,20
+route-views.telxatl,           33132,                 198.32.132.88,355
+route-views.telxatl,           16700,                198.32.132.114,18
+route-views.telxatl,           13760,                198.32.132.129,941481
+route-views.telxatl,           13150,                198.32.132.145,3
+route-views.telxatl,            6082,                198.32.132.152,940426
+route-views.telxatl,           53828,                198.32.132.155,940784
+route-views.telxatl,           26744,                198.32.132.167,352
+route-views.telxatl,          199524,                198.32.132.241,943573
+route-views.telxatl,           19151,              2001:478:132::12,193879
+route-views.telxatl,            4181,              2001:478:132::28,202824
+route-views.telxatl,            6939,              2001:478:132::75,196611
+route-views.telxatl,           53274,              2001:478:132::84,10
+route-views.telxatl,           33132,              2001:478:132::88,42
+route-views.telxatl,           16700,             2001:478:132::114,2
+route-views.telxatl,           13760,             2001:478:132::129,193848
+route-views.telxatl,            6082,             2001:478:132::152,188318
+route-views.telxatl,           53828,             2001:478:132::155,203889
+route-views.telxatl,           26744,             2001:478:132::167,7
+route-views.telxatl,          199524,             2001:478:132::241,192564
+route-views.uaeix,48237,                     185.1.8.3,988
+route-views.uaeix,42473,                    185.1.8.11,972010
+route-views.uaeix,5583,                    185.1.8.12,4
+route-views.uaeix,4455,                    185.1.8.13,8
+route-views.uaeix,57187,                    185.1.8.17,190
+route-views.uaeix,60924,                    185.1.8.23,954883
+route-views.uaeix,29357,                    185.1.8.29,288
+route-views.uaeix,60051,                    185.1.8.42,48
+route-views.uaeix,45102,                    185.1.8.47,16
+route-views.uaeix,51375,                    185.1.8.53,445
+route-views.uaeix,35313,                    185.1.8.58,14
+route-views.uaeix,49544,                    185.1.8.59,955092
+route-views.uaeix,21859,                    185.1.8.61,58
+route-views.uaeix,21245,                    185.1.8.68,0
+route-views.uaeix,35753,                    185.1.8.85,1310
+route-views.uaeix,12654,                   185.1.8.106,2
+route-views.uaeix,199524,                   185.1.8.114,954709
+route-views.uaeix,61374,                   185.1.8.250,122408
+route-views.uaeix,61374,                   185.1.8.251,122399
+route-views.uaeix,4455,         2001:7f8:73::1167:0:1,3
+route-views.uaeix,5583,         2001:7f8:73::15cf:0:1,1
+route-views.uaeix,12654,         2001:7f8:73::316e:0:1,4
+route-views.uaeix,16509,         2001:7f8:73::407d:0:1,1185
+route-views.uaeix,21859,         2001:7f8:73::5563:0:1,12
+route-views.uaeix,29357,         2001:7f8:73::72ad:0:1,103
+route-views.uaeix,35753,         2001:7f8:73::8ba9:0:2,123
+route-views.uaeix,48237,         2001:7f8:73::8beb:0:1,17
+route-views.uaeix,42473,         2001:7f8:73::a5e9:0:1,207141
+route-views.uaeix,49544,         2001:7f8:73::c188:0:1,202275
+route-views.uaeix,60051,         2001:7f8:73::c616:0:2,15
+route-views.uaeix,57187,         2001:7f8:73::df63:0:2,25
+route-views.uaeix,60924,         2001:7f8:73::edfc:0:1,204773
+route-views.uaeix,61374,        2001:7f8:73::efbe:fa:1,54080
+route-views.uaeix,61374,        2001:7f8:73::efbe:fb:1,54086
+route-views.uaeix,199524,       2001:7f8:73:0:3:b64:0:1,206516
+route-views.wide,4777,                  202.249.2.20,4
+route-views.wide,4862,                  202.249.2.41,78
+route-views.wide,2500,                  202.249.2.83,950402
+route-views.wide,7500,                  202.249.2.86,966638
+route-views.wide,2497,                 202.249.2.169,944000
+route-views2,7018,                     12.0.1.63,937339
+route-views2,57866,                 37.139.139.17,940642
+route-views2,22652,                    45.61.0.85,942160
+route-views2,1299,                62.115.128.137,918645
+route-views2,6939,                 64.71.137.241,960923
+route-views2,20912,                  77.39.192.30,941141
+route-views2,57463,                   87.121.64.4,488928
+route-views2,3257,                 89.149.178.10,937873
+route-views2,49788,                 91.218.184.60,941981
+route-views2,34224,                 94.156.252.18,964817
+route-views2,37100,                  105.16.0.247,941424
+route-views2,2914,                  129.250.1.71,938315
+route-views2,2152,                 137.164.16.84,939872
+route-views2,20130,                  140.192.8.16,963420
+route-views2,1239,               144.228.241.130,46076
+route-views2,3130,                    147.28.7.1,14
+route-views2,3130,                    147.28.7.2,918514
+route-views2,53767,                 162.251.163.2,170942
+route-views2,11537,                  163.253.3.14,23503
+route-views2,3741,                168.209.255.56,942855
+route-views2,5413,                 194.153.0.253,939765
+route-views2,1403,                198.58.198.252,939905
+route-views2,293,                 198.129.33.85,962732
+route-views2,18106,                  202.73.40.45,964275
+route-views2,24441,                  202.93.8.242,573
+route-views2,2497,                   202.232.0.3,944274
+route-views2,7660,               203.181.248.195,760191
+route-views2,23673,               203.189.128.233,978948
+route-views2,3561,                 206.24.210.80,936491
+route-views2,3549,                208.51.134.246,936562
+route-views2,3549,                208.51.134.255,938603
+route-views2,3303,                 217.192.89.50,959813
+route-views3,8289,                   5.157.4.250,230294
+route-views3,63927,                    43.226.4.1,940107
+route-views3,6939,                 64.71.137.241,960924
+route-views3,23367,                 64.250.124.15,939213
+route-views3,19653,                  67.219.192.5,962499
+route-views3,40387,                   72.36.126.8,965433
+route-views3,39120,                  89.21.210.85,965610
+route-views3,39120,                  89.21.210.86,730490
+route-views3,3257,                 89.149.178.10,937871
+route-views3,39120,                 94.101.60.146,660198
+route-views3,134640,                103.22.205.101,5
+route-views3,14315,                 104.251.122.1,938979
+route-views3,29479,                  109.233.62.1,946112
+route-views3,45090,                 120.53.103.17,0
+route-views3,46450,               158.106.197.135,940262
+route-views3,55222,                162.211.99.255,941846
+route-views3,11537,                  163.253.3.22,23503
+route-views3,61568,                 190.15.124.18,966350
+route-views3,22388,                 192.203.115.1,19740
+route-views3,3216,                195.239.77.236,944899
+route-views3,3216,               195.239.252.124,945285
+route-views3,263237,                200.73.119.254,13
+route-views3,38001,                202.150.221.33,947516
+route-views3,9268,                203.62.187.102,949184
+route-views3,9268,                203.62.187.103,949185
+route-views3,209,                  205.171.3.54,936595
+route-views3,209,                 205.171.8.123,936534
+route-views3,209,               205.171.200.245,936533
+route-views3,3561,                 206.24.210.80,936490
+route-views3,23367,                206.198.182.15,938876
+route-views3,5645,               206.248.155.130,936303
+route-views3,40630,                 208.94.118.10,960953
+route-views3,45352,                  210.5.41.225,957297
+route-views3,396390,              2001:468:2900::2,6113
+route-views3,63927,                  2401:da80::1,48109
+route-views3,139317,                2406:840:10::1,196660
+route-views3,38001,             2406:f400:8:35::1,197276
+route-views3,141237,           2602:fed2:fc0:e4::1,1
+route-views3,38173,           2602:feda:be0::ffff,201229
+route-views3,38136,              2604:9cc0:1:c::2,199652
+route-views3,23367,           2605:1080:1:f00::15,200253
+route-views3,23367,           2605:1080:2:f00::15,200384
+route-views3,19653,                  2605:8200::5,201136
+route-views3,14315,              2605:8340:0:8::1,192014
+route-views3,46450,         2606:3580:fc00:102::1,198706
+route-views3,5645,                2607:f2c0:1::7,192412
+route-views3,40630,                2607:ff18:1::a,196641
+route-views3,22388,          2620:f5:8000:a001::1,6389
+route-views3,202365,              2a00:1ca8:2a::e0,200949
+route-views3,39120,              2a01:9a80:0:3::2,207681
+route-views3,29479,            2a02:20c8:1f:4f::2,2
+route-views4,56665,                 31.204.91.150,947300
+route-views4,63956,                  45.112.244.1,948692
+route-views4,1299,                62.115.129.134,918654
+route-views4,39120,                  89.21.210.87,0
+route-views4,39120,                 94.101.60.147,92
+route-views4,58682,                  103.15.40.17,80396
+route-views4,63956,                  103.52.116.4,948600
+route-views4,133950,                103.96.117.253,966893
+route-views4,58511,                  103.247.3.36,947631
+route-views4,58511,                 103.247.3.143,947633
+route-views4,36236,                 104.225.4.202,975666
+route-views4,34288,                109.233.180.32,958517
+route-views4,45437,                114.141.109.44,911119
+route-views4,38726,                 119.18.185.44,950650
+route-views4,2914,                 129.250.1.248,938317
+route-views4,1351,               132.198.255.254,972953
+route-views4,2518,                 133.205.1.142,945203
+route-views4,19782,                149.165.255.64,29326
+route-views4,19782,                149.165.255.65,29326
+route-views4,32653,                154.72.103.192,205050
+route-views4,61138,                 185.121.168.1,945596
+route-views4,14041,                192.43.217.142,937597
+route-views4,30950,                 193.28.236.32,938152
+route-views4,19754,                 198.98.84.183,939397
+route-views4,24482,                203.175.175.15,976854
+route-views4,57050,                 212.81.56.227,940716
+route-views4,57050,                 212.81.56.228,940716
+route-views4,2518,          2001:260:300:1::1:30,204892
+route-views4,7575,                2001:388:1::16,6194
+route-views4,2914,         2001:418:0:1000::f003,187557
+route-views4,30950,              2001:67c:324::32,192143
+route-views4,1299,            2001:2034:0:139::1,190812
+route-views4,34288,            2001:4b27:ffff::32,205945
+route-views4,63956,                  2402:1b80::1,196962
+route-views4,63956,             2402:1b80:1000::1,196963
+route-views4,38883,             2402:7400:0:c::18,204323
+route-views4,58682,               2404:c900:1::17,16237
+route-views4,24482,             2405:4200:100::15,204123
+route-views4,45437,             2406:a800:ffff::1,194808
+route-views4,36236,        2607:fc50:2000:99::1eb,208228
+route-views4,1351,         2620:104:e000:1000::2,199883
+route-views4,56665, 2a00:4180:1:100:31:204:89:250,201533
+route-views4,61138,             2a06:1280:ae02::1,199940
+route-views4,204028,             2a06:9500:7:11::1,200739
+route-views4,57050,             2a10:fa80:10::246,192377
+route-views4,57050,             2a10:fa80:10::247,192377
+route-views5,56987,                    5.180.58.0,944516
+route-views5,22296,                    23.155.8.1,961687
+route-views5,208594,                   45.94.151.1,951840
+route-views5,199518,                 65.19.141.130,963756
+route-views5,955,                 66.118.229.23,960916
+route-views5,41666,                   91.216.79.0,964936
+route-views5,60707,                 95.70.179.165,255020
+route-views5,132884,                103.26.244.151,949434
+route-views5,58511,                  103.247.3.36,947631
+route-views5,58511,                 103.247.3.142,947588
+route-views5,37721,                 165.16.221.67,845426
+route-views5,33185,                170.39.196.254,940231
+route-views5,955,                184.104.220.67,961972
+route-views5,207934,                185.156.96.227,942208
+route-views5,49544,                  185.197.24.1,937329
+route-views5,49544,                  185.197.26.1,938326
+route-views5,49544,                 188.122.95.61,941828
+route-views5,13058,                 192.108.73.66,961965
+route-views5,60539,               193.148.248.178,939691
+route-views5,137409,                202.165.70.255,952357
+route-views5,1221,                 203.62.252.92,939857
+route-views5,19529,                   207.2.124.0,961543
+route-views5,19529,                   207.2.125.0,565975
+route-views5,11537,              2001:468:0:2::14,7939
+route-views5,955,             2001:470:1:784::2,204194
+route-views5,199518,             2001:470:1:b96::2,200635
+route-views5,41666,                2001:67c:8e4::,201183
+route-views5,1221,         2001:8000:100::30:22e,199845
+route-views5,58511,                 2400:8280::24,205151
+route-views5,58511,                 2400:8280::8e,205142
+route-views5,137409,              2401:3cc0::4:285,207076
+route-views5,141776,            2406:840:e08f:1::1,196082
+route-views5,132884,            2407:d700:0:1::151,207190
+route-views5,22296,                   2602:2e5::1,200101
+route-views5,19529,                2602:fd10:10::,199417
+route-views5,19529,                2602:fd10:20::,194941
+route-views5,33185,              2602:fd23:3::131,199801
+route-views5,955,           2606:82c0:1:e008::1,196216
+route-views5,49544,                 2a00:1630::61,192924
+route-views5,49544,                  2a00:1d26::1,189546
+route-views5,49544,             2a00:1d26:4001::1,188878
+route-views5,60707,             2a02:ff0:2a0:9::2,61363
+route-views5,207934,                 2a03:300:2::3,192627
+route-views5,56987,                  2a0c:3d00::2,201221
+route-views5,13058,            2a0c:7286:2736::66,199829
+route-views5,142289,              2a0e:46c4:106::1,202586
+route-views5,60539,               2a13:aac7:100::,200112
+route-views6,7660,         2001:200:e000::1000:3,198201
+route-views6,2497,       2001:240:100:ff::2497:2,194588
+route-views6,2914,         2001:418:0:1000::f000,187543
+route-views6,3130,               2001:418:1:7::1,199530
+route-views6,3130,               2001:418:1:7::2,199552
+route-views6,209,        2001:428::205:171:8:75,188962
+route-views6,209,       2001:428::205:171:8:123,188962
+route-views6,209,     2001:428::205:171:200:139,188962
+route-views6,6939,              2001:470:0:1a::1,196607
+route-views6,3257,               2001:668:0:4::2,191502
+route-views6,18106,                  2001:d98::19,205474
+route-views6,7018,          2001:1890:111d:1::63,191416
+route-views6,20912,                 2001:40d0::1e,200365
+route-views6,58511,                 2400:8280::24,205125
+route-views6,23673,                2402:c100::104,208865
+route-views6,24441,                2404:cc00:1::1,60
+route-views6,140731,              2406:840:eb83::1,204716
+route-views6,140731,              2406:840:eb89::1,200872
+route-views6,209306,            2406:840:feed:2::1,208385
+route-views6,1239, 2600:0:1:1239:144:228:241:130,8027
+route-views6,701,                  2600:803::15,191429
+route-views6,53767,                  2605:9d00::2,1197
+route-views6,1403,            2606:6d00:eb0::252,187678
+route-views6,22652,                2607:fad8::1:9,191714
+route-views6,20130,             2620:0:2250::ff0b,199959
+route-views6,57463,               2a00:1728::1f:4,198046
+route-views6,57866,            2a00:a7c0:e20a::17,193373
+route-views6,49788,               2a02:d140:1::60,200989
+route-views6,216056,             2a13:a5c7:1602::1,19
+route-views6,37100,              2c0f:feb0:0:1::8,195082
+route-views7,52210,                 23.130.139.83,941434
+route-views7,51999,                 23.154.81.152,160825
+route-views7,57344,                 178.132.82.71,954098
+route-views7,57344,                 178.132.82.72,954050
+route-views7,924,                185.121.168.42,709604
+route-views7,52210,             2602:fcd3:1:1::13,199370
+route-views7,51999,           2602:fed2:fb0:4d::1,196593
+route-views7,924,            2a06:1280:ce07::42,200360
+route-views7,216343,         2a0f:6580:109:1337::1,200770
