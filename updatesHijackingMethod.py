@@ -7,17 +7,23 @@ import pickle
 #save data to disk or just run tests with False
 SAVEDATA = True
 #NOTE THIS SAVES DUPLICATE DATA, USE SIMILAR METHOD IN fixUpdates.py TO RESOLVE IF USING AGAIN LATER 
+collector = 'route-views.nwax'
 
+#test url
+#url = "https://data.ris.ripe.net/rrc01/2024.02/bview.20240201.0000.gz"
 
-url = "https://data.ris.ripe.net/rrc01/2024.02/bview.20240201.0000.gz"
+#init the broker
 broker = bgpkit.Broker(page_size=1000)
 dataUrls = []
+#timeframe we want to test 
 tStart="2024-03-31T12:00:00"
 tEnd="2024-03-31T14:00:00"
+#have the broker get all files for this timeframe 
 items = broker.query(ts_start=tStart, ts_end=tEnd)
 ribs = []
 updates = []
 unk = []
+#seperate the ribs from the updates 
 for item in items:
         # print(item)
         if item.data_type == 'rib':
@@ -37,23 +43,24 @@ print('ribs',len(ribs))
 
 # print(ribs)
 
-collectors = set()
-for rib in ribs:
-    collector = rib.collector_id
-    collectors.add(collector)
-    print(collector)
+# collectors = set()
+# for rib in ribs:
+#     collector = rib.collector_id
+#     collectors.add(collector)
+#     print(collector)
 
-print(len(collectors))
-print(ribs[0])
-rib = ribs[0]
-startTime = rib.ts_start
-endTime = rib.ts_end
-print(startTime, endTime)
+# print(len(collectors))
+# print(ribs[0])
+# rib = ribs[0]
+# startTime = rib.ts_start
+# endTime = rib.ts_end
+# print(startTime, endTime)
 # print(len(ribs))
 # exit(0)
 # parseFile()
 def parseFile(brokerItem):
-    """simply parse the file and return the elements (list of dictionaries)"""
+    """simply parse the file and return a parser object 
+    which works as an iterator over the elements (list of dictionaries)"""
     print("parsing brokered item",brokerItem)
     #'https://ris.ripe.net/dumps-per-peer-rest/prototype/rrc00/2024-05-06T22/bview-20240506T2200-2406F400000800340000000000000001.gz
     parser = bgpkit.Parser(url=brokerItem.url,cache_dir="cache")      
@@ -96,8 +103,12 @@ def findPickleMultipart(filepath, isRib):
         
 def createRibsDict(rib,continueAddingToDict,isRib,tcount,ucount):
     """create a rib dictionary file
-    params: rib: pyBgpkit Broker Item
-    add: do we want to add to the dictionary, or do we want to just return what we have (if anything)"""
+    params: 
+    rib: pyBgpkit Broker Item
+    continueAddingToDict: Bool -> whether or not to load previously saved data and append to it
+    isRib: Bool -> is the rib a rib or is it an updates file?
+    tcount, ucount: int -> used to print information, so we know whats going on
+    """
     #<TODO> consider what happens when we have an update that already exists in the list
     print("creating rib dict for: ",rib)
     collectorID = rib.collector_id
@@ -127,7 +138,7 @@ def createRibsDict(rib,continueAddingToDict,isRib,tcount,ucount):
     # totalElems = len(elems)
     print(parser)
     for elem in parser:
-        #every 10,000,000 elements, create a new dictionary to save RAM
+        #every n elements, create a new dictionary to save RAM
         if cnt == 1000000: #1,000,000 -> ~ 4 GB RAM
             # 10000000
             print("RESETING DICT for memory")
@@ -150,7 +161,7 @@ def createRibsDict(rib,continueAddingToDict,isRib,tcount,ucount):
             print(f"parsing {cnt}/{totalElems} for {ucount} thread {tcount}")
         # print(elem)
         cnt +=1
-
+        #ignore withdraw annoucements
         if elem['elem_type']=='W':
             continue
         # print(elem)
@@ -196,19 +207,19 @@ def createRibsDict(rib,continueAddingToDict,isRib,tcount,ucount):
         print("saving to filepath, ",filepath)
         pickle.dump(asDict,open(filepath,'wb'))
 
-same = []            
-for rib in ribs:
-    for update in updates:
-        if rib.collector_id == update.collector_id:
-            same.append({rib.collector_id: (rib,update)})
+# same = []            
+# for rib in ribs:
+#     for update in updates:
+#         if rib.collector_id == update.collector_id:
+#             same.append({rib.collector_id: (rib,update)})
 
-for s in same:
-    print(s)
-print("~~~~~~~~~~")
-rib = same[-1]['route-views.linx'][0]
-update = same[-1]['route-views.linx'][1]
-print(rib)
-print(update)
+# for s in same:
+#     print(s)
+# print("~~~~~~~~~~")
+# rib = same[-1]['route-views.linx'][0]
+# update = same[-1]['route-views.linx'][1]
+# print(rib)
+# print(update)
 
 # createRibsDict(ribs[0])
 
@@ -232,187 +243,49 @@ for update in updates:
     if actual < update.rough_size:
         actual = update.rough_size
         u = update
-    # if update.collector_id == 'rrc26':
-    updateTuples.append((update,True,False,ucount,tcount))
-    ucount+=1
-    tcount+=1
-    if tcount % 6 == 0:
-        tcount = 1
+    if update.collector_id == collector:
+        updateTuples.append((update,True,False,ucount,tcount))
+        ucount+=1
+        tcount+=1
+ribTuples = []        
+for rib in ribs:
+    
+    if rib.collector_id == collector:
+        #print(rib)
+        ribTuples.append((rib,True,True,ucount,tcount))
+    # if tcount % 6 == 0:
+    #     tcount = 1
     # createRibsDict(update,isRib=False)
+# print(ribTuples)
+def createDirectories():
+    if not os.path.exists('cache'): #pybgpkit cache dir
+        os.mkdir('cache')
+    if not os.path.exists('pickles'):
+        os.mkdir('pickles')
+    if not os.path.exists('pickles/ribData'):
+        os.mkdir('pickles/ribData')
+    if not os.path.exists('pickles/updateData'):
+        os.mkdir('pickles/updateData')
+    if not os.path.exists('pickles/results'):
+        os.mkdir('pickles/results')
+    if not os.path.exists('pickles/neighbors'):
+        os.mkdir('pickles/neighbors')
+    if not os.path.exists('plots'):
+        os.mkdir('plots')
+        
 
-print(len(updateTuples), 'about: ',about, 'actual:', actual)
-print(u)
+
+#print(len(updateTuples), 'about: ',about, 'actual:', actual)
+# print(u)
+#make sure we have directory structure before writing to them
+createDirectories()
 from multiprocessing import Pool
 pool = Pool(processes=6)
 # pool.map(createRibsDict,ribs)
 pool.starmap(createRibsDict,updateTuples)
 pool.close()
-
-        
-# createRibsDict(updates[0],isRib=False)
-
-# print(rib, update)
-
-# cnt = 1
-# for rib in ribs:
-#     print(f"Creating ribs dict {cnt}/{len(ribs)}")
-#     cnt+=1
-#     createRibsDict(rib)
-
-# cnt = 1
-# for update in updates:
-#     print(f"Creating ribs dict {cnt}/{len(updates)}")
-#     cnt+=1
-#     createRibsDict(update,isRib=False)
-
-
-# createRibsDict(updates[0],isRib=False)
-
-
-
-            # print('orign asn loc',originAsnLoc)
-         
-            # print('~~~~~~~~~~~~~~~~~~~~')
-        
-    # print('~~~~~~~~~~~~~~~~~~~~')
-    # # print('asdict: ' , asDict)
-    # for peerAsn in asDict:
-    #     for peerIp in asDict[peerAsn]:
-    #         for originAsn in asDict[peerAsn][peerIp]:
-    #             print('ELEMS!')
-    #             print(asDict[peerAsn][peerIp][originAsn])
-    # print('~~~~~~~~~~~~~~~~~~~~')
-    # with open ('asDictTest.txt','w') as f:
-    #     # f.write(str(asDict))
-    #     for peerAsn in asDict:
-    #         for peerIp in asDict[peerAsn]:
-    #             f.write(str(asDict[peerAsn][peerIp]))
-    #             f.write("\n")
-                # for originAsn in asDict[peerAsn][peerIp]:
-                #     # print('ELEMS!')
-                #     for elem in asDict[peerAsn][peerIp][originAsn]:
-                        
-                #         f.write(str(elem))
-                #         f.write("\n")
-    # print(asDict)
-        # return
-        # asDict[peer_asn] = {peer_ip: {originAsn:[elem]}}
-
-
-
-        
-# {collector: [{ asn of collector peer : {ip of collector peer  : [ {origin_asn of update: [updates] } ] }} ] }
-
-# print("~~~~~")
-# for rib in updates:
-#     collector = rib.collector_id
-#     print(collector)
-
-# print(ribs[0])
-# print('updates',len(updates))
-# print(updates[0])
-# print('unk',len(unk))
-# if len(unk) > 0:
-#     print(unk[0])
-
-# {collector: [{ asn of collector peer : {ip of collector peer  : [ {origin_asn of update: [updates] } ] }} ] }
-# parseFile(ribs[0])
-# print('~~~~~~')
-# parseFile(updates[0])
-# print("parser got dir")
-# elems = parser.parse_all()
-# for elem in elems:
-#     print(elem)
-
-# # elems = parser.parse_all()
-# # print('parser done parsing')
-# import pickle 
-# # pickle.dump(elems,open('pickles/elemsTest','wb'))
-# # elems = pickle.load(open('pickles/elemsTest','rb'))
-# # print("done? loading")
-# # for elem in elems:
-#     # print(elem)
-
-# print("DONE!")
-# import requests
-# def getRIS():
-#     #LOOK AT JUST FILTERING BY IP IN PARSER DEEEERP
-#     url = "https://stat.ripe.net/data/rrc-info/data.json"
-#     ips = []
-#     resp = requests.get(url)
-#     json = resp.json()
-#     data = json['data']
-#     for rrc in data['rrcs']:
-#         for peer in rrc['peers']:
-#             ip = peer['ip'].strip()
-#             ips.append(ip)
-#     return ips
-#             # for elem in elems:
-#             #     peer = elem['peer_ip'].strip()
-#             #     if ip == peer:
-#             #         print("THESE ARE EQUAL")
-#             #         print('ip:',ip, type(ip),' peer',peer,type(peer))
-#             #         print(elem)
-#             #         return 1
-#             # if ip in 
-#             # print(ip)
-
-# #get RIS peer IP addresses
-# ips = getRIS()
-# #convert it to a string for use in filters
-# s = ', '.join(str(x) for x in ips)
-
-
-
-# filters = {"peer_ips": s}
-# parser = bgpkit.Parser(url=url,cache_dir="cache",filters=filters)
-# print("parser got dir")
-# elems = parser.parse_all()
-# #general dictionary structure
-# #{collector: [{ asn : {ip : [updates] }} ] }
-#victims = {collector: [{ asn : {ip : [updates] }} ] }
-#hijackers = {collector: [{ asn : {ip : [updates] }} ] }
-# #for victimCollector in victims:
-    #for asn in victimCollectors:
-        #for ip in asn
-
-    # for hijackerCollector in hijackers
-        #
-# def compareHijackingUpdate(victimUpdate,hijackerUpdate, policy?):
-#     return True/False
-#     pass
-#ew this one but yeah
-# {collector: [{ asn of collector peer : {ip of collector peer  : [ {origin_asn of update: [updates] } ] }} ] }
-# #{RIS IP: {origin ASN: [updates]}}
-# #{RIS IP: {origin ASN: {timeStamp : [updates]}}}
-# #allow updates within +- 3 minutes of this timestamp
-# #altern
-# #so now the loop is 
-# #for observer in RIS IP:
-#     #for Hijacker in originASN
-#         #find updates that occure around a similar time
-#         #for Victim in originASN
-#             #if victim_asn == hijacker_asn pass
-#             #perform hijacking(v,h)
-# for elem in elems:
-#     print(elem)
-
-# def getAllUpdateFilesForTimeRange(tStart,tEnd,pageSize = 1000):
-#     #need a way to sort by monitor
-#     broker = bgpkit.Broker(page_size=pageSize)
-#     dataUrls = []
-#     items = broker.query(ts_start=tStart, ts_end=tEnd)
-#     for item in items:
-#         print(item.url)
-#         dataUrls.append(item.url)
-#     print(len(items))
-#     return dataUrls
-
-
-# #in case we need to do a whois query 
-## import os 
-
-## cmd = 'whois -h whois.radb.net AS131477'
-## obj = os.popen(cmd)
-## print(obj.read())
-
+print("updates are done!")
+pool = Pool(processes=6)
+pool.starmap(createRibsDict,ribTuples)
+pool.close()
+print("ribs are done! runhijacking.py now")        

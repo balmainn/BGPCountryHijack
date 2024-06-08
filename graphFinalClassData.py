@@ -169,6 +169,13 @@ def createPlots(dataDict, victim, cone,whatKey,whatName,useHistorgram=False,save
 #load preprocessed results 
 #processed = pickle.load(open('processedResults.pickle','rb'))
 
+#change the following options to view different results
+#ALL: view all data, or data filtered down through the bgp path selection process
+#do not touch Use_hijacker
+#FNAME: what should the name of the file be (if we want to save the data)
+#USEHISTO: True: shows the histogram, False: shows stacked bar
+#SAVEDATA: should the data be saved to disk?
+#DISPLAY: should the data be shown to the screen?
 
 ALL = False
 USE_HIJACKER = not ALL #if this isnt set like this we get individual hijackers
@@ -192,7 +199,7 @@ else:
 
 cone,scone = loadCone()
 count = 1
-#only show this many graphs
+#only show this many graphs, since theres only 1 observer, thats all we care about.
 MAXGRAPHS = 1
 for victim in processed:
     #plt = pyplot
@@ -205,38 +212,6 @@ for victim in processed:
     createPlots(processed[victim], victim, None,'originType',FNAME,useHistorgram=USEHISTO,saveData=SAVEDATA,display=DISPLAY)
     count+=1
     
-    #key values can be 'asPath' or 'originType', key: 'policy' is changing
-    #to make it easy, you can just swap these two lines to compare results of the asPath and originType
-    #x,y,colors = extractData(processed[victim],'originType')
-    #x,y,colors = extractData(processed[victim],'asPath')
-    
-    #optional print to see the values from the above function
-    #for i in range(len(x[:10])):
-    #    print(x[i],y[i],colors[i])
-
-    #title of the graph
-    #title = f'AS {victim}'
-    #color = 'maroon'
-    #width = 3
-    #vertical line denoting the cone size of the victim
-    #this is probably not terribly relevent
-    #not every as has a customer cone, these cause key error exceptions
-    #try:
-    #    xpos = len(cone[str(victim)])
-    #    plt.axvline(xpos,0,max(y),c=color,linewidth=width)
-    #    print(xpos,max(y))
-    #except Exception as e:
-    #    print("exception ", e)
-
-    #plt.title(title)
-    #plt.xlabel('Hijacker Cone Size')
-    #plt.ylabel('Count')
-    #plt.scatter(x,y,c=colors)
-    #plt.grid()
-    #show the plot
-    #plt.show()
-    #clear the graph so we can show the next one
-    #plt.clf() 
     if count > MAXGRAPHS:
         exit(0)
 

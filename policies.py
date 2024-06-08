@@ -1,3 +1,4 @@
+#helper file, does contain some depricated methods, like policyFive
 def policyFive():
     policy = {0:10, 1:50, 2:100, 3:300, 4:500}
     return policy
@@ -159,7 +160,7 @@ def getMasterPeers():
                             :ripePeers[peer]['numPeers']}
         # print(peer, ripePeers[peer]['numPeers'])
     # print(masterPeers)
-    # pickle.dump(masterPeers, open('pickles/masterPeers.pickle','wb'))
+    pickle.dump(masterPeers, open('pickles/masterPeers.pickle','wb'))
     return masterPeers
 from random import randint
 
@@ -177,6 +178,34 @@ def randomPolicy(peers,min,max):
     for peer in peers:
         randPolicyDict[peer] = randint(min,max)
     return randPolicyDict
+import requests
+
+def getNeighbor(asn,query_time):
+    """find the neighbors of a given ASN
+    returns a set to remove duplicates"""
+    #if we already ran the query, dont do it again, just return what we have from file.
+    safeTime=query_time.replace(":",'-')
+    if os.path.exists(f'pickles/neighbors/{asn}-{safeTime}'):
+        neighbors = pickle.load(open(f'pickles/neighbors/{asn}-{safeTime}','rb'))
+        return neighbors
+    # print("getting neighbor for: ",asn)
+    neighbors = set()
+    url = f"https://stat.ripe.net/data/asn-neighbours/data.json?resource={asn}&query_time={query_time}&lod=1"
+    print("getting neighbors for AS",asn, type(asn))
+    res = requests.get(url)
+    try:
+        json = res.json()
+        allneighbors = json["data"]["neighbours"]
+        # return allneighbors
+    except:
+        print("error getting neighbors for ", asn)
+        return None
+    
+    for neighbor in allneighbors:
+        neighbors.add(neighbor['asn'])
+    pickle.dump(neighbors,open(f'pickles/neighbors/{asn}-{safeTime}','wb'))
+    return neighbors
+
 
 # print(len(getMasterPeers()))
 # masterPeers = getMasterPeers()
@@ -185,7 +214,7 @@ def randomPolicy(peers,min,max):
 #     if numPeers < 10:
 #         print(collector, len(masterPeers[collector]['peers']))
 
-    
+#because waiting for things to finish up is boring so i found this ascii art     
 def allThumbs():
     print("┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌")
     print("┌┌┌┌┌┌┌┌┌┌┌█████┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌┌")

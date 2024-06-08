@@ -3,3 +3,4 @@ matplotlib
 requests 
 pickle
 multiprocessing
+gzip
