@@ -1,0 +1,899 @@
+goal oriented psuedo code 
+
+The goal is to determine the ranking of neighbors for a given prefix and observer. 
+the best path to a given prefix is given in the observer's FIB. 
+Fibs are built from a set of updates where each update contains the prefix P, the AS PATH to p (A), and a timestamp T. Let an update be denoted as U(P,A,T)
+Let the best path for P be denoted as F(P,A,T)
+FIBS are built from a set of updates over a timerange, T-i to time T, where the best path over this sequence is selected and accepted into the FIB. 
+
+It must be the case that in order for an observer to hear an update U, it must be sent by some neighbor N. In fact, this neighbor is the last (0th index) [technically the 1st index because we get it from the RIB, but semantics], AS in the AS Path of the Update, from the observer's persepctive. 
+
+BGP Routers perform BGP Best Path Selection in order to determine the router's best path to P. The selection criteria follows as an ordered list, where if a result is found based on the selection criteria, the route is immidiately accepted without performing later steps of the route selection. <For purposes of this discussion, we will focus on the first 4 methods:>
+
+highest weight (cisco) 
+highest local preference 
+prefer locally originated 
+AS PATH 
+Lowest Origin type, prefers IGP over EGP over Incomplete 
+lowest MED 
+eBGP over iBGP 
+lowest IGP metric to next BGP hop 
+prefer older routes (sort of, time gets removed from RIB entry)
+lower router ID (router's ip address) 
+Lower neighbor address (routers ip address) 
+
+let U1 U2 be defined as U1(P,A1,T1) and U2(P,A2,T2)
+When will U1 be selected over U2? 
+Let |U1| and |U2| denote the AS Path Length of field A1 and A2 respectively. The first criteria of path selection we can reason about is AS Path, so if 
+|U1| > |U2| but U1 is in the FIB, then clearly it was accepted by some metric before AS PATH length. 
+if |U1| = |U2| then it was accepted by some method that is not AS Path 
+if |U1| < |U2| then it was likely accepted by AS PATH, or some field before. At the very most AS Path is the ultimate reason. However, we cannot claim that AS Path is the reason, since we do not know for certain that it is the reason. 
+> BEFORE AS Path 
+= NOT AS PATH 
+< AS PATH or Before 
+
+Download an observer's FIB for time T. This contains the ultimate path selection results over the updates U(P,A*,T-1) to U(P,A*,T-epsilon) to 
+
+
+this example ignores withdrawl messages.
+ultimately we want an ordered ranking of neighbors. 
+This ranking of neighbors take the form of (a>b), or (a = b). for simplicity there is no b<a, since this is just a>b
+in order to get this ordered ranking, we examine the fib entry for P for some observer O. This FIB entry is at time T. -> F(P,A,T) and contains the result of the changes FIB F went over between T-i and T. 
+If we backtrack between T and T-1 over the updates of P we can figure out how the FIB changed, if the result did, indeed, change.
+let U(P,A*,T*) denote all Updates from time T-i to time T. 
+if the FIB changed at some time tK then it, necessarily, will exist in this set. (though technically the timestamp may be different but w/e).
+if we examine this entry, we will know exactly why the fib changed. 
+
+However, if the FIB entries from T-i to T are the same, then clearly there was no better PATH to P selected over this timeframe. It may be the case that such a path was selected for a brief time only to switch back as a result of BGP Route Flapping. Ultimately, this only matters if the FIB entry for P at time T or T-i used the flapping route. Such a case is not likely, but possible. The way to know is to inspect the updates around time T and T-i. if there are multiple updates within a very short timespan (say < 3 minutes) then it is likely this is a result of flapping. 
+I argue that this case does not matter for the above stated purpose, as (even though temporary) the flapped route was clearly better (for whatever reason), for a brief period of time, so we can still use it for our purposes of determining a ranking of AS neighbors. 
+
+
+Because we're focusing on the first 4 parts of BGP best path selection, we need only concern ourselves with the following results. 
+Assume U1 is the FIB entry for P at time T
+if |U1| > |U2| then clearly it was accepted by some metric before AS PATH length.
+if |U1| = |U2| clearly U1 was accepted by some metric Other than AS Path. 
+if |U1| < |U2| Clearly U1 was accepted by AS PATH or some selection criteria before AS path. 
+Now we have two subcases of the above that involve the neighbor that sent the update to the observer. 
+first lets assume that the neighbor that sent U1 and U2 was the same, and U1 is in the FIB.
+if |U1| > |U2| clearly it was accepted by some metric before AS PATH length. The most likely factor is Local Preference. It is also possible that this neighbor influenced path selection by using BGP communities to specify U1 is more preferred over U2. It could also be the case that U1 is the backup route for P and the router needs to use that route instead of U2 for some reason. Though this is typically handled as a result of MED, which takes place after AS Path. Since MED takes place after AS Path, this cannot be the case. So it is likely a result of local preference, possibly being influenced by BGP communities. 
+if |U1| = |U2| U1 was selected over U2 by some metric Other than AS Path. If the neighbor is broadcasting a new path to P, then it is necessarily the case that It has learned a better route. But this route is not, necessarily, more preferred By O. Since the path length is the same, then the path length sent by N is also the same, so why would the neighbor broadcast a route with the same path length as before? Well this has to be some factor other than AS Path. Whatever method was chosen by N has no bearing on O so it does not matter for us. 
+if |U1| < |U2| same logic as this case above applies, accepted by some metric at as_path length or before. 
+
+Now assume U1 is the FIB entry for P and U1 was sent by neighbor N1 and N2 was sent by Neighbor 2. 
+
+if |U1| > |U2| then clearly it was accepted by some metric before AS PATH length. because of this, we can say that N1 has a higher preference then N2. 
+if |U1| = |U2| clearly U1 was accepted by some metric Other than AS Path. But we know the preference of N1 is at least that of N2, so N1 >= N2. 
+if |U1| < |U2| Clearly U1 was accepted by AS PATH or some other reason. Because we cannot conclusively know the reason, neighbor n1's preference is at least that of n2, so N1 >= N2 again. 
+
+Examine all updates from t-1 to t and do the above comparison against the fib at time T to produce a list of preferences. This will produce a list of unique neighbor preferences similar to the following, 
+a > b 
+a >= c 
+a >= d 
+... and so on. 
+Examining only one single FIB entry will always yield a preference list for a single neighbor, in this case a. In order to determine these neighbors wrt another, we must examine more cases. 
+Examine the FIB at time T-1. If the fib entry did not change, continue comparing updates from time T-2 to time T. The reason for this is because we may recieve updates from a new neighbor in the timeframe of t-2 to t-1. since the FIB did not change, then clearly there was no better path from t-2 to T, otherwise the FIB would have changed*.
+It is also possible that a new result is more specific than an old one, assume we found the preference a >= e previously. According to a new update, it was found that a > e. Since this result is more specific, we replace a>=e with a>e. 
+
+
+If the fib entry did change, then we compare the FIB entry at time T-1 against updates from time T-2 to T-1 and perform the comparison above. It is also important to not store duplicate results, as they are not helpful. 
+Our list of preferences now resembles the following. 
+a > b 
+a >= c 
+a >= d 
+b > c 
+b >= e 
+b > a
+
+The case that sticks out most prominently is a>b and b>a,Which we will resolve later. Examine all parings of a and all parings of b and see if we are able to add more results to our list. For example, consider the pairings of a > b and b > c. By the transitive property a > c. This does not contradict a previous result, so we add it to our list. 
+inspect the whole list for contradictions. For example, a> b and b > a, clearly both cannot exist. 
+which we resolve by removing b>a, since it condadicts a previous, clear, finding. 
+
+
+> BEFORE AS Path 
+clearly neighbor preference is the factor, so n1 > n2. 
+= NOT AS PATH 
+< AS PATH or Before 
+
+
+comparison proceedure. 
+consider U1, U2, and our local_pref_list. 
+Find the preference ranking of U1, U2 against the table above. 
+do not add this result to the local_pref_list if the result is already present, or if it would contradict a previous entry. for example, if local_pref_list is a > b and we find b> a, do not add b > a. Similar cases to this include  a>=b and b>a
+do not add this result to the local_pref_list if the result is more specific. Instead, we change the previous result. For example, consider the list of possible a,b and b,a parrings we may observe
+(a, >, b)
+(b, >, a)
+implies (a, =, b) but contradicts a previous example, so we do not add this result. 
+
+(a, >=, b)
+(b, >=, a) 
+implies  (a, =, b)
+
+(a, >, b)
+(b, >=, a) 
+implies  (a, =, b)
+
+(a, >=, b)
+(b, >, a)
+implies (a, =, b)
+
+(a, >=, b)
+(b, >=, a)
+implies (a, =, b)
+let ? denote a preference relation > or >=. 
+As we see, if a paring of (a ? b) and a paring of (b ? a) both exist, the result will always be a = b, unless the pairing is (a > b) and (b > a). In this case, we cannot add the result because it contradicts itself. Normally, such a result is also resolved with equality This is something I have a question on. 
+
+if the above are found to be false, add the result to the list. 
+
+After all updates have been examined, check if we can extend the results. Consider, for example a list that looks like this. 
+a >= b 
+b >= c 
+clearly we can extend this to have a >= c. to know a's relation to C. 
+repeat this process for all such a,b,c. 
+
+We want to determine the local preference order of two different neighbors, a, b. These neighbors both send updates to the observer. 
+We will be examining the following time points, they have been arranged in chronological order. 
+T-2 T-1 T
+At time T we pull the FIB for the observer O and examine it for prefix P.
+We pull the updates from time T-1 to time T-epislon that contain P in order to obtain O's neighbor rankings. 
+Assume for these updates, that only determine a > b.
+we pull the FIB at time T-1 for the observer O and examine it for prefix P. We pull the fib in order to know whether or not the entry has changed and also so we can use the most timely FIB entry for the next set of updates we are going to pull. 
+We pull the updates from time T-2 to time T-1-epislon that contain P. 
+Assume for these new updates we determine b > a. 
+Now our list of neighbor rankings contains both 
+a>b and b>a. 
+Such a result is a contradiction. Normally for two integers x and y if x > y and y > x we'd say that x = y since this is the only possibility. However, because our preference orderings are from two different time ranges, T-1 to T-epislon and T-2 to T-1-epislon respectively, we cannot assume a=b.
+This is especially true if the preference order came from different Fibs. So it may be the case that under the fib at time T a>b is true, but under the fib at time T-1 b>a is true. 
+When we perform our hijackability study, we will be using updates moving forward in time. This necessitates using the most timely results from our local preference order examination. 
+As such, we discard the result of b > a because this preference relation is older, so it is less timely than a>b.  
+
+
+We pull the updates from time T-2 to time T-1
+
+Assume that for some prefix P, at some time T 
+we determine the preference relation to be  We determined this result from examining two updates from tsome time T-k to T and FIB at time T. 
+At some other time T-i we determine b > a, which we determined from examining two updates from time t-j to time t-i and the FIB at time T-i.
+
+
+
+<ret here start> 
+ultimately the local preference ordering boils down to this.
+get fib at some time
+check if fib changed 
+get updates at some time 
+for each update in updates 
+    check for result 
+    if result is already in our list or contradicts an old one, dont add it. 
+    otherwise add it. 
+check the list to eliminate >= e.g. (a>=b,  b=a)
+check for extensions (a> b > c)
+
+Suppose you have a FIB at some time T and a bunch of updates from time t-i to time T that are only about a single prefix P. Let F denote the fib entry for P. Similar to updates, F is defined as F(P,as_path,t) where t is timestamp of the update that in the interval [t-i,T].
+
+We can use these updates to determine the local preference of neighbors from this time range.
+let an update be defined as U(P,as_path, t) Also let |U| denote the as_path length.
+
+We know from time t-i to time T the route that was selected--this is simply F. However, we dont know which selection of the as path selection was responsible for selecting this update, but clearly it was the result of one of these selection criteria.
+
+for all the other updates that occured during this time frame, why were they not selected? 
+if |F| > |U| def local preference.
+if |F| = |U| some selection criteria other than as path
+if |F| < |U| as_path or some selection criteria before
+we want to determine the neighbor ranking of two neighbors, A,B. assume A is the neighbor that sent the FIB entry.
+if the result was def. local preference, then clearly A has a higher local prefernce than B. so we say A>B. 
+if its some other method, then we know A has at least the same local preference to B, if not greater. so we say A>=B. 
+
+Examine the updates from [t-i,T] such that the neighbor that sent the update is not the one in the fib. let A be the neighbor that sent the update that was accepted into the fib and neighbor B be the neighbor that was not accepted. 
+if |F| > |U| then A > B
+if |F| = |U| then A >= B
+if |F| < |U| then A >= B
+We now have a list of preference orderings for some of the neighbors of O. Assume, we have the following local preference ordering list. 
+A > B 
+A >= C 
+A >= D. 
+
+
+Download a new fib at time t-i and a second set of updates from time [t-j,t-i].
+When adding a result to the local preference list, we first check if there are any contradictions, for example (A>B) and (B>A). if such a contradiction exists, we do not add the newly found preference to the list, as it is less timely. 
+Assume, we now have the following list after comparing the second FIB and updates set. 
+A > B 
+A >= C 
+A >= D 
+B > C 
+B >= E 
+Now, we check if we can resolve any >= preferences. Consider A>=C and B>C. since A>B we know A>B>C. So we replace the result of A>=C with A>C. 
+our list is now 
+A > B 
+A > C 
+A >= D 
+B > C 
+B >= E 
+Now, we check to see if we can extend any of the results. 
+Consider a new result 
+Consider A>B and B>=E. therefore, A>E by the transitive property
+resolve by second order (a>=b) b>c a >c then a> b 
+
+Repeat the above steps until we have determined the orderings for 'enough' neighbors. 
+1. We know when we have enough under the following criteria:
+there does not exist any instance of a>=b in the local preference list. 
+2. the preference of all neighbors in the local preference list can be determined. 
+3. the number of neighbors in the local preference list is greater than a specified amount. 
+    this amount changes as we collect more results. we start with the amount of ALL neighbors of O, decreasing by n every m iterations. 
+
+Reading Jun's email makes me assume we do this differently. 
+find what the fib entry for P is 
+then find where in the update chain it is. 
+example: 
+at time T we observe update U 
+at time t-5 we observe update U 
+so we can use the updates from [t-5,T] to construct our preferences. since clearly they were less optimal. 
+A(n_1, t_1), W(n_1, t_2), A(n_2, t_3)
+we cannot conclude 
+p_before(n_2) > p_before(n_1). 
+    was already assuming by proxy, really. 
+
+<end>
+My high level thinking is this: 
+For some prefix P
+We know from time t-2 hours to time t, that is the time range [t-2 hours,t], the route that was selected by the observer.This is simply the fib entry for P. However, we dont know which selection of the as path selection was responsible for selecting this update. The only two reasons for update U(n,t) to be accepted into the fib are as a result of one of the bgp best path selection criteria (local preference, as_path and so on), or it was simply the next update to arrive after a withdrawl annoucement. 
+So lets break that down into two cases. 
+1. assume there are no withdrawl annoucements. 
+Assume we have two Fibs, F(n_1,t_1) and F(n_2,t_2) where time t_1 is after time t_2. If there were no withdrawl annoucements between t_1 and t_2, why was A(n_2,t_2) selected over A(n_1,t_1). from bgp best path.
+
+2. there are withdrawl annoucements
+Assume a withdrawl message happened at some time t_i which is in the interval of [t_-1, t]. 
+2.1 if A(n1,t_i+1) is the entry in the FIB this implies that there were no better routes to P between the intervul of (t_i+1, t), so we can consider them for local preference.
+2.2 if A(n1,t_i+1) is NOT the entry in the FIB this implies that there was a better route found in the intervul (t_i+1, t), and this route was F. Therefore we can consider only this update for comparison. 
+what happens if we modify this to find the update that was put into the FIB?
+over the time interval of [t_-1, t], assume we find U_f(n_f,t_f)
+
+let the fib entry for P be denoted as F(n_f,t_f,p). Due to the nature of public BGP data, we do not know what precicely t_f is, but we can find it. It must be the case that there exists some U(n_f,t_i,p), since this entry is in the FIB. In order to obtain t_f, we simply need to find the timestamp of the update that was put into the fib. 
+FIBs are populated from a timerange, say the intervul [t_-1, t].
+It may be the case that a withdrawl message happens at time t_w which somewhere in [t_-1, t]. 
+ 
+let the fib entry for P be denoted as F(n_f,t_f,p). It must be the case that there exists some U(n_f,t_f,p), since this entry is in the FIB. 
+FIBs are populated from a timerange, say the intervul [t_-1, t].
+why was U(n_f,t_f,p) selected over all other U(n_x,t_x,p)? 
+case 1: there are no withdrawl annoucements
+    as a result of BGP best path selection. 
+case 2: it was the update that occured at time t_w+1 and there are no other updates from t_w+1 
+In order to address this, simply check if there are remaining updates from t_w+1 to t. However, this brings up two additional subcases. 
+2a: U(n_w+1,t_w+1,p) = F(n_f,t_f,p)
+2b:U(n_w+1,t_w+1,p) != F(n_f,t_f,p)
+
+
+basically we just 'scan' for t_f from the update range. if its not found and there are no withdrawl messages, then we can use all the updates. 
+if it does exist and there are no withdrawl messages, 
+use the updates from time t_f to t. 
+if it does exist and there are withdrawl messages
+    find if f(t_w+1) = U(t_w+1), 
+            yes: use updates from time t_w+1, t. 
+            no: U(t_w+1) is not preferred. 
+            find t_f from 
+if it is not found and there are withdrawl messages, there is a problem. this cannot happen. 
+
+scan all updates that came in from time t to time t_-1. 
+find first withdrawl. check next update. if next update is FIB, then consider updates from t_w+1 to t
+if next update is not FIB, then this update is not prefered, so we can consider it. Scan back from t_w to t and find F(t_f). Consider any updates from F(t_f). 
+
+
+It could also be the case that this route was selected as a result of the following sequence 
+A(n_1, t_1), W(n_1, t_2), A(n_2, t_3)
+<>
+<this is how we handle the stupid withdrawl stuff. By blatently ignoring it (with logic!)> 
+let the fib entry for P be denoted as F(n_f,t_f,p). Due to the nature of public BGP data, we do not know what precicely t_f is, but we can find it. It must be the case that there exists some U(n_f,t_i,p), since this entry is in the FIB. In order to obtain t_f, we simply need to find the timestamp of the update that was put into the fib. 
+case 1: this update is not in the timerange [t_-1,t]. This, naturally, implies that there are no withdrawl messages during this timerange, so we can consider them for our testing purposes. 
+case2: the update is in the timerange of [t_-1,t]. 
+Assume the update occured at time t_i, at which point it was accepted into the FIB. 
+It doesnt matter when time t_i is, we simply adjust the timerange of our updates we can consider to [t_i,t], so we dont actually have to care about annoucements, only whether or not an update is found in a given intervul or not. gogoggezpz
+
+
+Assume a withdrawl message happened at some time t_i which is in the interval of [t_-1, t]. 
+2.1 if A(n1,t_i+1) is the entry in the FIB this implies that there were no better routes to P between the intervul of (t_i+1, t), so we can consider them for local preference.
+2.2 if A(n1,t_i+1) is NOT the entry in the FIB this implies that there was a better route found in the intervul (t_i+1, t), and this route was F. Therefore we can consider only this update for comparison. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+parts again 
+n1, n2, Fn which is just n1. but assume Fn = n1 but these updates are different. 
+
+for two updates that both lost, u1 and u2 with neighbors n1 and n2
+|u1| = |F| (some method not AS path)
+if |u1| = |u2| -> |u1| = |u2| = |F| -> n1 >= n2 ( some method other than as_path )
+if |u1| > |u2| -> |F| > |u2| --> n1 > n2 
+if |u1| < |u2| -> |F| < |u2| --> n1 >= n2
+
+|u1| < |F| (F has a higher local preference than u1)
+if |u1| = |u2| -> |F| < |u2| --> n1 >= n2 
+if |u1| > |u2| -> |u2| < |u1| < |F| 
+                  |F| > |u1| > |U2| 
+because |u1| < |F| it must be the case that the update of F had a higher local preference than U1
+since this is the case then u1 must have a higher local preference than u2 
+so n1 > n2. 
+                  
+if |u1| < |u2| -> |u1| < |F| < |u2| 
+                  |u2| > |F| > |u1|
+                  F has a higher local preference than u1
+                  the local preference of u2 must be at least equal to F
+                  so n1 >= n2 
+
+|u1| > |F| as path or above 
+if |u1| = |u2| -> |u2| > |F| --> n1 >= n2 
+
+if |u1| > |F| and |u2| > |F| -> |u1| > |F| |u2| > |F| AS Path or above. local preference is at least that of F (so n1 >= n2)
+if |u1| > |F| and |u2| < |F| -> |u1| > |F| > |u2|, u2 has a shorter AS Len but F still won, so it must be local pref. so n1 > n2
+if |u1| > |F| and |u2| = |F| -> n1 >= n2
+
+|u1| > |F| as path or above 
+if |u1| < |u2| -> |F| ? |u2| -->
+                |u2| > |u1| > |F|
+                n1 >= n2. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~`'
+|u1| = |F| (some method not AS path)
+if |u1| = |u2| --> n1 >= n2
+if |u1| > |u2| --> n1 > n2 
+if |u1| < |u2| --> n1 >= n2
+
+|u1| < |F| (F has a higher local preference than u1)
+if |u1| = |u2| --> n1 >= n2 
+if |u1| > |u2| --> n1 > n2             
+if |u1| < |u2| --> n1 >= n2
+
+|u1| > |F| as path or above 
+if |u1| = |u2| -> |u2| > |F| --> n1 >= n2 
+if |u1| > |F| and |u2| > |F| --> so n1 >= n2
+if |u1| > |F| and |u2| < |F| --> n1 > n2
+if |u1| > |F| and |u2| = |F| --> n1 >= n2
+if |u1| < |u2| --> n1 >= n2
+
+
+~~~~~~~~~~~~~~~~~~~~`'
+
+|u1| = |F| (some method not AS path)
+if |F| = |u1| = |u2| --> n1 >= n2
+if |F| = |u1| > |u2| --> n1 > n2 
+if |F| = |u1| < |u2| --> n1 >= n2
+
+|u1| < |F| (F has a higher local preference than u1)
+if |F| > |u1| = |u2| --> n1 >= n2 
+if |F| > |u1| > |u2| --> n1 > n2             
+if |F| > |u1| < |u2| --> n1 >= n2
+
+|u1| > |F| as path or above 
+if |F| < |u1| = |u2| --> n1 > n2
+if |F| < |u1| > |u2| > |F| --> n1 >= n2
+if |F| < |u1| > |u2| < |F| --> n1 > n2
+if |F| < |u1| < |u2| = |F| --> n1 >= n2
+if |F| < |u1| < |u2| --> n1 > n2
+
+
+~~~~~~~~~~~~~~~~~~~~`'
+
+|u1| = |F| (some method not AS path)
+|u2| = |F| = |u1|
+|u2| < |F| = |u1|
+|u2| > |F| = |u1|
+
+|u1| < |F| (F has a higher local preference than u1)
+|u2| = |F| > |u1|
+|u2| < |F| > |u1|
+|u2| > |F| > |u1|
+
+|u1| > |F| as path or above 
+|u2| = |F| < |u1|
+|u2| < |F| < |u1|
+|u2| > |F| < |u1|
+
+
+~~~~~~~~~~~~~~~~~~~~`'
+
+Examine all of the updates from [T-i, T] in chronological decending order, latest first. 
+For two updates, U1 and U2, assume U1 arrives before U2 and they were sent by different neighbors, a and b respectively.Further, assume neighbor a is the neighbor that sent the FIB entry for prefix P to O. 
+Examine the as path length of U1 and U2. 
+<u1 in fib? or n1 in fib?
+if |U1| > |U2| then clearly it was accepted by some metric before AS PATH length. because of this, we can say that N1 has a higher preference then N2. 
+if |U1| = |U2| clearly U1 was accepted by some metric Other than AS Path. But we know the preference of N1 is at least that of N2, so N1 >= N2. 
+if |U1| < |U2| Clearly U1 was accepted by AS PATH or some other reason. Because we cannot conclusively know the reason, neighbor n1's preference is at least that of n2, so N1 >= N2 again. 
+
+~~~~~
+|u1| = |F| section (anything not as path)
+
+|u2| = |F| = |u1| --> n1 >= n2 
+|u2| > |F| = |u1| --> n1 >= n2 
+|u2| < |F| = |u1| --> n1 > n2 
+
+|u1| > |F| section (as path or above)
+|u2| = |F| < |u1| --> n1 >= n2
+|u2| > |F| < |u1| --> n1 >= n2
+|u2| < |F| < |u1| --> n1 > n2 
+
+|u1| < |F| section (local preference only)
+|u2| = |F| > |u1| --> n1 >= n2
+|u2| > |F| > |u1| --> n1 >= n2
+|u2| < |F| > |u1| --> n1 > n2 
+
+
+
+
+
+
+update 1 is in the fib 
+update 1* is not in the fib, but is by the same neighbor. 
+if |U1| = |U1*| then functionally we can use it. 
+if |U1| > |U1*| ... 
+
+parts 
+update in fib F with neighbor n1 F(n1)
+update not in fib with neighbor n1 U(n1)
+Why would F(n1) be selected over U(n1)? 
+local preference 
+as path length 
+origin 
+hot potato 
+if |F| > |U| def. local preference (which is weird cause they have the same neighbor) probably a result of operator making a change
+if |F| = |U| some selection criteria other than as path
+if |F| < |U| as_path or some selection criteria before
+Sunday, March 31, 2024 12:00:04 PM
+Saturday, March 30, 2024 11:48:31 PM
+
+
+update not in fib with neighbor n2 U(n2)
+~~~email
+
+Hi Jun,
+Your last email did make sense. I have also discovered a seperate issue with our assumption about hot_potato preference. 
+<new regular thing> 
+<hot potato> 
+
+Hi Jun,
+Your email makes sense.
+if the observer receives just the following three updates in sequence: A(n_1, t_1), W(n_1, t_2), A(n_2, t_3), and at time t_3 the FIB takes the path from A(n_2, t_3), because of the withdrawal update W(n_1, t_2), you actually CANNOT conclude that p_before(n_2) > p_before(n_1). 
+Fundementally, this brings up an issue that is solvable: is the FIB entry for P 'stable'. In your example above, if the FIB were to adopt A(n_2, t_3), this would be an example of an unstable FIB entry. 
+So how do we know whether or not a given Fib entry is stable or not? I believe the answer is BGP Path Convergence. 
+Simply scan the updates in reverse chronological order for any W(p,t_w), where p is the prefix we are currently training for. If we discover W(p,t_w) where t_w is +- 3 minutes from our fib entry time t, we cannot use this FIB entry for training. 
+
+With that in mind, I have come up with the following, let me know what you think. 
+
+let F(p,t,n_f) denote the observed FIB entry for prefix p at time t. note that n_f is the neighbor that sent the Update U_f(p,t_i,n_f) that was adopted. It must be the case that this update exists, otherwise F(p,t,n_f) would not exist. One small note: in public BGP RIB data, from which we derive the FIB for an observer, the timestamp of the route is given as the timestamp of the requested RIB, in this case time t. Because of this, we need to find the update that was adopted into the fib. 
+
+Assume there exists U_f(p,t_i,n_f) = F(p,t,n_f).
+We want to find U_f(p,t_i,n_f) such that U_f=F from a set of Updates, so we know exactly what other updates we can compare against to determine local preference (LP) and hot_potato preference (HPP) (more on HPP later).
+More formally,
+let Updates_P(t_-1, t) denote the set of all updates that contain prefix P from time t_-1 to t. 
+We want to find U_f(p,t_i,n_f) \in Updates_P(t_-1, t) where U_f(p,t_i,n_f) = F(p,t,n_f).
+It may be the case that there are many such U_f(p,t_i,n_f) \in Updates_P(t_-1, t) with different t_i. In order to be certain which t_i is correct, we will need to use the latest t_i. To be more specific, we need to use the t_i with the greatest unix timestamp value. Why should we pick this t_i and not some other t_i?
+Consider the updates from t_i+j to t. We know the update at time t_i was adopted, and the updates from t_i+j to t were not. Since none of these updates were adopted, we know that these updates are less prefereable than the update at t_i. 
+
+Now we have a method for determining which updates from Updates_P(t_-1, t) we can consider. However, there are some additional cases that we need to examine:
+
+1. Assume we do not find U_f(p,t_i,n_f) = F(p,t,n_f) in Updates(t_-1, t)
+    if this is the case, then U_f(p,t_i,n_f) must exist in some other previous Updates_P(t_x, t_y)
+    Therefore, we may consider all Updates_P(t_-1, t) for LP and HPP testing. 
+    #This also, necessarily, indicates that there was no withdrawl annoucements W(p,t_p) during [t_-1,t]. If such a withdrawl message was heard, then we would have found U_f(p,t_i,n_f) = F(p,t_i,n_f). Alternatively F(p,t,n_f) would not exist, if W(p,t_p) was the last message heard from [t_-1,t]. 
+    #Below you'll find a long way of explaining the following: if U_F exists between time t_i and t, then W(p,t_w) cannot also exist between t_i and t, otherwise F would be empty or U_F wouldnt exist.
+    withdrawl annoucements basically 'reset' F(p), so we can consider the updates between t_w and t for analysis. <move>
+
+
+2. we find U_f(p,t_i,n_f) = F(p,t,n_f) \in Updates_P(t_-1, t)
+    
+    1. assume there exists one or more withdrawal annoucements W(p,t_w1),W(p,t_w2)...W(p,t_wn)  from t_-1 to t. 
+    since W(p,t_wn) resets F(p,t,n_f), the result of F(p,t,n_f) will contain the best path between t_wn and t. 
+    Therefore U_f(p,t_i,n_f) will exist between t_wn and t. However, we do not know if we can consider U_f or not. After all, this may be the very case outlined above. 
+    In order to determine this, we will examine the stability of the FIB entry in order to determine if its useable. 
+    is the interval between [t_w,t] enough for BGP path convergence? 
+        if its not, then we cannot use this FIB entry or any of its associated updates. 
+        if it is, then we can consider only the updates from [t_w+1,t] for LP and HPP training. we use t_w+1 to not include the withdrawal annocement.
+
+    2. assume there does not exist any withdrawl annocements from t_-1 to t. 
+    This indicates that all Updates_P(t_i+1, t) are less prefered than U_f(p,t_i,n_f), otherwise they would have been adopted by the observer and accepted into the FIB. 
+    Therefore we can consider all Updates_P(t_-i+1, t) for LP and HPP testing. 
+
+In addition, i have discovered another slight issue with our foundation wrt hot potato preference.
+Assume we have a valid fib entry for prefix P at time t0. Denote this as F_old(p,t0,n0) where n0 is the neighbor that sent this adopted update. At time t1 we observe a benign update message for prefix P denoted as U_new(p,t1,n1).
+Assume the observer adopts U_new(p,t1,n1). 
+Under our previous assumption, n1 is the new Hot potato preferred neighbor. But is this the case? 
+If lp(F_old) = lp(U_new), |F_old| = |U_new|, origin(F_old) = origin(U_new),then certenly n1 is hot potato preferred. 
+However, if any of the above criteria are not met, then we cannot claim that n1 is the hot potato preferred neighbor.
+In order to discover the hot potato preferred neighbor, we have two methods we can use. 
+1. Find a single instance of the above within a reasonable timeframe
+2. We find an update for each neighbor such that does not change the FIB by hot potato. 
+
+
+
+or we observe an update for all neighbors of O such that lp(F_old) = lp(U_new), |F_old| = |U_new|, origin(F_old) = origin(U_new),
+
+This means that when we begin hijackability testing, our hot potato preferred neighbor will be locked
+update fib if 
+lp(F_old) < lp(U_new), 
+|F_old| > |U_new|, 
+origin(F_old) > origin(U_new). 
+if n_f == n_u, do not update. 
+if n_f != n_u and n_u is HPP, update. 
+
+
+Assuming there are no internal changes to a network, then under true (dumb) hot potato the preferred neighbor should always be the for all prefixes and all neighbors for the observer. 
+
+
+Assume for both F and U that lp(F) = lp(U_new), |F| = |U_new|, origin(F) = origin(U_new), and U_new(p,t1,n1) should be adopted over F(p,t0,n0). 
+The observer needs to decide whether or not to adopt U. How should the observer proceed? Since local preference, as_path length and origin type are all the same, it must be a result of hot potato preference. 
+under the previous methodology, we assumed that neighbor in F(p,t0,n0) had the higher hot potato preference. Under this assumption, the observer will never adopt U_new(p,t1,n1), since n0 != n1. This is clearly not the case in reality. It may be the case that U_new should be accepted under some circumstances, but our original assumption does not support this counter example. 
+Therefore there must exist a 'hot potato' preference (HPP) for all neighbors of our observer. 
+This preference can be determined similar to local preference (LP). 
+
+To do this, we find the update that was adopted into the FIB, find updates that we can use comparison with the methodology outlined above. However, these updates need to have the following criteria:
+let U_f(p,t_i,n_f) denote the update that was adopted into the FIB. 
+Assume we have valid local preference rankings for all neighbors of O that send an an update about prefix P to O. 
+for all U_a(p,t_a,n_a) from Updates_P(t_i+1, t) such that 
+t_a > t_i (U_a arrived after U_f), n_f != n_a, 
+lp(U_a) = lp(U_f), |U_a| = |U_f|, and origin(U_a) = origin(U_f)
+
+we can derive the hot potato preferece by simply examining U_f(p,t_i,n_f). Since n_f was the neighbor that sent U_f and U_f was adopted by the FIB, it must be the case that under the above criteria n_f has a higher hot potato preference than n_a. We mark this result as n_f > n_a. 
+
+let N be the set of all neighbors that sends an update about P to O, 
+let a,b be an arbitrary neighbor of O 
+I believe hot potato preference will be a subset of of local preference. In local preference, there exists a ranking (a > b) or (a = b) for all a,b in N. 
+hot potato preference, on the other hand, will contain only pairs (a > b) where a = b in Local preference. 
+I do not believe this to be a contradiction as local preference is simply the preference for which neighbor to use to reach prefix P. 
+Hot potato preference is simply the neighbor that is a peer of the nearest edge router. 
+
+the only reason this is possible for us to determine is because we are using a single observer. Otherwise, we would have no way of knowing which neighbor is closest to the edge of an AS since it would depend on where router in the AS is. 
+
+
+local policy says: i prefer to go through this neighbor to get to prefix p. 
+hpp says: i prefer to go through this neighbor to get it out of my network as fast as possible.
+
+Question: is it the case that you can have two neighbors, n1 and n2, such that lp(n1) > lp(n2) and hpp(n1) < hpp(n2) for a prefix p? What does this imply?
+i dont see why not. local policy says: i prefer to go through this neighbor to get to prefix p. 
+hpp says: i prefer to go through this neighbor to get it out of my network as fast as possible. It just so happens that n2 is closer to the edge than n1. 
+When determining hijackability we examine updates from many neighbors. we're attempting to simulate bgp best path selection for a bgp router. if a determination is made by LPP and never gets to HPP then thats okay, thats just how bgp routers work. 
+
+to validate, we can cross reference with existing bgp hijacking events such as a,b,c. if we observe a similar impact then its valid. 
+for bgp event X we observed Y peers being fooled by this hijacker. 
+so we simulated it and got Z peers being fooled with an average rating of <>\%. Therefore we're confidient our results hold. 
+
+
+Similar to above, we find U_f(p,t_i,n_f) = F(p,t,n_f) \in Updates_P(t_-1, t) and only consider Updates_P(t_i+1, t).
+Let U_a(p,t_a,n_a) be from Updates_P(t_i+1, t) such that U_a !=  U_f, t_a > t_i (U_a arrived after U_f), and n_a != n_b.
+
+
+
+
+
+assume we have a fib that is always perfectly updated at any arbitrary time point we want. 
+picking a time T, this fib will contain the best path to P since the last withdrawl message, or first annoucement if P is a new prefix. 
+at some new time t+1, this fib will contian the best path to P from time T, or the last withdrawl message. 
+at some time t+2 this fib will contain the best path to be from time t+1 or the last withdrawl message. 
+
+so really we're looking for stability. if a withdrawl message happens, how long do we need to wait for the FIB entry to be considered 'stable?' 
+the programmatic question is:
+for fib F at time T, how long ago was the last withdrawl annoucement? 
+if its within x, we cannot consider F at time T. 
+
+more formally 
+let N denote the set of all neighbors of a bgp observer,O, that send an update about prefix p to O. let F(p,t,n_f) denote the fib entry for P. 
+
+let U_i = U(p,t_i,n_i) for all n_i in N such that n_i != n_f, 
+if lp(U_i) = lp(F), |U_i| = |F|, origin(U_i) = origin(F)
+and U_i is not adopted over F
+then n_i is not hot potato preferred. 
+ 
+
+
+~~~~~~~~ the actual psuedo code ~~~~~~
+# denotes a comment. 
+#We want to determine the local preference policy for a given prefix P, observer O. 
+#we begin training at time t. 
+
+Download the observer's FIB at time t0. 
+#This fib contains the result of bgp best path selection for prefix P over the timespan [t_-1,t0] denoted as F(p,t0,n_f)
+
+find_inferior_updates(F,t0){
+    Download all updates for the observer from time [t_-1,t0]
+    Construct a set of inferior BGP updates, U by scanning the updates in reverse chronological order for the first withdrawal update W(p,t_w).
+    #let A(p,t_a,n_a) be an annoucement update annoucing prefix p with neighbor n_a. 
+
+    If no W(p,t_w) is found, then U = all A(p,t_a,n_a) from [t_-1,t]. 
+    if W(p,t_w) is found, then U= A(p,t_a,n_a) where t_w< t_a <t.
+    return U
+}
+
+find_local_preference(F,U,local_preference_list){
+#examine the as_path length, |u|, and compare it against the fib entry F(p,t0,n_f). 
+for each u(p,t_u,n_p) in U 
+    if |F| > |u| then lp_result =  n_f > n_u
+    else if |F| = |u| then lp_result = n_f >= n_u
+    else if |F| < |u| then lp_result = n_f >= n_u
+    if lp_result not in local_preference_list:
+        append lp_result
+    else
+        do nothing. #extra results are not useful.
+}
+#we now have a method of determining results from U and F. But we also need a way to extend the results we have by transitive property. 
+
+
+#notation: ab relation -> a ? b where ? is >, >=, or =. 
+expand_results(local_preference_results){
+
+for each ab relation in local_preference_results
+        find all bc relations
+        add ac relations to local_preference_results
+        #for example a > b > c -> a > c 
+        #a >= b > c -> a > c 
+        #a >= b = c -> a = c 
+}
+#We now have a way of expanding results from (a ? b) to (a ? c)
+#but we need a way of determining a>b or a=b from a>=b
+
+eliminate_greater_or_equal(local_preference_results){
+    for each ab relation in local_preference_results where the relation is >=
+        find all bc relations
+        for each bc relation, find the ac relation. 
+        use ab, bc, and ac to resolve a>=b into a > b or a = b if possible. 
+        #for example a >= b , b > c, a > c implies a > b 
+        #a >= b , b >= c, a > c cannot determine a>b or a=b 
+        #(but this does determine b>c which will happen in a later iteration) 
+}
+
+#When do we have enough results?
+
+check_if_local_policy_done(local_preference_results){
+    check if there exists any a >=b relation in local_preference_results. if there is, we are not done.
+    
+    check if we have the preferece of all a ? b. if we do not, then we are not done. 
+
+    #this set represents the number of neighbors we have results for so far. so the question is: do we have results for enough neighbors? 
+    construct a set containing all unique elements (a,b,...,n) that appear in any a ? b. 
+    if the length is not sufficient, then we are not done. 
+    
+    if we have passed all checks above, we are done. 
+}
+
+#~~~~main loop~~~~
+while we have not found enough local_policy results{
+    Download the observer's FIB at time t0. 
+    U = find_inferior_updates(F,t0)
+    find_local_preference(F,U,local_preference_results)
+    eliminate_greater_or_equal(local_preference_results)
+    check_if_local_policy_done(local_preference_results).
+    if we are not done
+        subtract h hours from t0 and t_-1 where h is 2 for route-views collectors or 8 for RIPE collectors. 
+    otherwise break the loop. 
+}
+#we have now determined the local_preference relationships for the neighbors of the observer that send p to O. 
+#we now must determine what the hot_potato prefrences are. 
+
+while we have not found enough hot_potato_preference results:
+
+    determine_hot_potato_preference(local_preference_results,t0)
+    check_if_hot_potato_done(hot_potato_preferences)
+    expand_results(hot_potato_preferences)    
+    
+    if check_if_hot_potato_done(hot_potato_preferences):
+        we are done! continue to hijackability testing. 
+    otherwise subtract h hours from t0 and t_-1 where h is 2 for route-views collectors or 8 for RIPE collectors. 
+    
+check_if_hot_potato_done(hot_potato_preferences){
+    check if we have the preferece of all a ? b. where LP(a) = LP(b) if we do not, then we are not done. 
+    otherwise we are done. 
+}
+
+high level overview of what i'm thinking. 
+we build a "playbook" of updates.
+This playbook contains all Annoucements and withdrawls containing P from t0 to t1. 
+For a given hijacking annoucement H(q,t_h,n_h) we insert it into the playbook at time t_h. 
+We simply run each update in the playbook against the FIB and examine
+1. if H is adopted by the FIB 
+2. how long it takes for H to be pushed out of the FIB (if it ever is)
+
+we should consider a metric consisting of both time and number of updates that attempted to push H out of the FIB in order to better reason about prefixes with many updates and prefixes with few updates. 
+
+findUniqueUpdates(U,newUpdate):
+for each update in updates: 
+    if all fields of the update match the newUpdate (except timestamp),
+    this update is new and should be added to updates. 
+    otherwise this update is not added. 
+     
+    
+    #this eliminates bgp path conversion. 
+
+
+#determining the hot potato preference is a very similar loop to the above where we only consider instances of equality. 
+#find benign updates (and withdrawal messages) from t0 to t1 and this is our 'playbook'
+#take a single H(q,t_h) from t0 to t1 and insert it into the playbook 
+#run the playbook and see if H succeeds or if it fails. 
+#if it succeeds, how long does it succeed? 
+
+#slightly more efficient method 
+#get playbook W+U from t0 to t1 
+check if H(q,t_h) is successful, (dont insert it into fib)
+#unsuccessfull H's are marked as such. 
+
+for each successful H(q,t_h) insert it into the playbook
+when H(q,t_h) is put into FIB, see how long it stays. 
+can get a number of other B(p,t_p) it is better than and why. 
+
+perminint hijacking: H stays in FIB (for some duration)
+transient hijacking: H does not stay in fib (gets booted out 'shortly?' thereafter )
+
+
+#
+
+determine_hot_potato_preference(local_preference_results,t)
+    use the fib entry from F(p,t0,n_f)
+    use the updates from time [t_-1,t0]
+    U = find_inferior_updates(F,updates[t_-1,t0])
+    #let LP(F) denote the local preference of the fib entry.
+    for each u(p,t_u,n_p) in U 
+        if LP(F) = LP(u) and |F| = |u| and origin_type(F)= origin_type(u) then hp_result =  n_f > n_p.
+        if hp_result not in hot_potato_preferences
+        #we also may need to double check for contradictory results, but testing will reveal if we need to or not.     
+            append hp_result
+
+
+~~~~~ <hijackability testing section> ~~~~~
+use the updates from time [t0,t1] 
+
+build_playbook(lp,hp,t)<todo>
+    for h in Hs:
+        insert h into the playbook at time t_h 
+        run playbook.
+        when h is accepted into the FIB, how long does it stay? (why was it accepted)
+        record result (time and number of B it beats and why)
+<theory> if LP(H) > LP(FIB) will be accepted for longer.
+find successful hijackers {
+
+    Download ALL updates from [t0,t1] -> allU (U+W+H)
+    let H(q,t_h,n_h) be an update such that q != p 
+    let B(p,t_b,n_b) be an update that contains p. 
+    H = u(q,t_h,n_h) \in allU | q != p 
+    U = B(p,t_b,n_b) + W(p,t_p)
+
+    for all u in U from t0 to t1
+        #benign update case
+        does u contain p?
+            if yes, check if u updates fib.
+            if it does, set FIB(p) = new update. 
+            continue
+        #hijacker case, we dont update FIB, only record results (which happens in updatesFib)
+        else: 
+            check if u updates fib
+            record result. (append H to successful Hs)
+    repeat for additional timespans to get additional results. 
+}
+
+updatesFib(u,FIB){
+    if u is a withdrawl message, return True. #(withdrawal updates clear the fib)
+    
+    check local policy, as_path length, origin, and hot potato to see if F(p,t_i,n_f) should be replaced by u(p,t_j,n_u). 
+    
+    if so, return True and the reason why it should be changed #(as_path, local policy, etc)
+    
+    otherwise, return False and the reason why it should NOT be changed
+}
+
+
+
+
+
+    if u is not a hijacker, and u should replace F and F is not empty, 
+        return True
+        
+    #i dont think we can consider successfull hijacking if the FIB is empty due to withdrawl, but maybe i'm wrong. 
+
+    #we want to know both successfull hijackings and failed hijackings
+    if u is a hijacker record the result, regardless of whether or not u replaces F. do not replace F with u.  
+    return False
+    
+#i'm pretty sure once we find a > b, a > c ... a > n we're done. 
+but because we're dealing with multiple timespans AND multiple paramaters, it could be the case that we need to consider b > c 
+however we should only need a result for instances of a=b. 
+so its a subgraph of sorts. 
+
+new email... oh yay...
+
+Hi Jun, I am almost done with the reworked training pseudo code, but i did have another question I would like your thoughts on. 
+
+assume we have determined the local preference (LP) for all neighbors, n1,n2,n3 of observer O. such that LP(n1)=LP(n2)=LP(n3) (for sake of example)
+We wish to find the hot potato preference for these neighbors. I am unsure if we need only find n1 > n2 and n1 > n3, or if we must also find n2 > n3. 
+
+
+is it sufficient to find only n1 > n2, n1 > n3 
+or must we also find n2 > n3?
+
+I am unsure if it is sufficient to only find n1 > n2 and n1 > n3. 
+
+we will need a new hot potato preference list similar to local preference, or if it is sufficient to only find the neighbor with the largest HPP
+
+
+hot_potato preference is the aggregation of all routing paramaters used after the observer compares origin_types.
+because we are examining the aggregation, does this imply that we are going to end up with a similar 
+
+from time t0 to t_-1
+#a > b > c
+a > c 
+#a > b = c
+a > c 
+#a = b = c
+a = c 
+#a = b > c
+a > c
+#a >=b >= c 
+a >=c
+#a >=b > c 
+a > c 
+#a >=b = c 
+a = c 
+
+realized something. 
+consider the following analysis of determining local preference relation and what it implies. 
+Assume we observe two updates u1(p,t_u1,n_u1) and u2(p,t_u2,n_u2) such that n_u1 = n_u2, |F| = |u1| and |F| < |u2|. 
+the result |F| = |u1| indicates that F was adopted over u1 due to some metric other than AS Path, so we say this is a result of NOT as_path. 
+|F| < |u2| indicates that F was adopted over u2 due to as_path OR local policy. 
+if we observe an instance of NOT as_path AND a result of local policy OR as_path, we can eliminate as_path as the reason F was adopted. therefore F was adopted over u1 and u2 as a result of local policy. 
+
+two fib entries, f1 and f2 are considered the same iff:
+the timestamp of f1 and f2 may be different
+all elements of f1 and f2 are the same.
+
+
+i want to find out when two neighbors share the same policy value. 
+under what conditions is lp n1 = lp n2? 
+when we examine a fib, this will always indicate n1 > n2 or n1>= n2. 
+even if we find a new fib at t2, it will always be this result. 
+So rn we're inherently relying on finding |f| > |u| to resolve all instances of n1 >= n2. 
+we have 2 cases, lets see where this goes. 
+we observe n1 >= n2
+assume n1 > n2. this means the result is always because of local policy. 
+if this is the case then F will always be adopted over U, so lets find instances supporting this theory. 
+if we find an update such that 
+|u| < |F| 
+origin(u) < origin(f)
+p_after(u) > p_after(f) <--- (could this be resolved under =?)
+then n_f > n_u 
+what contradicts lp n_f > lp n_u? 
+strong possibility that n_f is not > lp n_u?
+|u| < |F| and origin(u) < origin(f) and p_after(u)> p_after(f)
+
+
+assume lp n1 = lp n2. this means lp is equal so F must have been adopted by some other metric other than lp. 
+what supports this? 
+if |F| < |u| then F was adopted because of as_path. 
+if origin(F) < origin(U) (and |F|=|U|) then F was adopted because of origin 
+if p_after(F) > p_after(U) (and |F|=|U| and origin(F) = origin(u)) then F must have been adopted because of p_after. 
+
+
+assume we have a series of tuples a>=b we dont know if lp a = lp b or lp a > b, we'd like to know. 
+examine a FIB with a as its neighbored entry. 
+if we observe |F| > |U| then a > b. 
+if we observe |F| = |U| then either a>b or a=b and AS path is equal -> F was adopted because of LP p_after or origin_type. 
+if we observe |F| < |U| then F was adopted because of AS path or local policy.
+find instances of |F| = |U| 
+examine n_f and n_u, since n_f is in the FIB, n_f is the p_after preferred neighbor compared to n_u. 
+do this a whole bunch of times to get a p_after ordering of n_f > n_u. 
+
+now we can (hopefully) resolve the instances of >= into > or =. 
+we know lp(a) >= lp(b)
+assume 
+p_after(a) > p_after(b)
+if we observe |F| > |U| then a > b. (no change)
+if we observe |F| = |U| F was adopted by either AS path or p_after. 
+if p_after(a) < p_after(b) then lp(a)> lp(b)
+if p_after(a) > p_after(b) then lp(a)>= lp(b)
+if we observe |F| < |U| 
+
+
+
+if we cannot resolve a >=b then 
+there exists no c such that a>c and b>c (direct causeality)
+there exists no chain such that a>c>d...>=b and b>x>y...a (indirect causeality)
+
+-1 is >=
+0 is = 
+5 is > #so i can see it. 
+
+a>=b>=c>=d>=e>=f 
+a -1 b 5 c -1 d -1 e -1 f
+
+todo 
+look into the chain thing on test.py 
+also the dictionary thing and checkRight in the original simple_test.py 
+also finish hellsing ultimate ep5
