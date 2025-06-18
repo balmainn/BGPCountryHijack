@@ -1,0 +1,2264 @@
+{
+    "messages": [
+        [
+            "info",
+            "Query time has been set to the latest time (2025-04-20 00:00 UTC) data is available for."
+        ]
+    ],
+    "see_also": [],
+    "version": "1.0",
+    "data_call_name": "ris-peers",
+    "data_call_status": "supported",
+    "cached": true,
+    "data": {
+        "peers": {
+            "rrc04": [
+                {
+                    "asn": "12350",
+                    "ip": "192.65.185.157",
+                    "v4_prefix_count": 972102,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "15547",
+                    "ip": "192.65.185.195",
+                    "v4_prefix_count": 999067,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "15547",
+                    "ip": "2001:7f8:1c:24a::3cbb:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 218234
+                },
+                {
+                    "asn": "15830",
+                    "ip": "192.65.185.243",
+                    "v4_prefix_count": 961,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "20932",
+                    "ip": "192.65.185.142",
+                    "v4_prefix_count": 971385,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "20932",
+                    "ip": "2001:7f8:1c:24a::51c4:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 214200
+                },
+                {
+                    "asn": "21320",
+                    "ip": "192.65.185.119",
+                    "v4_prefix_count": 1901,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "21320",
+                    "ip": "2001:7f8:1c:24a::51e5:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 253
+                },
+                {
+                    "asn": "25091",
+                    "ip": "192.65.185.244",
+                    "v4_prefix_count": 974999,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "25091",
+                    "ip": "2001:7f8:1c:24a::6203:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 182532
+                },
+                {
+                    "asn": "29222",
+                    "ip": "192.65.185.140",
+                    "v4_prefix_count": 996316,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "29222",
+                    "ip": "2001:7f8:1c:24a::7226:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 213783
+                },
+                {
+                    "asn": "3303",
+                    "ip": "192.65.185.137",
+                    "v4_prefix_count": 2472,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "33845",
+                    "ip": "192.65.185.133",
+                    "v4_prefix_count": 5,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "513",
+                    "ip": "192.65.185.3",
+                    "v4_prefix_count": 1000233,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "513",
+                    "ip": "2001:7f8:1c:24a::201:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 215238
+                },
+                {
+                    "asn": "559",
+                    "ip": "192.65.185.130",
+                    "v4_prefix_count": 478373,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "559",
+                    "ip": "2001:7f8:1c:24a::22f:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 104339
+                },
+                {
+                    "asn": "6730",
+                    "ip": "192.65.185.141",
+                    "v4_prefix_count": 969414,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "6730",
+                    "ip": "2001:7f8:1c:24a::1a4a:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 205590
+                },
+                {
+                    "asn": "8220",
+                    "ip": "192.65.185.165",
+                    "v4_prefix_count": 7393,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8220",
+                    "ip": "2001:7f8:1c:24a::201c:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 951
+                }
+            ],
+            "rrc05": [
+                {
+                    "asn": "12401",
+                    "ip": "2001:7f8:30:0:2:1:1:2401",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 1
+                },
+                {
+                    "asn": "12577",
+                    "ip": "193.203.0.86",
+                    "v4_prefix_count": 20,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "12605",
+                    "ip": "193.203.0.43",
+                    "v4_prefix_count": 9,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "12895",
+                    "ip": "193.203.0.37",
+                    "v4_prefix_count": 1,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "13030",
+                    "ip": "2001:7f8:30:0:2:1:1:3030",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 207276
+                },
+                {
+                    "asn": "13237",
+                    "ip": "193.203.0.91",
+                    "v4_prefix_count": 972842,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "1853",
+                    "ip": "193.203.0.1",
+                    "v4_prefix_count": 325,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "1853",
+                    "ip": "2001:7f8:30:0:1:1:0:1853",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 84
+                },
+                {
+                    "asn": "200970",
+                    "ip": "193.203.0.105",
+                    "v4_prefix_count": 195043,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "20704",
+                    "ip": "193.203.0.80",
+                    "v4_prefix_count": 15,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "20751",
+                    "ip": "193.203.0.81",
+                    "v4_prefix_count": 26,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "21013",
+                    "ip": "193.203.0.131",
+                    "v4_prefix_count": 172,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "21320",
+                    "ip": "193.203.0.172",
+                    "v4_prefix_count": 1901,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "21320",
+                    "ip": "2001:7f8:30:0:2:1:2:965",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 253
+                },
+                {
+                    "asn": "21360",
+                    "ip": "193.203.0.87",
+                    "v4_prefix_count": 1,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "21385",
+                    "ip": "193.203.0.136",
+                    "v4_prefix_count": 153,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "21385",
+                    "ip": "2001:7f8:30:0:2:1:2:1385",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 50
+                },
+                {
+                    "asn": "24953",
+                    "ip": "193.203.0.104",
+                    "v4_prefix_count": 41,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "2686",
+                    "ip": "193.203.0.3",
+                    "v4_prefix_count": 444,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "2686",
+                    "ip": "2001:7f8:30:0:2:1:0:2686",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 7
+                },
+                {
+                    "asn": "28760",
+                    "ip": "193.203.0.115",
+                    "v4_prefix_count": 12,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "31510",
+                    "ip": "193.203.0.145",
+                    "v4_prefix_count": 971441,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "31510",
+                    "ip": "2001:7f8:30:0:2:1:3:1510",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208092
+                },
+                {
+                    "asn": "32934",
+                    "ip": "193.203.0.194",
+                    "v4_prefix_count": 7,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "32934",
+                    "ip": "193.203.0.205",
+                    "v4_prefix_count": 7,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "32934",
+                    "ip": "2001:7f8:30:0:2:1:3:2934",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 9
+                },
+                {
+                    "asn": "32934",
+                    "ip": "2001:7f8:30:0:2:2:3:2934",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 9
+                },
+                {
+                    "asn": "34288",
+                    "ip": "193.203.0.226",
+                    "v4_prefix_count": 8,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "34288",
+                    "ip": "2001:7f8:30:0:2:1:3:4288",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 3
+                },
+                {
+                    "asn": "35369",
+                    "ip": "193.203.0.157",
+                    "v4_prefix_count": 974081,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "35369",
+                    "ip": "2001:7f8:30:0:2:1:3:5369",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208909
+                },
+                {
+                    "asn": "3856",
+                    "ip": "193.203.0.126",
+                    "v4_prefix_count": 1,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "39912",
+                    "ip": "193.203.0.134",
+                    "v4_prefix_count": 56,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "39912",
+                    "ip": "2001:7f8:30:0:2:1:3:9912",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 12
+                },
+                {
+                    "asn": "40994",
+                    "ip": "193.203.0.75",
+                    "v4_prefix_count": 970420,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "40994",
+                    "ip": "2001:7f8:30:0:2:1:4:994",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 207317
+                },
+                {
+                    "asn": "42",
+                    "ip": "193.203.0.33",
+                    "v4_prefix_count": 64,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "47147",
+                    "ip": "193.203.0.19",
+                    "v4_prefix_count": 971130,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "47147",
+                    "ip": "2001:7f8:30:0:1:1:4:7147",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 207649
+                },
+                {
+                    "asn": "47692",
+                    "ip": "193.203.0.192",
+                    "v4_prefix_count": 974767,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "47692",
+                    "ip": "2001:7f8:30:0:2:1:4:7692",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 214150
+                },
+                {
+                    "asn": "48362",
+                    "ip": "193.203.0.182",
+                    "v4_prefix_count": 973350,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "48362",
+                    "ip": "2001:7f8:30:0:2:1:4:8362",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208728
+                },
+                {
+                    "asn": "51184",
+                    "ip": "193.203.0.213",
+                    "v4_prefix_count": 976147,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "51184",
+                    "ip": "2001:7f8:30:0:2:1:5:1184",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 214832
+                },
+                {
+                    "asn": "5403",
+                    "ip": "193.203.0.15",
+                    "v4_prefix_count": 20,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "5403",
+                    "ip": "193.203.0.5",
+                    "v4_prefix_count": 20,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "5578",
+                    "ip": "193.203.0.206",
+                    "v4_prefix_count": 400,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "5578",
+                    "ip": "2001:7f8:30:0:2:1:0:5578",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 61
+                },
+                {
+                    "asn": "59890",
+                    "ip": "193.203.0.245",
+                    "v4_prefix_count": 976424,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "59890",
+                    "ip": "2001:7f8:30:0:2:1:5:9890",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 210727
+                },
+                {
+                    "asn": "6720",
+                    "ip": "193.203.0.63",
+                    "v4_prefix_count": 997409,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "6720",
+                    "ip": "2001:7f8:30:0:1:1:0:6720",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 214063
+                },
+                {
+                    "asn": "6798",
+                    "ip": "193.203.0.16",
+                    "v4_prefix_count": 4,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "6939",
+                    "ip": "193.203.0.185",
+                    "v4_prefix_count": 153776,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "6939",
+                    "ip": "2001:7f8:30:0:2:1:0:6939",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 210137
+                },
+                {
+                    "asn": "8218",
+                    "ip": "193.203.0.45",
+                    "v4_prefix_count": 972572,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8218",
+                    "ip": "2001:7f8:30:0:1:1:0:8218",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208185
+                },
+                {
+                    "asn": "8220",
+                    "ip": "193.203.0.55",
+                    "v4_prefix_count": 7393,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8220",
+                    "ip": "2001:7f8:30:0:1:1:0:8220",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 951
+                },
+                {
+                    "asn": "8245",
+                    "ip": "193.203.0.17",
+                    "v4_prefix_count": 57,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8387",
+                    "ip": "193.203.0.26",
+                    "v4_prefix_count": 163,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8400",
+                    "ip": "193.203.0.188",
+                    "v4_prefix_count": 1178,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8400",
+                    "ip": "2001:7f8:30:0:2:1:0:8400",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 39
+                },
+                {
+                    "asn": "8447",
+                    "ip": "193.203.0.11",
+                    "v4_prefix_count": 1592,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8447",
+                    "ip": "193.203.0.21",
+                    "v4_prefix_count": 1591,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8447",
+                    "ip": "2001:7f8:30:0:1:1:0:8447",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 150
+                },
+                {
+                    "asn": "8447",
+                    "ip": "2001:7f8:30:0:2:1:0:8447",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 150
+                }
+            ],
+            "rrc06": [
+                {
+                    "asn": "20473",
+                    "ip": "2001:de8:8::2:473:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 605
+                },
+                {
+                    "asn": "20473",
+                    "ip": "210.171.225.160",
+                    "v4_prefix_count": 282,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "23815",
+                    "ip": "2001:de8:8::2:3815:11",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 5638
+                },
+                {
+                    "asn": "23815",
+                    "ip": "210.171.224.1",
+                    "v4_prefix_count": 123257,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "2497",
+                    "ip": "2001:200:0:fe00::9c1:0",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 210114
+                },
+                {
+                    "asn": "2497",
+                    "ip": "202.249.2.169",
+                    "v4_prefix_count": 975755,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "2500",
+                    "ip": "2001:200:0:fe00::9c4:11",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208216
+                },
+                {
+                    "asn": "2500",
+                    "ip": "202.249.2.83",
+                    "v4_prefix_count": 976223,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "25152",
+                    "ip": "2001:200:0:fe00::6249:0",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 219627
+                },
+                {
+                    "asn": "25152",
+                    "ip": "202.249.2.185",
+                    "v4_prefix_count": 999872,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "3856",
+                    "ip": "202.249.2.184",
+                    "v4_prefix_count": 1,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "394354",
+                    "ip": "2001:de8:8::39:4354:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 89
+                },
+                {
+                    "asn": "394354",
+                    "ip": "210.171.225.145",
+                    "v4_prefix_count": 89,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "42",
+                    "ip": "202.249.2.183",
+                    "v4_prefix_count": 64,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "4775",
+                    "ip": "2001:de8:8::4775:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 3
+                },
+                {
+                    "asn": "4775",
+                    "ip": "210.171.224.75",
+                    "v4_prefix_count": 1084,
+                    "v6_prefix_count": 6
+                },
+                {
+                    "asn": "4777",
+                    "ip": "2001:200:0:fe00::12a9:0",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 210181
+                },
+                {
+                    "asn": "4777",
+                    "ip": "202.249.2.20",
+                    "v4_prefix_count": 979877,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "59105",
+                    "ip": "2001:de8:8::5:9105:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 220211
+                },
+                {
+                    "asn": "59105",
+                    "ip": "210.171.225.165",
+                    "v4_prefix_count": 985005,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "64096",
+                    "ip": "210.171.225.146",
+                    "v4_prefix_count": 1,
+                    "v6_prefix_count": 0
+                }
+            ],
+            "rrc07": [
+                {
+                    "asn": "13189",
+                    "ip": "194.68.123.138",
+                    "v4_prefix_count": 49,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "16086",
+                    "ip": "194.68.123.152",
+                    "v4_prefix_count": 217,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "16086",
+                    "ip": "2001:7f8:d:ff::152",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 36
+                },
+                {
+                    "asn": "199524",
+                    "ip": "194.68.123.191",
+                    "v4_prefix_count": 969766,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "199524",
+                    "ip": "2001:7f8:d:ff::191",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 213893
+                },
+                {
+                    "asn": "20473",
+                    "ip": "194.68.123.86",
+                    "v4_prefix_count": 93,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "20473",
+                    "ip": "2001:7f8:d:ff::86",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 144
+                },
+                {
+                    "asn": "24482",
+                    "ip": "194.68.123.226",
+                    "v4_prefix_count": 982094,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "24482",
+                    "ip": "2001:7f8:d:ff::226",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 212493
+                },
+                {
+                    "asn": "2603",
+                    "ip": "194.68.123.24",
+                    "v4_prefix_count": 2063,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "31133",
+                    "ip": "194.68.123.35",
+                    "v4_prefix_count": 15820,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "31133",
+                    "ip": "2001:7f8:d:ff::35",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 1365
+                },
+                {
+                    "asn": "3292",
+                    "ip": "194.68.123.41",
+                    "v4_prefix_count": 643,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "3292",
+                    "ip": "2001:7f8:d:ff::41",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 83
+                },
+                {
+                    "asn": "3301",
+                    "ip": "194.68.123.111",
+                    "v4_prefix_count": 830,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "3303",
+                    "ip": "194.68.123.116",
+                    "v4_prefix_count": 2472,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "3327",
+                    "ip": "194.68.123.164",
+                    "v4_prefix_count": 245,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "3327",
+                    "ip": "2001:7f8:d:ff::164",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 20
+                },
+                {
+                    "asn": "3399",
+                    "ip": "194.68.123.57",
+                    "v4_prefix_count": 970298,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "3399",
+                    "ip": "2001:7f8:d:ff::57",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 207127
+                },
+                {
+                    "asn": "35280",
+                    "ip": "194.68.123.96",
+                    "v4_prefix_count": 996316,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "35280",
+                    "ip": "2001:7f8:d:ff::96",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 219862
+                },
+                {
+                    "asn": "42473",
+                    "ip": "194.68.123.18",
+                    "v4_prefix_count": 970503,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "42473",
+                    "ip": "2001:7f8:d:ff::18",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208021
+                },
+                {
+                    "asn": "51519",
+                    "ip": "194.68.123.69",
+                    "v4_prefix_count": 961313,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "51519",
+                    "ip": "2001:7f8:d:ff::69",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 213858
+                },
+                {
+                    "asn": "52005",
+                    "ip": "194.68.123.254",
+                    "v4_prefix_count": 165834,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "52005",
+                    "ip": "2001:7f8:d:ff::254",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 62040
+                },
+                {
+                    "asn": "6667",
+                    "ip": "194.68.123.136",
+                    "v4_prefix_count": 970406,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "6667",
+                    "ip": "2001:7f8:d:ff::136",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 207264
+                },
+                {
+                    "asn": "6939",
+                    "ip": "194.68.123.187",
+                    "v4_prefix_count": 153701,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "6939",
+                    "ip": "2001:7f8:d:ff::187",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 210137
+                },
+                {
+                    "asn": "714",
+                    "ip": "194.68.123.9",
+                    "v4_prefix_count": 1202,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "714",
+                    "ip": "2001:7f8:d:ff::9",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 347
+                },
+                {
+                    "asn": "8220",
+                    "ip": "194.68.123.104",
+                    "v4_prefix_count": 7393,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8220",
+                    "ip": "2001:7f8:d:ff::104",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 951
+                },
+                {
+                    "asn": "8674",
+                    "ip": "194.68.123.73",
+                    "v4_prefix_count": 51,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "9002",
+                    "ip": "194.68.123.157",
+                    "v4_prefix_count": 970553,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "9002",
+                    "ip": "2001:7f8:d:ff::157",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208190
+                }
+            ],
+            "rrc11": [
+                {
+                    "asn": "10310",
+                    "ip": "198.32.160.121",
+                    "v4_prefix_count": 331,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "10310",
+                    "ip": "2001:504:1::a501:310:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 109
+                },
+                {
+                    "asn": "11164",
+                    "ip": "198.32.160.221",
+                    "v4_prefix_count": 5680,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "11164",
+                    "ip": "2001:504:1::a501:1164:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 420
+                },
+                {
+                    "asn": "11403",
+                    "ip": "198.32.160.87",
+                    "v4_prefix_count": 20,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "13030",
+                    "ip": "198.32.160.103",
+                    "v4_prefix_count": 969920,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "13030",
+                    "ip": "2001:504:1::a501:3030:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 207276
+                },
+                {
+                    "asn": "137409",
+                    "ip": "198.32.161.23",
+                    "v4_prefix_count": 5677,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "137409",
+                    "ip": "2001:504:1::a513:7409:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 2206
+                },
+                {
+                    "asn": "14061",
+                    "ip": "198.32.160.170",
+                    "v4_prefix_count": 275,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "14061",
+                    "ip": "2001:504:1::a506:2567:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 5
+                },
+                {
+                    "asn": "15695",
+                    "ip": "198.32.160.175",
+                    "v4_prefix_count": 7,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "15695",
+                    "ip": "2001:504:1::a501:5695:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 2
+                },
+                {
+                    "asn": "19151",
+                    "ip": "198.32.160.137",
+                    "v4_prefix_count": 978020,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "19151",
+                    "ip": "2001:504:1::a501:9151:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 214017
+                },
+                {
+                    "asn": "199524",
+                    "ip": "198.32.160.12",
+                    "v4_prefix_count": 971233,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "199524",
+                    "ip": "2001:504:1::a519:9524:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208072
+                },
+                {
+                    "asn": "20473",
+                    "ip": "198.32.160.157",
+                    "v4_prefix_count": 388,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "20473",
+                    "ip": "2001:504:1::a502:473:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 406
+                },
+                {
+                    "asn": "20940",
+                    "ip": "198.32.160.47",
+                    "v4_prefix_count": 116,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "20940",
+                    "ip": "2001:504:1::a502:940:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 26
+                },
+                {
+                    "asn": "21700",
+                    "ip": "198.32.160.58",
+                    "v4_prefix_count": 970501,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "21700",
+                    "ip": "2001:504:1::a502:1700:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 213508
+                },
+                {
+                    "asn": "24482",
+                    "ip": "198.32.160.242",
+                    "v4_prefix_count": 958245,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "24482",
+                    "ip": "2001:504:1::a502:4482:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208986
+                },
+                {
+                    "asn": "2497",
+                    "ip": "198.32.160.42",
+                    "v4_prefix_count": 975752,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "2497",
+                    "ip": "2001:504:1::a500:2497:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 210104
+                },
+                {
+                    "asn": "2516",
+                    "ip": "198.32.160.25",
+                    "v4_prefix_count": 5324,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "29838",
+                    "ip": "198.32.160.107",
+                    "v4_prefix_count": 1839,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "46450",
+                    "ip": "198.32.160.124",
+                    "v4_prefix_count": 221,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "46450",
+                    "ip": "2001:504:1::a504:6450:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 15
+                },
+                {
+                    "asn": "4775",
+                    "ip": "198.32.160.207",
+                    "v4_prefix_count": 987,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "4775",
+                    "ip": "2001:504:1::a500:4775:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 3
+                },
+                {
+                    "asn": "51185",
+                    "ip": "198.32.160.168",
+                    "v4_prefix_count": 297774,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "51185",
+                    "ip": "2001:504:1::a505:1185:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 106215
+                },
+                {
+                    "asn": "6939",
+                    "ip": "198.32.160.61",
+                    "v4_prefix_count": 153698,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "6939",
+                    "ip": "2001:504:1::a500:6939:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 210137
+                },
+                {
+                    "asn": "714",
+                    "ip": "198.32.160.224",
+                    "v4_prefix_count": 1223,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "714",
+                    "ip": "2001:504:1::a500:714:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 356
+                },
+                {
+                    "asn": "8220",
+                    "ip": "198.32.161.10",
+                    "v4_prefix_count": 7393,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8220",
+                    "ip": "2001:504:1::a500:8220:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 951
+                },
+                {
+                    "asn": "8966",
+                    "ip": "198.32.160.45",
+                    "v4_prefix_count": 4381,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8966",
+                    "ip": "2001:504:1::a500:8966:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 906
+                },
+                {
+                    "asn": "9002",
+                    "ip": "198.32.160.182",
+                    "v4_prefix_count": 970554,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "9002",
+                    "ip": "2001:504:1::a500:9002:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208199
+                },
+                {
+                    "asn": "9304",
+                    "ip": "198.32.160.39",
+                    "v4_prefix_count": 976764,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "9304",
+                    "ip": "2001:504:1::a500:9304:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 215657
+                }
+            ],
+            "rrc13": [
+                {
+                    "asn": "20764",
+                    "ip": "2001:7f8:20:101::208:223",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 208777
+                },
+                {
+                    "asn": "210756",
+                    "ip": "195.208.209.200",
+                    "v4_prefix_count": 128,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "210756",
+                    "ip": "2001:7f8:20:101::209:200",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 12
+                },
+                {
+                    "asn": "24482",
+                    "ip": "195.208.209.109",
+                    "v4_prefix_count": 982094,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "24482",
+                    "ip": "2001:7f8:20:101::209:109",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 212494
+                },
+                {
+                    "asn": "25091",
+                    "ip": "195.208.209.93",
+                    "v4_prefix_count": 346,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "25091",
+                    "ip": "2001:7f8:20:101::209:93",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 114
+                },
+                {
+                    "asn": "2854",
+                    "ip": "195.208.210.19",
+                    "v4_prefix_count": 161,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "2854",
+                    "ip": "2001:7f8:20:101::210:19",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 13
+                },
+                {
+                    "asn": "28917",
+                    "ip": "195.208.208.147",
+                    "v4_prefix_count": 971186,
+                    "v6_prefix_count": 213919
+                },
+                {
+                    "asn": "28917",
+                    "ip": "2001:7f8:20:101::208:147",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 213938
+                },
+                {
+                    "asn": "3267",
+                    "ip": "195.208.208.44",
+                    "v4_prefix_count": 596,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "3267",
+                    "ip": "2001:7f8:20:101::208:44",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 46
+                },
+                {
+                    "asn": "35598",
+                    "ip": "195.208.209.66",
+                    "v4_prefix_count": 1004986,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "39821",
+                    "ip": "195.208.208.15",
+                    "v4_prefix_count": 2,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "41095",
+                    "ip": "195.208.209.4",
+                    "v4_prefix_count": 3974,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "41617",
+                    "ip": "2001:7f8:20:101::208:168",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 1
+                },
+                {
+                    "asn": "41722",
+                    "ip": "195.208.210.52",
+                    "v4_prefix_count": 982298,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "41722",
+                    "ip": "2001:7f8:20:101::210:52",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 215774
+                },
+                {
+                    "asn": "44030",
+                    "ip": "2001:7f8:20:101::209:70",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 1
+                },
+                {
+                    "asn": "6866",
+                    "ip": "195.208.208.188",
+                    "v4_prefix_count": 189,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "6866",
+                    "ip": "2001:7f8:20:101::208:188",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 31
+                },
+                {
+                    "asn": "6939",
+                    "ip": "195.208.210.40",
+                    "v4_prefix_count": 135069,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "6939",
+                    "ip": "2001:7f8:20:101::210:40",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 63281
+                },
+                {
+                    "asn": "8359",
+                    "ip": "195.208.208.30",
+                    "v4_prefix_count": 6270,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8470",
+                    "ip": "195.208.208.59",
+                    "v4_prefix_count": 77,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8470",
+                    "ip": "2001:7f8:20:101::208:59",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 17
+                }
+            ],
+            "rrc18": [
+                {
+                    "asn": "13041",
+                    "ip": "193.242.98.38",
+                    "v4_prefix_count": 9,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "13041",
+                    "ip": "2001:7f8:2a:0:1:1:1:3041",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 2
+                },
+                {
+                    "asn": "15699",
+                    "ip": "2001:7f8:2a:0:2:1:1:5699",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 6
+                },
+                {
+                    "asn": "16030",
+                    "ip": "193.242.98.4",
+                    "v4_prefix_count": 41,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "20940",
+                    "ip": "193.242.98.157",
+                    "v4_prefix_count": 24,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "20940",
+                    "ip": "2001:7f8:2a:0:2:1:2:940",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 33
+                },
+                {
+                    "asn": "24592",
+                    "ip": "193.242.98.133",
+                    "v4_prefix_count": 9,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "24592",
+                    "ip": "2001:7f8:2a:0:2:1:2:4592",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 2
+                },
+                {
+                    "asn": "26415",
+                    "ip": "193.242.98.125",
+                    "v4_prefix_count": 2,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "26415",
+                    "ip": "2001:7f8:2a:0:1:1:2:6415",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 2
+                },
+                {
+                    "asn": "29680",
+                    "ip": "193.242.98.141",
+                    "v4_prefix_count": 979888,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "29680",
+                    "ip": "2001:7f8:2a:0:2:1:2:9680",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 207610
+                },
+                {
+                    "asn": "30892",
+                    "ip": "193.242.98.130",
+                    "v4_prefix_count": 12,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "30892",
+                    "ip": "2001:7f8:2a:0:2:1:3:892",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 2
+                },
+                {
+                    "asn": "35699",
+                    "ip": "193.242.98.143",
+                    "v4_prefix_count": 501,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "43578",
+                    "ip": "193.242.98.160",
+                    "v4_prefix_count": 51,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "49835",
+                    "ip": "193.242.98.144",
+                    "v4_prefix_count": 55,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "49835",
+                    "ip": "2001:7f8:2a:0:2:1:4:9835",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 6
+                },
+                {
+                    "asn": "60082",
+                    "ip": "193.242.98.98",
+                    "v4_prefix_count": 5291,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "60082",
+                    "ip": "2001:7f8:2a:0:1:1:6:82",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 463
+                },
+                {
+                    "asn": "766",
+                    "ip": "193.242.98.19",
+                    "v4_prefix_count": 146,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "766",
+                    "ip": "2001:7f8:2a:0:1:1:0:766",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 17
+                },
+                {
+                    "asn": "8220",
+                    "ip": "193.242.98.13",
+                    "v4_prefix_count": 7393,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8220",
+                    "ip": "2001:7f8:2a:0:1:1:0:8220",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 951
+                }
+            ],
+            "rrc22": [
+                {
+                    "asn": "10310",
+                    "ip": "2001:7f8:64:225:0:1:310:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 36
+                },
+                {
+                    "asn": "10310",
+                    "ip": "86.104.125.67",
+                    "v4_prefix_count": 86,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "203574",
+                    "ip": "86.104.125.170",
+                    "v4_prefix_count": 1,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "205488",
+                    "ip": "2001:7f8:64:225:0:20:5488:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 1
+                },
+                {
+                    "asn": "205488",
+                    "ip": "86.104.125.200",
+                    "v4_prefix_count": 1,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "31042",
+                    "ip": "2001:7f8:64:225:0:3:1042:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 34
+                },
+                {
+                    "asn": "31042",
+                    "ip": "86.104.125.147",
+                    "v4_prefix_count": 2223,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "31313",
+                    "ip": "2001:7f8:64:225:0:3:1313:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 3
+                },
+                {
+                    "asn": "31313",
+                    "ip": "86.104.125.93",
+                    "v4_prefix_count": 118,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "31554",
+                    "ip": "2001:7f8:64:225:0:3:1554:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 207621
+                },
+                {
+                    "asn": "31554",
+                    "ip": "86.104.125.81",
+                    "v4_prefix_count": 970578,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "3233",
+                    "ip": "2001:7f8:64:225::3233:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 632
+                },
+                {
+                    "asn": "3233",
+                    "ip": "86.104.125.145",
+                    "v4_prefix_count": 194356,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "33823",
+                    "ip": "2001:7f8:64:225:0:3:3823:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 210145
+                },
+                {
+                    "asn": "33823",
+                    "ip": "86.104.125.108",
+                    "v4_prefix_count": 338185,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "34723",
+                    "ip": "86.104.125.137",
+                    "v4_prefix_count": 18,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "35505",
+                    "ip": "86.104.125.113",
+                    "v4_prefix_count": 352694,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "39107",
+                    "ip": "2001:7f8:64:225::1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 24753
+                },
+                {
+                    "asn": "39107",
+                    "ip": "86.104.125.1",
+                    "v4_prefix_count": 102560,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "39668",
+                    "ip": "2001:7f8:64:225:0:3:9668:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 611
+                },
+                {
+                    "asn": "39668",
+                    "ip": "86.104.125.47",
+                    "v4_prefix_count": 131734,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "41028",
+                    "ip": "2001:7f8:64:225:0:4:1028:1",
+                    "v4_prefix_count": 7,
+                    "v6_prefix_count": 1
+                },
+                {
+                    "asn": "41028",
+                    "ip": "86.104.125.56",
+                    "v4_prefix_count": 7,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "48571",
+                    "ip": "2001:7f8:64:225:0:4:8571:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 214670
+                },
+                {
+                    "asn": "48571",
+                    "ip": "86.104.125.156",
+                    "v4_prefix_count": 248859,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "56430",
+                    "ip": "2001:7f8:64:225:0:5:6430:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 213944
+                },
+                {
+                    "asn": "56430",
+                    "ip": "86.104.125.59",
+                    "v4_prefix_count": 1001211,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8075",
+                    "ip": "2001:7f8:64:225::8075:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 143
+                },
+                {
+                    "asn": "8075",
+                    "ip": "86.104.125.130",
+                    "v4_prefix_count": 874,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8220",
+                    "ip": "2001:7f8:64:225::8220:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 951
+                },
+                {
+                    "asn": "8220",
+                    "ip": "86.104.125.97",
+                    "v4_prefix_count": 7392,
+                    "v6_prefix_count": 0
+                }
+            ],
+            "rrc23": [
+                {
+                    "asn": "10075",
+                    "ip": "2001:de8:4::1:75:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 235
+                },
+                {
+                    "asn": "10075",
+                    "ip": "27.111.228.140",
+                    "v4_prefix_count": 507,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "131330",
+                    "ip": "2001:de8:4::13:1330:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 3
+                },
+                {
+                    "asn": "131330",
+                    "ip": "27.111.230.90",
+                    "v4_prefix_count": 8,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "132337",
+                    "ip": "2001:de8:4::13:2337:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 9
+                },
+                {
+                    "asn": "132337",
+                    "ip": "27.111.228.134",
+                    "v4_prefix_count": 63,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "133210",
+                    "ip": "2001:de8:4::13:3210:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 220190
+                },
+                {
+                    "asn": "133210",
+                    "ip": "27.111.230.35",
+                    "v4_prefix_count": 1000867,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "136168",
+                    "ip": "2001:de8:4::13:6168:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 79
+                },
+                {
+                    "asn": "136168",
+                    "ip": "27.111.228.170",
+                    "v4_prefix_count": 282,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "137409",
+                    "ip": "27.111.229.213",
+                    "v4_prefix_count": 6073,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "138128",
+                    "ip": "2001:de8:4::13:8128:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 109
+                },
+                {
+                    "asn": "138128",
+                    "ip": "27.111.230.62",
+                    "v4_prefix_count": 204,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "139009",
+                    "ip": "2001:de8:4::13:9009:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 132
+                },
+                {
+                    "asn": "139009",
+                    "ip": "27.111.230.98",
+                    "v4_prefix_count": 524,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "14061",
+                    "ip": "2001:de8:4::1:4061:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 2
+                },
+                {
+                    "asn": "14061",
+                    "ip": "27.111.228.201",
+                    "v4_prefix_count": 75,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "14907",
+                    "ip": "2001:de8:4::1:4907:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 216942
+                },
+                {
+                    "asn": "14907",
+                    "ip": "27.111.228.186",
+                    "v4_prefix_count": 975315,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "16509",
+                    "ip": "2001:de8:4::3:8895:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 965
+                },
+                {
+                    "asn": "16509",
+                    "ip": "27.111.228.87",
+                    "v4_prefix_count": 2273,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "17639",
+                    "ip": "2001:de8:4::1:7639:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 32
+                },
+                {
+                    "asn": "17639",
+                    "ip": "27.111.229.239",
+                    "v4_prefix_count": 892,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "18106",
+                    "ip": "2001:de8:4::1:8106:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 218537
+                },
+                {
+                    "asn": "18106",
+                    "ip": "27.111.228.6",
+                    "v4_prefix_count": 999722,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "199524",
+                    "ip": "2001:de8:4::19:9524:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 218317
+                },
+                {
+                    "asn": "199524",
+                    "ip": "27.111.228.222",
+                    "v4_prefix_count": 981721,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "3491",
+                    "ip": "2001:de8:4::3491:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 207167
+                },
+                {
+                    "asn": "3491",
+                    "ip": "27.111.228.43",
+                    "v4_prefix_count": 969952,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "35280",
+                    "ip": "2001:de8:4::3:5280:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 219851
+                },
+                {
+                    "asn": "35280",
+                    "ip": "27.111.229.245",
+                    "v4_prefix_count": 995705,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "38496",
+                    "ip": "2001:de8:4::3:8496:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 11
+                },
+                {
+                    "asn": "38496",
+                    "ip": "27.111.231.4",
+                    "v4_prefix_count": 114,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "45489",
+                    "ip": "2001:de8:4::4:5489:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 57
+                },
+                {
+                    "asn": "45489",
+                    "ip": "27.111.228.118",
+                    "v4_prefix_count": 893,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "45896",
+                    "ip": "27.111.229.219",
+                    "v4_prefix_count": 260924,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "4775",
+                    "ip": "2001:de8:4::4775:1",
+                    "v4_prefix_count": 3,
+                    "v6_prefix_count": 362
+                },
+                {
+                    "asn": "4775",
+                    "ip": "27.111.228.226",
+                    "v4_prefix_count": 1680,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "4788",
+                    "ip": "2001:de8:4::4788:3",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 859
+                },
+                {
+                    "asn": "4788",
+                    "ip": "27.111.229.206",
+                    "v4_prefix_count": 6174,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "49544",
+                    "ip": "2001:de8:4::4:9544:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 211783
+                },
+                {
+                    "asn": "49544",
+                    "ip": "27.111.229.225",
+                    "v4_prefix_count": 977711,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "58952",
+                    "ip": "2001:de8:4::5:8952:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 12688
+                },
+                {
+                    "asn": "58952",
+                    "ip": "27.111.229.109",
+                    "v4_prefix_count": 184918,
+                    "v6_prefix_count": 12688
+                },
+                {
+                    "asn": "62955",
+                    "ip": "2001:de8:4::6:2955:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 1
+                },
+                {
+                    "asn": "62955",
+                    "ip": "27.111.228.162",
+                    "v4_prefix_count": 23,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "64096",
+                    "ip": "2001:de8:4::6:4096:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 2
+                },
+                {
+                    "asn": "64096",
+                    "ip": "27.111.228.28",
+                    "v4_prefix_count": 13,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "714",
+                    "ip": "2001:de8:4::714:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 353
+                },
+                {
+                    "asn": "714",
+                    "ip": "27.111.228.107",
+                    "v4_prefix_count": 1172,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8075",
+                    "ip": "2001:de8:4::8075:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 143
+                },
+                {
+                    "asn": "8075",
+                    "ip": "27.111.228.57",
+                    "v4_prefix_count": 874,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8220",
+                    "ip": "2001:de8:4::8220:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 951
+                },
+                {
+                    "asn": "8220",
+                    "ip": "27.111.229.123",
+                    "v4_prefix_count": 7390,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "9002",
+                    "ip": "2001:de8:4::9002:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 212255
+                },
+                {
+                    "asn": "9002",
+                    "ip": "27.111.229.103",
+                    "v4_prefix_count": 980175,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "9658",
+                    "ip": "2001:de8:4::9658:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 3
+                },
+                {
+                    "asn": "9658",
+                    "ip": "27.111.228.46",
+                    "v4_prefix_count": 441,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "9930",
+                    "ip": "2001:de8:4::9930:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 182
+                },
+                {
+                    "asn": "9930",
+                    "ip": "27.111.229.2",
+                    "v4_prefix_count": 926,
+                    "v6_prefix_count": 0
+                }
+            ],
+            "rrc26": [
+                {
+                    "asn": "15802",
+                    "ip": "185.1.8.1",
+                    "v4_prefix_count": 325,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "15802",
+                    "ip": "2001:7f8:73::3dba:0:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 286
+                },
+                {
+                    "asn": "17557",
+                    "ip": "185.1.8.136",
+                    "v4_prefix_count": 3760,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "17557",
+                    "ip": "2001:7f8:73::4495:0:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 1072
+                },
+                {
+                    "asn": "200612",
+                    "ip": "185.1.8.50",
+                    "v4_prefix_count": 985931,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "200612",
+                    "ip": "2001:7f8:73:0:3:fa4:0:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 223501
+                },
+                {
+                    "asn": "21859",
+                    "ip": "185.1.8.61",
+                    "v4_prefix_count": 79,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "21859",
+                    "ip": "2001:7f8:73::5563:0:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 21
+                },
+                {
+                    "asn": "29357",
+                    "ip": "185.1.8.29",
+                    "v4_prefix_count": 289,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "29357",
+                    "ip": "2001:7f8:73::72ad:0:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 113
+                },
+                {
+                    "asn": "35313",
+                    "ip": "185.1.8.58",
+                    "v4_prefix_count": 13,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "39273",
+                    "ip": "185.1.8.64",
+                    "v4_prefix_count": 84,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "39273",
+                    "ip": "2001:7f8:73::9969:0:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 3
+                },
+                {
+                    "asn": "45489",
+                    "ip": "185.1.8.43",
+                    "v4_prefix_count": 857,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "45489",
+                    "ip": "2001:7f8:73::b1b1:0:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 55
+                },
+                {
+                    "asn": "47794",
+                    "ip": "185.1.8.35",
+                    "v4_prefix_count": 619,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "48237",
+                    "ip": "185.1.8.3",
+                    "v4_prefix_count": 978139,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "48237",
+                    "ip": "2001:7f8:73::8beb:0:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 3
+                },
+                {
+                    "asn": "49544",
+                    "ip": "185.1.8.59",
+                    "v4_prefix_count": 983503,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "49544",
+                    "ip": "2001:7f8:73::c188:0:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 214756
+                },
+                {
+                    "asn": "51375",
+                    "ip": "185.1.8.53",
+                    "v4_prefix_count": 397,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "5416",
+                    "ip": "185.1.8.38",
+                    "v4_prefix_count": 429,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "5416",
+                    "ip": "2001:7f8:73::1528:0:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 1038
+                },
+                {
+                    "asn": "57187",
+                    "ip": "185.1.8.17",
+                    "v4_prefix_count": 203,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "57187",
+                    "ip": "2001:7f8:73::df63:0:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 35
+                },
+                {
+                    "asn": "61374",
+                    "ip": "185.1.8.250",
+                    "v4_prefix_count": 117511,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "61374",
+                    "ip": "2001:7f8:73::efbe:fa:1",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 56252
+                },
+                {
+                    "asn": "8674",
+                    "ip": "185.1.8.25",
+                    "v4_prefix_count": 5,
+                    "v6_prefix_count": 0
+                },
+                {
+                    "asn": "8674",
+                    "ip": "2001:7f8:73::21e2:0:2",
+                    "v4_prefix_count": 0,
+                    "v6_prefix_count": 4
+                },
+                {
+                    "asn": "8966",
+                    "ip": "185.1.8.119",
+                    "v4_prefix_count": 204,
+                    "v6_prefix_count": 0
+                }
+            ]
+        },
+        "latest_time": "2025-04-20T00:00:00",
+        "earliest_time": "2001-03-24T00:00:00",
+        "parameters": {
+            "query_time": "2025-04-20T00:00:00",
+            "cache": null
+        }
+    },
+    "query_id": "20250420012045-3be961cb-bbb6-406f-adb4-58edf797d0f5",
+    "process_time": 14,
+    "server_id": "app198",
+    "build_version": "main-2025.04.15",
+    "status": "ok",
+    "status_code": 200,
+    "time": "2025-04-20T01:20:45.455232"
+}

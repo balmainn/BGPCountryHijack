@@ -1,0 +1,63 @@
+,ROUTEVIEWS COLLECTOR,AS NUMBER,PEERING ADDRESS,PREFIXES,CC,REGION,ASNAME
+0,route-views.linx.routeviews.org,59605.0,195.66.226.33,982020.0,AE,ripencc,ZAINGP-AS ZOI - Zain Omantel International AE 
+1,route-views.linx.routeviews.org,31500.0,195.66.224.215,3538.0,AG,ripencc,GLOBALNET-AS AG 
+2,route-views.napafrica.routeviews.org,37468.0,196.60.8.60,988661.0,AO,afrinic,ANGOLA-CABLES AO 
+3,route-views.uaeix.routeviews.org,42473.0,185.1.8.11,1011988.0,AT,ripencc,AS-ANEXIA ANEXIA Internetdienstleistungs GmbH AT 
+4,route-views.linx.routeviews.org,38880.0,195.66.224.165,1009996.0,AU,apnic,M21-AS-AP Micron21 Datacentre Pty Ltd AU 
+5,route-views5.routeviews.org,132884.0,103.26.244.151,991935.0,BD,apnic,SUMMIT-BD Summit Communications Limited BD 
+6,route-views5.routeviews.org,37721.0,165.16.221.67,860238.0,BF,afrinic,Virtual-Technologies-Solutions-SA BF 
+7,route-views2.routeviews.org,34224.0,94.156.252.18,1000403.0,BG,ripencc,NETERRA-AS BG 
+8,route-views.uaeix.routeviews.org,51375.0,185.1.8.53,397.0,BH,ripencc,VIVA BH 
+9,route-views.fortaleza.routeviews.org,28624.0,45.68.72.187,1004096.0,BR,lacnic,PROVEDORA CMA INTERNET LTDA BR 
+10,route-views.sg.routeviews.org,17660.0,27.111.228.127,975201.0,BT,apnic,DRUKNET-AS DrukNet ISP BT 
+11,route-views.sfmix.routeviews.org,397131.0,206.197.187.85,994417.0,CA,arin,EVERYTHINK-397131 CA 
+12,route-views.sfmix.routeviews.org,34927.0,206.197.187.106,994139.0,CH,ripencc,IFOG-GMBH CH 
+13,route-views.chile.routeviews.org,27678.0,200.16.114.53,985742.0,CL,lacnic,NIC Chile CL 
+14,route-views.sg.routeviews.org,45102.0,27.111.228.126,170.0,CN,apnic,ALIBABA-CN-NET Alibaba US Technology Co.Ltd.CN 
+15,route-views.rio.routeviews.org,52320.0,45.6.52.193,971757.0,CO,lacnic,GlobeNet Cabos Submarinos Colombia S.A.S.CO 
+16,route-views.amsix.routeviews.org,213151.0,185.1.166.237,996803.0,DE,ripencc,CHRISELSEN DE 
+17,route-views8.routeviews.org,39642.0,139.45.112.208,970475.0,DK,ripencc,NORLYS-FIBERNET DK 
+18,route-views2.routeviews.org,3130.0,147.28.7.2,975837.0,EE,ripencc,RGNET-SEA RGnet Seattle Westin EE 
+19,route-views.linx.routeviews.org,6667.0,195.66.224.114,970026.0,FI,ripencc,EUNET-FINLAND FI 
+20,route-views.ny.routeviews.org,209823.0,206.82.105.109,975267.0,FR,ripencc,ENKI-AS FR 
+21,route-views7.routeviews.org,48297.0,193.148.248.220,1005568.0,GB,ripencc,TPC-NET GB 
+22,route-views.gixa.routeviews.org,30997.0,196.201.2.1,1219.0,GH,afrinic,GIXA-AS GH 
+23,route-views7.routeviews.org,216285.0,84.54.49.1,972501.0,GR,ripencc,MYIPGR MYIP NETWORKS GP GR 
+24,route-views5.routeviews.org,60539.0,193.148.248.178,985631.0,HK,ripencc,HUICAST_TELECOM HK 
+25,route-views.sg.routeviews.org,7713.0,27.111.228.155,981796.0,ID,apnic,TELKOMNET-AS-AP PT Telekomunikasi Indonesia ID 
+26,route-views.uaeix.routeviews.org,60924.0,185.1.8.23,987698.0,IE,ripencc,ORIXCOM IE 
+27,route-views.telxatl.routeviews.org,13150.0,206.126.110.145,3.0,IL,ripencc,CATON IL 
+28,route-views.sg.routeviews.org,9583.0,27.111.228.121,1936.0,IN,apnic,SIFY-AS-IN Sify Limited IN 
+29,route-views.amsix.routeviews.org,51019.0,185.1.167.88,974657.0,IS,ripencc,LJOSNET-VPC Ljosnet Inc.VPC IS 
+30,route-views5.routeviews.org,51185.0,178.248.48.141,1012359.0,IT,ripencc,MAINSTREAMING-AS IT 
+31,route-views.wide.routeviews.org,7500.0,202.249.2.86,998798.0,JP,apnic,M-ROOT-DNS WIDE Project JP 
+32,route-views7.routeviews.org,328977.0,102.217.156.2,968701.0,KE,afrinic,WAVEX KE 
+33,route-views2.routeviews.org,23673.0,203.189.128.233,404056.0,KH,apnic,ONLINE-AS Cogetel Online Cambodia ISP KH 
+34,route-views.uaeix.routeviews.org,29357.0,185.1.8.29,289.0,KW,ripencc,WATANIYATELECOM-AS KW 
+35,route-views.uaeix.routeviews.org,199524.0,185.1.8.114,1013535.0,LU,ripencc,GCORE LU 
+36,route-views.sg.routeviews.org,58952.0,27.111.229.109,184679.0,MM,apnic,FRONTIIRCOLTD-MM Frontiir Co.Ltd MM 
+37,route-views2.routeviews.org,37100.0,105.16.0.247,972452.0,MU,afrinic,SEACOM-AS MU 
+38,route-views3.routeviews.org,45352.0,210.5.41.225,987810.0,MY,apnic,IPSERVERONE-AS-AP IP ServerOne Solutions Sdn Bhd MY 
+39,route-views.napafrica.routeviews.org,25139.0,196.60.10.203,24.0,MZ,ripencc,TVCABO-AS MZ 
+40,route-views.napafrica.routeviews.org,49544.0,196.60.8.6,984780.0,NL,ripencc,I3DNET NL 
+41,route-views2.routeviews.org,49788.0,91.218.184.60,972377.0,NO,ripencc,NEXTHOP NO 
+42,route-views.sg.routeviews.org,45494.0,27.111.228.161,6.0,NP,apnic,LAHAI-SG NREN ASN for Misc.Root Servers and Community NP 
+43,route-views4.routeviews.org,133950.0,103.96.117.253,999133.0,NZ,apnic,HOOPLAHOSTING-AS-AP Hoopla Hosting Limited NZ 
+44,route-views.rio.routeviews.org,52468.0,45.6.55.32,996193.0,PA,lacnic,UFINET PANAMA S.A.PA 
+45,route-views.phoix.routeviews.org,150000.0,198.32.172.170,996025.0,PH,apnic,DBS-AS-AP Data-Beam Business Solution PH 
+47,route-views.linx.routeviews.org,6424.0,195.66.225.212,975525.0,PT,ripencc,EDGOO NETWORKS PT 
+48,route-views.eqix.routeviews.org,8781.0,206.126.236.181,944.0,QA,ripencc,QA-ISP QA 
+49,route-views4.routeviews.org,57050.0,212.81.56.227,972288.0,RO,ripencc,DREAMSERVER-SRL RO 
+50,route-views.soxrs.routeviews.org,13004.0,185.1.27.1,224747.0,RS,ripencc,SOX RS 
+51,route-views3.routeviews.org,3216.0,195.239.252.124,979690.0,RU,ripencc,SOVAM-AS RU 
+52,route-views.uaeix.routeviews.org,48237.0,185.1.8.3,1504.0,SA,ripencc,MOBILY-AS SA 
+53,route-views4.routeviews.org,1299.0,62.115.129.134,945203.0,SE,ripencc,TWELVE99 Arelion fka Telia Carrier SE 
+54,route-views.sg.routeviews.org,18106.0,27.111.228.6,999216.0,SG,apnic,VIEWQWEST-SG-AP Viewqwest Pte Ltd SG 
+55,route-views.bknix.routeviews.org,142108.0,203.159.68.168,888481.0,TH,apnic,ROTKONETWORKSOU-AS-AP Rotko Networks TH 
+56,route-views2.routeviews.org,208821.0,45.83.33.27,981701.0,TR,ripencc,DURUNET DURUNET TELEKOMUNIKASYON TR 
+57,route-views.kixp.routeviews.org,37273.0,196.223.21.23,199.0,UG,afrinic,BCS UG 
+58,route-views4.routeviews.org,36236.0,104.225.4.202,1007830.0,US,arin,NETACTUATE US 
+59,route-views.eqix.routeviews.org,6057.0,206.126.236.189,985331.0,UY,lacnic,Administracion Nacional de Telecomunicaciones UY 
+60,route-views.eqix.routeviews.org,61461.0,206.126.236.143,185.0,VE,lacnic,Airtek Solutions C.A.VE 
+61,route-views4.routeviews.org,38726.0,119.18.185.44,1003724.0,VN,apnic,VTCDIGICOM-AS-VN VTC DIGICOM VN 
+62,route-views.napafrica.routeviews.org,11845.0,196.60.8.146,1036028.0,ZA,afrinic,Vox-Telecom ZA 
