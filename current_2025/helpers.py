@@ -2178,6 +2178,7 @@ def get_fib_entry_for_p_new(someTime,prefixP,collector,observerIP,observerASN):
     print('finding fib entries for ',collector,observerASN, observerIP,'prefix: ',prefixP)
     filepath =pickleDir+f'/fib_entry_for_p/{prefixP.replace('/','-')}{collector}{observerIP}{someTime}.pickle'
     if os.path.exists(filepath):
+        print('exists, returning')
         return pickle.load(open(filepath,'rb'))
     broker = createBroker()    
     items = queryBroker(broker,someTime,someTime,collector,'rib')

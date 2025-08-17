@@ -1,6 +1,97 @@
 import pickle 
 import helpers
+chosen_rv = []
+num_from_each=2
+with open('route_views_peers.csv','r') as f:
+  
+    f.readline() #skip header
+    for line in f.readlines():
+        parts = line.strip().split('|')        
+        rv_collector = parts[0].replace('.routeviews.org','')
+        asn = parts[1]
+        ip_addr = parts[2]
+        num_prefixes = int(parts[3])
+        cc = parts[4]
+        chosen_rv.append((rv_collector,asn,ip_addr,num_prefixes,parts[4]))
 
+rv_peers = sorted(chosen_rv,key=lambda x: (x[-2],x[-1]),reverse=True)
+def select_on_cc(chosen_rv):
+    ccdict = {}
+    for collector, asn, peer_ip, num_prefixes, cc in chosen_rv:
+        if cc not in ccdict:
+            ccdict[cc] = [] 
+        ccdict[cc].append((collector,asn,peer_ip,num_prefixes))
+    chosen_rv = []
+
+    for cc in ccdict:
+        peers = ccdict[cc]
+        sorted_peers = sorted(peers,key=lambda x: x[-1],reverse=True)
+        for i in range(num_from_each):
+            if i >= len(sorted_peers):
+                break
+            collector, asn, peer_ip, num_prefixes = sorted_peers[i]
+            if num_prefixes < 2000:
+                continue
+            chosen_rv.append((collector, asn, peer_ip, num_prefixes))
+    return chosen_rv
+
+#print(observers['rv'])
+def add_to_observers(observers,chosen_rv,ctype):
+    print(len(observers[ctype]))
+    for chosen in chosen_rv:
+        collector, chosen_asn, chosen_ip, num_prefixes = chosen
+        chosen_asn = int(chosen_asn) 
+        found = False
+    # print(chosen)
+        for observer in observers[ctype]:
+        # print('\t',observer)
+            rrc,asn,ip = observer
+            if isinstance(asn,str):
+                asn = int(asn.replace('.0',''))
+            if chosen_asn == asn and chosen_ip==ip:
+                found = True
+                # print('found')
+                # exit(0)
+                break
+        if not found:
+            observers[ctype].append((collector, chosen_asn, chosen_ip))
+
+ripe_peers = []
+rrcdict = pickle.load(open('RIPE_peers_dict.pickle','rb'))
+for key in rrcdict.keys():
+    print(key)
+    for item in rrcdict[key]:
+        #print(item)
+        
+        for peer in rrcdict[key]['peers']:
+            #print(peer)
+            #exit(0)
+            asn = peer['asn']
+            peer_ip = peer['ip']
+            cc = peer['CC']
+            v4_prefix_count = peer['v4_prefix_count']
+            print(key.lower(),asn,peer_ip)            
+            ripe_peers.append((key.lower(),asn,peer_ip,v4_prefix_count,cc))
+chosen_rv = select_on_cc(rv_peers)
+
+print(len(chosen_rv))
+# print(chosen_rv)
+# exit(0)
+observers = pickle.load(open('observers.pickle','rb'))
+print(len(observers['rv']))
+add_to_observers(observers,chosen_rv,'rv')
+print(len(observers['rv']))
+print("~~~adding ripe~~~")
+chosen_ripe = select_on_cc(ripe_peers) 
+print(len(chosen_ripe))
+print(len(observers['ripe']))
+add_to_observers(observers,chosen_ripe,'ripe')
+print(len(observers['ripe']))
+pickle.dump(observers,open('observers2.pickle','wb'))
+exit(0)
+print(len(ripe_peers))   
+        
+exit(0)
 # for key in rrcdict.keys():
 #     print(key)
 #     for item in rrcdict[key]:
@@ -104,4 +195,5 @@ with open('top_rv_selected','r') as f:
         ip_addr = parts[3]
         observers['rv'].append((rv_collector,asn,ip_addr))
 print(observers)        
-pickle.dump(observers,open('observers.pickle','wb'))
+
+# pickle.dump(observers,open('observers.pickle','wb'))

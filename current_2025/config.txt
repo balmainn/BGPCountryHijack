@@ -1,0 +1,2 @@
+/mnt/research/pickles_2025/
+/mnt/research/cache2/

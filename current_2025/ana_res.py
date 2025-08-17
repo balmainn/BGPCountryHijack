@@ -84,59 +84,59 @@ for file in files:#[tfile]:
         num_rv+=1
     num_tested_observers +=1
 print(num_tested_observers,num_ripe,num_rv)
-exit(0)
+# exit(0)
 for a in aa:
     print(a/t *100)
-exit(0)
-for file in files:#[tfile]:
-    if 'unknown' not in file:
-        continue
-    observer=file.replace('rs-','').replace('.pickle','')
-    print(observer)
+# exit(0)
+# for file in files:#[tfile]:
+#     if 'unknown' not in file:
+#         continue
+#     observer=file.replace('rs-','').replace('.pickle','')
+#     print(observer)
     
-    results = pickle.load(open(results_folder+file,'rb'))
-    for result in results:
-        #print(result['why'])
-        why = result['why']
-        if 'could not find HPP relation' in why:
-            no_hpp +=1
-        elif 'no path observer and no path hijacker' in why:
-            no_path +=1
-        elif 'could not find LPP relation' in why:
-            no_lpp +=1
-        elif 'hijacking from unknown' in why:
-            new_neighbor +=1
-        elif 'testing inconclusive' in why:
-            inconclusive +=1
-        else:
-            print(result['why'])
+#     results = pickle.load(open(results_folder+file,'rb'))
+#     for result in results:
+#         #print(result['why'])
+#         why = result['why']
+#         if 'could not find HPP relation' in why:
+#             no_hpp +=1
+#         elif 'no path observer and no path hijacker' in why:
+#             no_path +=1
+#         elif 'could not find LPP relation' in why:
+#             no_lpp +=1
+#         elif 'hijacking from unknown' in why:
+#             new_neighbor +=1
+#         elif 'testing inconclusive' in why:
+#             inconclusive +=1
+#         else:
+#             print(result['why'])
 total_updates = 0
-for file in files:#[tfile]:
-    if 'unknown' in file:
-        continue 
-    results = pickle.load(open(results_folder+file,'rb'))
-    for result in results:
-        num_updates = result['num_benign_updates']
-        total_updates += num_updates
-        #print()
-        #exit(0)
-print(no_hpp,no_path,no_lpp,new_neighbor,inconclusive)
-print(total_updates)
-exit(0)
-#     for result in results: 
+# for file in files:#[tfile]:
+#     if 'unknown' in file:
+#         continue 
+#     results = pickle.load(open(results_folder+file,'rb'))
+#     for result in results:
+#         num_updates = result['num_benign_updates']
+#         total_updates += num_updates
+#         #print()
+#         #exit(0)
+# # print(no_hpp,no_path,no_lpp,new_neighbor,inconclusive)
+# # print(total_updates)
+# # exit(0)
+#     # for result in results: 
 #        # print(result)
 #         hijacker= result['hijacker_asn']
 #         if hijacker not in hijacker_results.keys():
 #             hijacker_results[hijacker] = []
 #         hijacker_results[hijacker].append(result)
-#         #exit(0)    
+# #         #exit(0)    
 
 print('loading hijacker results combined')
 import gzip 
-with gzip.open('all_hijacker_results.pickle','rb') as f:
+with gzip.open('all_hijacker_results2.pickle','rb') as f:
     hijacker_results = pickle.load(f)    
 # import gzip 
-# with gzip.open('all_hijacker_results.pickle','wb') as f:
+# with gzip.open('all_hijacker_results2.pickle','wb') as f:
 #     pickle.dump(hijacker_results,f)
 # exit(0)
 by_hijacker = {}
@@ -560,15 +560,15 @@ def make_scatter(hijacker):
             plt.savefig('parametric_distribution_multi.png')
     show = True 
     save = False
-    # scatter(rows,show=show,save=save)    
-    # scatter_multiple(rows,show=show,save=save)        
+    scatter(rows,show=show,save=save)    
+    scatter_multiple(rows,show=show,save=save)        
     # cdf(cdf_df,show=show,save=save)    
     # cdf_multi(cdf_df,show=show,save=save)    
     df = pandas.DataFrame(rows)
     #kde_func(df)
     #kde_func_multi(df,show=True)
     #parametric_dist(df) #bugged
-    parametric_dist_multi(df,show=show,save=save)
+    #parametric_dist_multi(df,show=show,save=save)
     
     exit(0)
     #exit(0)

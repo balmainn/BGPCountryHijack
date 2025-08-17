@@ -11,6 +11,9 @@ testEndTime = '2025-04-01T00:00:00'
 test_data = []
 # print(observers['rv'][0])
 # exit(0)
+from multiprocessing import Pool 
+
+
 for collector_type in observers:
     for id in range(len(observers[collector_type])):
         if collector_type == 'rv':
@@ -43,7 +46,8 @@ def pre_parse_pref_results(collector_type,collector,asn,ip):
         
     if collector_type == 'ripe':
         filepath = f'/mnt/research/pickles_2025/all_ripe/{collector}-{asn}-{ip}.pickle'
-    
+    if not os.path.exists(filepath):
+        return
     
     double_check = f'/mnt/research/pickles_2025/double_check/{collector}-{asn}-{ip}.pickle'
     #filepath = f'/mnt/research/pickles_2025/poster_test/{collector}-{asn}-{ip}-5day.pickle'
@@ -228,7 +232,7 @@ def pre_parse_pref_results2(collector_type, collector,asn,ip):
     #     print('will do this later')
     #     return
     already_done = set()
-    startingHPP = []
+    startingHPP = [] #remake this as a set! <TODO>
     #instead of doing this add one at a time and extend, if contra/cycle dont add!
     
     starting_hpp_path = f'/mnt/research/pickles_2025/main_test/starting_hpp/{collector}-{asn}-{ip}.pickle'
@@ -241,7 +245,10 @@ def pre_parse_pref_results2(collector_type, collector,asn,ip):
             a,r,b,timestamp,count = both[i]
             t = (a,r,b)
             #if len(startingLPP)==0:
-            
+            #if t in startingHPP:
+                #continue
+            #else:
+                #startingHPP.add(t)
             startingHPP.append(t)
             
 
@@ -276,6 +283,10 @@ def pre_parse_pref_results2(collector_type, collector,asn,ip):
 
 def expand_hpp(collector_type,collector,asn,ip):
     starting_hpp_path = f'/mnt/research/pickles_2025/main_test/starting_hpp/{collector}-{asn}-{ip}.pickle'
+    graph_extension = f'/mnt/research/pickles_2025/main_test/extended/{collector}-{asn}-{ip}.pickle'
+    if os.path.exists(graph_extension):
+        print('already exists!')
+        return
     if not os.path.exists(starting_hpp_path):
         print('does not exist')
         return
@@ -287,9 +298,11 @@ def expand_hpp(collector_type,collector,asn,ip):
         badchange, reason =helpers.detectBadChange_noexit(startingHPP,'after loading starting HPP')
         if not badchange:
             break
+    
     if len(startingHPP) == 0:
         print("cannot perform test, not enough data on",collector,asn,ip)
-        exit(0)
+        return
+        #exit(0)
     #helpers.print_cycles(startingHPP)
 
     # badchange, reason =helpers.detectBadChange_noexit(startingHPP,'creating starting lpp line 512')
@@ -301,6 +314,7 @@ def expand_hpp(collector_type,collector,asn,ip):
     #have_contra, reason = helpers.detectBadChange_noexit(startingHPP,'starting hpp') 
     #badchange, reason =helpers.detectBadChange_noexit(startingHPP,'starting hpp') 
     if badchange:
+        print("bad change returning")
         return
         # if not have_contra:
         #     break
@@ -310,7 +324,6 @@ def expand_hpp(collector_type,collector,asn,ip):
     if madeCycle:
         print('made a cycle =( ',cycles)
         return
-    graph_extension = f'/mnt/research/pickles_2025/main_test/extended/{collector}-{asn}-{ip}.pickle'
     
     if not os.path.exists(graph_extension):
         output = helpers.infer_inequalities(startingHPP)
@@ -503,7 +516,8 @@ def parse_lpp(collector_type, collector,asn,ip):
             if r2 !='=':
                 continue 
             else:
-                print('examining ',hppRes, 'for lpp counterpart')
+                pass
+                #print('examining ',hppRes, 'for lpp counterpart')
             possibleKey1 = (a2,'>',b2)
             possibleKey2 = (b2,'>',a2)
             try:
@@ -555,9 +569,9 @@ def parse_lpp(collector_type, collector,asn,ip):
                         torem.append(res1)
             for r in torem:
                 startingLPP.remove(r)
-            print('removed duplicates',r)                    
-            print(startingLPP)
-            print(LPPRes.keys())
+            print('removed duplicates')#,r)                    
+            #print(startingLPP)
+            #print(LPPRes.keys())
             #exit(0)                
             #startingLPP = helpers.infer_inequalities(startingLPP)
         print('dumping starting lpp ')
@@ -602,26 +616,43 @@ def get_test_updates_from_file(collector_type, collector,asn,ip):
     test_neighbor_updates = pickle.load(open(test_updates_file,'rb'))
     return test_neighbor_updates
 
+rem = []
+for collector_type,collector,asn,ip in test_data: 
+    print(collector_type,collector,asn,ip)
+    #if ip == '177.221.140.2' or ip=='45.65.244.1':
+    d = (collector_type,collector,asn,ip)
+    if collector =='rrc24':    
+        rem.append(d)
+        print('continue')
+        continue
 
-#pool.starmap(pre_parse_pref_results,test_data)
-#pool.close() 
+for r in rem:
+    test_data.remove(r)                
+    
+    #pre_parse_pref_results(collector_type,collector,asn,ip)
+numprocs = 3
+#from random import shuffle 
+
+#shuffle(test_data)
+# with Pool(processes=numprocs) as pool:
+#     #pool.starmap(pre_parse_pref_results,test_data)
+#     #pool.starmap(pre_parse_pref_results2,test_data)
+#     #pool.starmap(expand_hpp,test_data)
+#     #?
+#     #pool.starmap(parse_and_extend,test_data)
+#     pool.starmap(parse_lpp,test_data)
+#     pool.close() 
+#     pool.join()
+
+print("done for now...")
+#exit(0)    
 #the big ones are still left, but lets see which ones get done
-# pool.starmap(pre_parse_pref_results2,test_data)
+
 # pool.close() 
 #ct,c,a,i = test_data[0]
 #expand_hpp(ct,c,a,i)
 #parse_and_extend(ct,c,a,i)
-# pool.starmap(expand_hpp,test_data)
-# pool.join()
-# pool.close() 
-#'route-views.gixa' 30997 196.201.2.1
-# pool.starmap(parse_and_extend,test_data)
-# pool.join()
-# pool.close() 
 
-# pool.starmap(parse_lpp,test_data)
-# pool.close() 
-# pool.join()
 
 def get_info_from_file(filename:str):
     parts = filename.split('-')
@@ -644,6 +675,8 @@ for file in files:
 # for info in restricted_data:
 #     collector_type,collector,asn,ip = info 
 #     get_test_updates(collector_type,collector,asn,ip)
+print(len(restricted_data))
+# exit(0)
 def make_dgraph_from_rib(rib_updates):
     dgraph = networkx.Graph()
     asns = set('root')
@@ -732,7 +765,7 @@ def find_hijacker_updates(hijackers,hijackers_cc,collector_type,collector,asn,ip
         return
     hijacking_updates_path = f'/mnt/research/pickles_2025/main_test/hijacking_updates/{hijackers_cc}-{collector}-{asn}-{ip}.pickle'
     if os.path.exists(hijacking_updates_path):
-        #print('already did')
+        print('already did')
         return
     with gzip.open(filepath,'rb') as f:
         neighbor_dict = pickle.load(f)
@@ -774,10 +807,12 @@ def find_hijacker_updates(hijackers,hijackers_cc,collector_type,collector,asn,ip
     pickle.dump(hijacking_updates,open(hijacking_updates_path,'wb'))
     return
     #return(hijacking_updates)
-
+# pool = Pool(processes=numprocs) 
 # pool.starmap(get_test_updates,restricted_data)
+
 # pool.close() 
 # pool.join()
+# exit(0)
 cdir = 'country_information.pickle'
 countryinfo = pickle.load(open(cdir,'rb'))
 hijackers_cc = 'rs'
@@ -836,10 +871,12 @@ print(len(victim_prefixes))
 print(len(sampled_prefixes))
 print('there are ',cnt,'remaining')
 #exit(0)
+
 # pool.starmap(helpers.get_fib_entry_for_p_new,victim_test_data)
 # pool.close()
 # pool.join()
-# exit(0)
+# print('done for now')
+#exit(0)
 #helpers.get_fib_entry_for_p_new(endTime,victim_prefix,collector,ip2,asn2)
 #if something bugs it'll probably be this file 
 #https://archive.routeviews.org/route-views7/bgpdata/2025.03/RIBS/rib.20250331.0000.bz2        
@@ -850,11 +887,18 @@ print('there are ',cnt,'remaining')
 #                                 #someTime,prefixP,collector,observerIP,observerASN
 
 #exit(0)
+new_data = []
 for data in restricted_data:
     collector_type,collector,asn,ip = data 
-    #new_data.append((hijackers,hijackers_cc,collector_type,collector,asn,ip))
-    find_hijacker_updates(hijackers,hijackers_cc,collector_type,collector,asn,ip)
+    new_data.append((hijackers,hijackers_cc,collector_type,collector,asn,ip))
+#     find_hijacker_updates(hijackers,hijackers_cc,collector_type,collector,asn,ip)
 #exit(0)
+print('finding hijacker updates...')
+pool = Pool(processes=numprocs) 
+pool.starmap(find_hijacker_updates,new_data)
+pool.close()
+pool.join()
+
 def get_hijacker_updates(hijackers_cc,collector,asn,ip):
     hijacking_updates_path = f'/mnt/research/pickles_2025/main_test/hijacking_updates/{hijackers_cc}-{collector}-{asn}-{ip}.pickle'
     hijacking_updates = pickle.load(open(hijacking_updates_path,'rb'))
@@ -1131,12 +1175,11 @@ for data in restricted_data:
 #exit(0)        
         #launch_hijack_test(hijackers_cc,collector_type,collector,asn,ip,victim_prefixes)
         #exit(0)
-from multiprocessing import Pool 
-numprocs = 3
-pool = Pool(processes=numprocs)
+pool = Pool(processes=numprocs) 
 pool.starmap(launch_hijack_test,victim_test_data)
 pool.close()
 pool.join()
+print("NOW GO FORTH AND ANALYZE THE DATA")
 #endTime,victim_ip,collector,observerIP,observerASN = victim_test_data[0]
 #print(endTime,victim_ip,collector,observerIP,observerASN)
 #helpers.get_fib_entry_for_p_new(endTime,victim_ip,collector,observerIP,observerASN)
